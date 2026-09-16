@@ -1,0 +1,4927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>GyaaniFly – Read • Recall • Master</title>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f5f7fb;
+    color:#1f2937;
+}
+
+button,
+input{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.hidden{
+    display:none !important;
+}
+
+
+/* =====================================================
+   AUTH
+===================================================== */
+
+#authScreen{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+}
+
+.authBox{
+    width:100%;
+    max-width:420px;
+    background:#fff;
+    padding:30px 25px;
+    border-radius:22px;
+    box-shadow:0 20px 50px rgba(0,0,0,.2);
+}
+
+.logo {
+    text-align: center;
+    font-size: 34px;
+    font-weight: 800;
+    color: #102a43;
+    margin-bottom: 7px;
+}
+
+.logo span {
+    color: #1683f2;
+}
+
+.logoSub {
+    text-align: center;
+    color: #777;
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+.authTitle{
+    font-size:25px;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+.inputGroup{
+    margin-bottom:15px;
+}
+
+.inputGroup label{
+    display:block;
+    font-size:14px;
+    font-weight:600;
+    margin-bottom:7px;
+}
+
+.inputGroup input{
+    width:100%;
+    padding:13px 14px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    outline:none;
+    font-size:15px;
+}
+
+.inputGroup input:focus{
+    border-color:#6366f1;
+}
+
+.primaryBtn{
+    width:100%;
+    border:none;
+    background:#6366f1;
+    color:#fff;
+    padding:14px;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:700;
+}
+
+.secondaryBtn{
+    width:100%;
+    border:none;
+    background:#eef0ff;
+    color:#4f46e5;
+    padding:13px;
+    border-radius:12px;
+    font-weight:700;
+    margin-top:12px;
+}
+
+.forgot{
+    text-align:right;
+    margin:8px 0 15px;
+}
+
+.forgot button{
+    border:none;
+    background:none;
+    color:#6366f1;
+    font-size:13px;
+}
+
+.authMessage{
+    margin-top:15px;
+    padding:11px;
+    border-radius:10px;
+    font-size:14px;
+    display:none;
+}
+
+.authMessage.error{
+    display:block;
+    background:#fee2e2;
+    color:#b91c1c;
+}
+
+.authMessage.success{
+    display:block;
+    background:#dcfce7;
+    color:#15803d;
+}
+
+
+/* =====================================================
+   APP
+===================================================== */
+
+#appScreen{
+    min-height:100vh;
+    padding-bottom:82px;
+}
+
+
+/* =====================================================
+   TOP BAR
+===================================================== */
+
+.topBar{
+    background:#fff;
+    padding:18px;
+    position:sticky;
+    top:0;
+    z-index:20;
+    border-bottom:1px solid #eee;
+}
+
+.topRow{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0d47a1, #2196f3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.brand h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 800;
+    color: #102a43;
+}
+
+.brand h1 span {
+    color: #1683f2;
+}
+
+.brand small {
+    display: block;
+    margin-top: 2px;
+    font-size: 9px;
+    color: #777;
+}
+
+.userCircle{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:#6366f1;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+}
+
+
+/* =====================================================
+   PAGE
+===================================================== */
+
+.page{
+    padding:20px;
+    max-width:1000px;
+    margin:auto;
+}
+
+
+/* =====================================================
+   WELCOME
+===================================================== */
+
+.welcome{
+    background:linear-gradient(135deg,#6366f1,#8b5cf6);
+    color:#fff;
+    padding:22px;
+    border-radius:20px;
+    margin-bottom:18px;
+}
+
+.welcome h2{
+    margin-bottom:7px;
+}
+
+.welcome p{
+    opacity:.9;
+}
+
+
+/* =====================================================
+   STREAK
+===================================================== */
+
+.streakCard{
+    background:#fff;
+    border-radius:20px;
+    padding:18px;
+    margin-bottom:18px;
+    box-shadow:0 5px 18px rgba(0,0,0,.06);
+}
+
+.streakTop{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.streakTitle{
+    font-size:18px;
+    font-weight:800;
+}
+
+.streakNumber{
+    color:#f97316;
+    font-size:20px;
+    font-weight:800;
+}
+
+.weekDays{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:5px;
+    text-align:center;
+}
+
+.dayItem{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+}
+
+.dayName{
+    font-size:11px;
+    color:#777;
+}
+
+.dayCircle{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    background:#f1f1f1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:14px;
+}
+
+.dayCircle.active{
+    background:#dcfce7;
+    color:#16a34a;
+}
+
+.dayCircle.today{
+    border:2px solid #6366f1;
+}
+
+
+/* =====================================================
+   CONTINUE LEARNING
+===================================================== */
+
+.continueCard{
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    margin-bottom:22px;
+    box-shadow:0 5px 18px rgba(0,0,0,.06);
+}
+
+.continueHeader{
+    padding:17px 18px 5px;
+}
+
+.continueTitle{
+    font-size:20px;
+    font-weight:800;
+}
+
+.continueBody{
+    display:flex;
+    gap:15px;
+    padding:15px 18px 18px;
+}
+
+.continueImage{
+    width:90px;
+    height:125px;
+    object-fit:contain;
+    background:#eee;
+    border-radius:8px;
+    flex-shrink:0;
+}
+
+.continueInfo{
+    flex:1;
+}
+
+.continueBook{
+    font-size:17px;
+    font-weight:800;
+    margin-bottom:6px;
+}
+
+.continueChapter{
+    color:#777;
+    font-size:14px;
+    margin-bottom:12px;
+}
+
+.progressText{
+    font-size:12px;
+    color:#777;
+    margin-bottom:5px;
+}
+
+.progressBar{
+    height:9px;
+    background:#eee;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progressFill{
+    height:100%;
+    background:#6366f1;
+    width:0%;
+    transition:.3s;
+}
+
+.continueBtn{
+    border:none;
+    background:#6366f1;
+    color:#fff;
+    padding:10px 16px;
+    border-radius:10px;
+    font-weight:700;
+    margin-top:12px;
+}
+
+
+/* =====================================================
+   STATS
+===================================================== */
+
+.statsTitle{
+    font-size:20px;
+    font-weight:800;
+    margin-bottom:12px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    margin-bottom:22px;
+}
+
+.stat{
+    background:#fff;
+    border-radius:16px;
+    padding:15px 7px;
+    text-align:center;
+    box-shadow:0 4px 15px rgba(0,0,0,.05);
+}
+
+.statNumber{
+    font-size:22px;
+    font-weight:800;
+    color:#6366f1;
+}
+
+.statLabel{
+    font-size:11px;
+    color:#777;
+    margin-top:5px;
+}
+
+
+/* =====================================================
+   OVERALL PROGRESS
+===================================================== */
+
+.overallCard{
+    background:#fff;
+    padding:18px;
+    border-radius:18px;
+    margin-bottom:22px;
+    box-shadow:0 4px 15px rgba(0,0,0,.05);
+}
+
+.overallTop{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:10px;
+}
+
+.overallTitle{
+    font-weight:800;
+}
+
+.overallPercent{
+    color:#6366f1;
+    font-weight:800;
+}
+
+.overallBar{
+    width:100%;
+    height:12px;
+    background:#eee;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.overallFill{
+    height:100%;
+    width:0%;
+    background:#6366f1;
+    transition:.4s;
+}
+
+
+/* =====================================================
+   ACHIEVEMENTS
+===================================================== */
+
+.achievementTitle{
+    font-size:20px;
+    font-weight:800;
+    margin-bottom:12px;
+}
+
+.achievementGrid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+    margin-bottom:25px;
+}
+
+.achievement{
+    background:#fff;
+    padding:16px;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,.05);
+}
+
+.achievementIcon{
+    width:48px;
+    height:48px;
+    border-radius:14px;
+    background:#eef0ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+}
+
+.achievementName{
+    font-weight:700;
+    font-size:14px;
+}
+
+.achievementStatus{
+    font-size:11px;
+    color:#aaa;
+    margin-top:4px;
+}
+
+.achievement.unlocked{
+    border:2px solid #6366f1;
+}
+
+.achievement.unlocked .achievementStatus{
+    color:#16a34a;
+}
+
+
+/* =====================================================
+   SECTION
+===================================================== */
+
+.sectionTitle{
+    font-size:20px;
+    font-weight:800;
+    margin:20px 0 14px;
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.searchBox{
+    margin-bottom:15px;
+}
+
+.searchBox input{
+    width:100%;
+    padding:14px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    outline:none;
+    font-size:15px;
+    background:#fff;
+}
+
+
+/* =====================================================
+   BOOK GRID
+===================================================== */
+
+.bookGrid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+
+/* =====================================================
+   BOOK CARD
+===================================================== */
+
+.bookCard{
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 5px 18px rgba(0,0,0,.07);
+    cursor:pointer;
+    transition:.2s;
+}
+
+.bookCard:active{
+    transform:scale(.98);
+}
+
+
+/* =====================================================
+   BOOK IMAGE
+===================================================== */
+
+.bookImageFrame{
+    width:100%;
+    aspect-ratio:2 / 3;
+    background:#f1f1f1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+.bookImage{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:contain;
+    object-position:center;
+}
+
+.imageFallback{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#eeeeee;
+    font-size:55px;
+    color:#888;
+}
+
+
+/* =====================================================
+   BOOK CONTENT
+===================================================== */
+
+.bookContent{
+    padding:15px;
+}
+
+.bookContent h3{
+    font-size:17px;
+    margin-bottom:6px;
+}
+
+.bookAuthor{
+    color:#777;
+    font-size:13px;
+}
+
+.bookCategory{
+    display:inline-block;
+    margin-top:9px;
+    padding:5px 10px;
+    background:#eef0ff;
+    color:#4f46e5;
+    border-radius:20px;
+    font-size:11px;
+}
+
+
+/* =====================================================
+   CHAPTERS
+===================================================== */
+
+.backBtn{
+    border:none;
+    background:#eef0ff;
+    color:#4f46e5;
+    padding:10px 15px;
+    border-radius:10px;
+    font-weight:700;
+    margin-bottom:18px;
+}
+
+.chapterCard{
+    background:#fff;
+    padding:17px;
+    border-radius:16px;
+    margin-bottom:12px;
+    box-shadow:0 4px 14px rgba(0,0,0,.05);
+    display:flex;
+    align-items:center;
+    gap:14px;
+    cursor:pointer;
+}
+
+.chapterNumber{
+    min-width:45px;
+    height:45px;
+    border-radius:12px;
+    background:#6366f1;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+}
+
+.chapterInfo{
+    flex:1;
+}
+
+.chapterInfo h3{
+    font-size:16px;
+    margin-bottom:4px;
+}
+
+.chapterInfo p{
+    color:#777;
+    font-size:13px;
+}
+
+
+/* =====================================================
+   QUIZ
+===================================================== */
+
+.quizHeader{
+    background:#fff;
+    padding:17px;
+    border-radius:16px;
+    margin-bottom:15px;
+    font-weight:700;
+}
+
+.questionCard{
+    background:#fff;
+    padding:20px;
+    border-radius:18px;
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
+}
+
+.questionNumber{
+    color:#6366f1;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.questionText{
+    font-size:19px;
+    line-height:1.5;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+.option{
+    width:100%;
+    padding:15px;
+    border:1px solid #ddd;
+    background:#fff;
+    border-radius:12px;
+    margin-bottom:10px;
+    text-align:left;
+    font-size:15px;
+}
+
+.option:disabled{
+    cursor:default;
+}
+
+.option.correct{
+    background:#dcfce7;
+    border-color:#22c55e;
+}
+
+.option.wrong{
+    background:#fee2e2;
+    border-color:#ef4444;
+}
+
+.nextBtn{
+    width:100%;
+    margin-top:10px;
+    border:none;
+    background:#6366f1;
+    color:#fff;
+    padding:14px;
+    border-radius:12px;
+    font-weight:700;
+}
+
+.explanationBox{
+    margin-top:15px;
+    padding:12px;
+    background:#f3f4f6;
+    border-radius:10px;
+    line-height:1.5;
+}
+
+.memoryBox{
+    margin-top:10px;
+    padding:12px;
+    background:#eef0ff;
+    border-radius:10px;
+    line-height:1.5;
+}
+
+
+/* =====================================================
+   RESULT
+===================================================== */
+
+.resultCard{
+    background:#fff;
+    border-radius:20px;
+    padding:30px 20px;
+    text-align:center;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.scoreCircle{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:#eef0ff;
+    color:#6366f1;
+    margin:20px auto;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.scoreCircle strong{
+    font-size:30px;
+}
+
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+.profileCard{
+    background:#fff;
+    border-radius:20px;
+    padding:25px;
+    text-align:center;
+    box-shadow:0 4px 15px rgba(0,0,0,.05);
+}
+
+.profileAvatar{
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    background:#6366f1;
+    color:#fff;
+    margin:0 auto 15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    font-weight:800;
+}
+
+.profileCard h2{
+    margin-bottom:5px;
+}
+
+.profileEmail{
+    color:#777;
+    margin-bottom:20px;
+}
+
+.logoutBtn{
+    width:100%;
+    border:none;
+    background:#fee2e2;
+    color:#dc2626;
+    padding:14px;
+    border-radius:12px;
+    font-weight:700;
+}
+
+
+/* =====================================================
+   BOTTOM NAV
+===================================================== */
+
+.bottomNav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:68px;
+    background:#fff;
+    border-top:1px solid #eee;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    z-index:50;
+}
+
+.navBtn{
+    border:none;
+    background:none;
+    color:#888;
+    font-size:12px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px;
+}
+
+.navBtn span{
+    font-size:22px;
+}
+
+.navBtn.active{
+    color:#6366f1;
+    font-weight:700;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading{
+    text-align:center;
+    padding:30px;
+    color:#777;
+}
+
+.empty{
+    background:#fff;
+    padding:25px;
+    border-radius:16px;
+    text-align:center;
+    color:#777;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:600px){
+
+    .bookGrid{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .achievementGrid{
+        grid-template-columns:1fr;
+    }
+
+    .page{
+        padding:16px;
+    }
+
+    .continueBody{
+        padding:14px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     AUTH SCREEN
+===================================================== -->
+
+<div id="authScreen">
+
+    <div class="authBox">
+
+        <div class="logo">
+    Gyaani<span>Fly</span>
+</div>
+
+<div class="logoSub">
+    Read • Recall • Master
+</div>
+
+
+        <!-- LOGIN -->
+
+        <div id="loginBox">
+
+            <div class="authTitle">
+                Welcome Back 👋
+            </div>
+
+            <div class="inputGroup">
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="Enter your email">
+
+            </div>
+
+
+            <div class="inputGroup">
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    id="loginPassword"
+                    placeholder="Enter your password">
+
+            </div>
+
+
+            <div class="forgot">
+
+                <button
+                    onclick="forgotPassword()">
+
+                    Forgot Password?
+
+                </button>
+
+            </div>
+
+
+            <button
+                class="primaryBtn"
+                onclick="loginUser()">
+
+                Login
+
+            </button>
+
+
+            <button
+                class="secondaryBtn"
+                onclick="showSignup()">
+
+                Create New Account
+
+            </button>
+
+        </div>
+
+
+        <!-- SIGNUP -->
+
+        <div
+            id="signupBox"
+            class="hidden">
+
+            <div class="authTitle">
+                Create Account 🚀
+            </div>
+
+
+            <div class="inputGroup">
+
+                <label>Name</label>
+
+                <input
+                    type="text"
+                    id="signupName"
+                    placeholder="Your name">
+
+            </div>
+
+
+            <div class="inputGroup">
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    id="signupEmail"
+                    placeholder="Your email">
+
+            </div>
+
+
+            <div class="inputGroup">
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    id="signupPassword"
+                    placeholder="Minimum 6 characters">
+
+            </div>
+
+
+            <button
+                class="primaryBtn"
+                onclick="signupUser()">
+
+                Sign Up
+
+            </button>
+
+
+            <button
+                class="secondaryBtn"
+                onclick="showLogin()">
+
+                Already have an account? Login
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="authMessage"
+            class="authMessage">
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     APP SCREEN
+===================================================== -->
+
+<div
+    id="appScreen"
+    class="hidden">
+
+
+    <!-- TOP BAR -->
+
+    <div class="topBar">
+
+        <div class="topRow">
+
+        <div class="brand">
+            <div class="brand-icon">🧠</div>
+            <div>
+            <h1>Gyaani<span>Fly</span></h1>
+            <small>Read • Recall • Master</small>
+            </div>
+        </div>
+
+            <div
+                class="userCircle"
+                id="topUserCircle">
+
+                U
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         HOME
+    ================================================= -->
+
+    <div
+        id="homePage"
+        class="page">
+
+
+        <!-- WELCOME -->
+
+        <div class="welcome">
+
+            <h2>
+
+                Hello,
+                <span id="welcomeName">
+                    Student
+                </span>
+                👋
+
+            </h2>
+
+            <p>
+                Keep learning and keep growing.
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             STREAK
+        ================================================= -->
+
+        <div class="streakCard">
+
+            <div class="streakTop">
+
+                <div class="streakTitle">
+
+                    🔥 <span id="streakNumber">
+                        0
+                    </span> Day Streak
+
+                </div>
+
+                <div class="streakNumber">
+
+                    🔥
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="weekDays"
+                class="weekDays">
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             CONTINUE LEARNING
+        ================================================= -->
+
+        <div
+            id="continueCard"
+            class="continueCard hidden">
+
+
+            <div class="continueHeader">
+
+                <div class="continueTitle">
+
+                    Continue Learning
+
+                </div>
+
+            </div>
+
+
+            <div class="continueBody">
+
+
+                <img
+                    id="continueImage"
+                    class="continueImage"
+                    src=""
+                    alt="Book">
+
+
+                <div class="continueInfo">
+
+                    <div
+                        id="continueBook"
+                        class="continueBook">
+
+                    </div>
+
+
+                    <div
+                        id="continueChapter"
+                        class="continueChapter">
+
+                    </div>
+
+
+                    <div class="progressText">
+
+                        <span id="continueProgressText">
+                            0%
+                        </span>
+
+                        Complete
+
+                    </div>
+
+
+                    <div class="progressBar">
+
+                        <div
+                            id="continueProgress"
+                            class="progressFill">
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="continueBtn"
+                        onclick="continueLearning()">
+
+                        ▶ Continue
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             PROGRESS
+        ================================================= -->
+
+        <div class="statsTitle">
+
+            📊 Your Progress
+
+        </div>
+
+
+        <div class="stats">
+
+
+            <div class="stat">
+
+                <div
+                    id="booksStarted"
+                    class="statNumber">
+
+                    0
+
+                </div>
+
+                <div class="statLabel">
+
+                    Books Started
+
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div
+                    id="chaptersCompleted"
+                    class="statNumber">
+
+                    0
+
+                </div>
+
+                <div class="statLabel">
+
+                    Chapters Completed
+
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div
+                    id="mcqsSolved"
+                    class="statNumber">
+
+                    0
+
+                </div>
+
+                <div class="statLabel">
+
+                    MCQs Solved
+
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div
+                    id="correctAnswers"
+                    class="statNumber">
+
+                    0
+
+                </div>
+
+                <div class="statLabel">
+
+                    Correct Answers
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             OVERALL
+        ================================================= -->
+
+        <div class="overallCard">
+
+
+            <div class="overallTop">
+
+                <div class="overallTitle">
+
+                    Overall Progress
+
+                </div>
+
+                <div
+                    id="overallPercent"
+                    class="overallPercent">
+
+                    0%
+
+                </div>
+
+            </div>
+
+
+            <div class="overallBar">
+
+                <div
+                    id="overallFill"
+                    class="overallFill">
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             ACHIEVEMENTS
+        ================================================= -->
+
+        <div class="achievementTitle">
+
+            🏆 Achievements
+
+        </div>
+
+
+        <div
+            id="achievementGrid"
+            class="achievementGrid">
+
+        </div>
+
+
+
+        <!-- =================================================
+             BOOKS
+        ================================================= -->
+
+        <div class="sectionTitle">
+
+            📚 Recommended Books
+
+        </div>
+
+
+        <div
+            id="homeBooks"
+            class="bookGrid">
+
+            <div class="loading">
+
+                Loading books...
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         BOOKS PAGE
+    ================================================= -->
+
+    <div
+        id="booksPage"
+        class="page hidden">
+
+
+        <div class="sectionTitle">
+
+            📚 All Books
+
+        </div>
+
+
+        <div class="searchBox">
+
+            <input
+                type="text"
+                id="bookSearch"
+                placeholder="🔍 Search books..."
+                oninput="searchBooks()">
+
+        </div>
+
+
+        <div
+            id="booksContainer"
+            class="bookGrid">
+
+            <div class="loading">
+
+                Loading...
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         CHAPTER PAGE
+    ================================================= -->
+
+    <div
+        id="chaptersPage"
+        class="page hidden">
+
+
+        <button
+            class="backBtn"
+            onclick="showPage('booksPage')">
+
+            ← Back to Books
+
+        </button>
+
+
+        <div
+            class="sectionTitle"
+            id="chapterBookTitle">
+
+            Chapters
+
+        </div>
+
+
+        <div id="chaptersContainer">
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         QUIZ PAGE
+    ================================================= -->
+
+    <div
+        id="quizPage"
+        class="page hidden">
+
+
+        <button
+            class="backBtn"
+            onclick="showPage('chaptersPage')">
+
+            ← Back to Chapters
+
+        </button>
+
+
+        <div class="quizHeader">
+
+            <div id="quizTitle">
+                Quiz
+            </div>
+
+
+            <div class="progressBar">
+
+                <div
+                    id="quizProgressFill"
+                    class="progressFill">
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div id="quizContainer">
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         RESULT
+    ================================================= -->
+
+    <div
+        id="resultPage"
+        class="page hidden">
+
+
+        <div class="resultCard">
+
+            <h2>
+
+                🎉 Quiz Complete!
+
+            </h2>
+
+
+            <div class="scoreCircle">
+
+                <strong id="finalScore">
+
+                    0/0
+
+                </strong>
+
+                <span>
+
+                    Score
+
+                </span>
+
+            </div>
+
+
+            <p id="resultText">
+
+                Great job!
+
+            </p>
+
+
+            <br>
+
+
+            <button
+                class="primaryBtn"
+                onclick="showPage('homePage')">
+
+                🏠 Back to Home
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         PROFILE
+    ================================================= -->
+
+    <div
+        id="profilePage"
+        class="page hidden">
+
+
+        <div class="sectionTitle">
+
+            👤 My Profile
+
+        </div>
+
+
+        <div class="profileCard">
+
+
+            <div
+                class="profileAvatar"
+                id="profileAvatar">
+
+                U
+
+            </div>
+
+
+            <h2
+                id="profileName">
+
+                Student
+
+            </h2>
+
+
+            <div
+                id="profileEmail"
+                class="profileEmail">
+
+                -
+
+            </div>
+
+
+            <button
+                class="logoutBtn"
+                onclick="logoutUser()">
+
+                🚪 Logout
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         BOTTOM NAV
+    ================================================= -->
+
+    <div class="bottomNav">
+
+
+        <button
+            class="navBtn active"
+            id="navHome"
+            onclick="showPage('homePage')">
+
+            <span>
+                🏠
+            </span>
+
+            Home
+
+        </button>
+
+
+        <button
+            class="navBtn"
+            id="navBooks"
+            onclick="showPage('booksPage')">
+
+            <span>
+                📚
+            </span>
+
+            Books
+
+        </button>
+
+
+        <button
+            class="navBtn"
+            id="navProfile"
+            onclick="showPage('profilePage')">
+
+            <span>
+                👤
+            </span>
+
+            Profile
+
+        </button>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
+<script type="module">
+
+
+/* =====================================================
+   IMPORTS
+===================================================== */
+
+import {
+    initializeApp
+} from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    sendPasswordResetEmail,
+    signOut,
+    onAuthStateChanged
+} from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    setDoc,
+    collection,
+    getDocs,
+    query,
+    where,
+    increment
+} from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+
+/* =====================================================
+   FIREBASE CONFIG
+===================================================== */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyAmQ0I3e5f3Egq1KTilHH8XdxMJxCD8BKQ",
+
+    authDomain:
+        "m-techwala.firebaseapp.com",
+
+    projectId:
+        "m-techwala",
+
+    storageBucket:
+        "m-techwala.firebasestorage.app",
+
+    messagingSenderId:
+        "976106704812",
+
+    appId:
+        "1:976106704812:web:1d603580d5bf695abef409"
+
+};
+
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+const app =
+    initializeApp(firebaseConfig);
+
+const auth =
+    getAuth(app);
+
+const db =
+    getFirestore(app);
+
+
+console.log(
+    "Firebase Connected ✅"
+);
+
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let currentUser = null;
+
+let allBooks = [];
+
+let currentBook = null;
+
+let currentChapters = [];
+
+let currentQuiz = [];
+
+let currentQuestion = 0;
+
+let score = 0;
+
+let answered = false;
+
+let currentChapter = null;
+
+let userStats = {
+
+    booksStarted:0,
+
+    chaptersCompleted:0,
+
+    mcqsSolved:0,
+
+    correctAnswers:0,
+
+    streak:0,
+
+    activeDates:[],
+
+    booksStartedIds:[],
+
+    chaptersCompletedIds:[],
+
+    lastBookId:"",
+
+    lastBookName:"",
+
+    lastChapterId:"",
+
+    lastChapterName:"",
+
+    lastQuestionIndex:0,
+
+    lastChapterProgress:0,
+
+    totalChapters:0
+
+};
+
+
+
+/* =====================================================
+   AUTH MESSAGE
+===================================================== */
+
+function showAuthMessage(
+    message,
+    type="error"
+){
+
+    const box =
+        document.getElementById(
+            "authMessage"
+        );
+
+    box.textContent =
+        message;
+
+    box.className =
+        "authMessage " + type;
+
+}
+
+
+
+/* =====================================================
+   LOGIN / SIGNUP SWITCH
+===================================================== */
+
+window.showLogin =
+function(){
+
+    document
+        .getElementById("loginBox")
+        .classList
+        .remove("hidden");
+
+    document
+        .getElementById("signupBox")
+        .classList
+        .add("hidden");
+
+    document
+        .getElementById("authMessage")
+        .className =
+        "authMessage";
+
+};
+
+
+window.showSignup =
+function(){
+
+    document
+        .getElementById("loginBox")
+        .classList
+        .add("hidden");
+
+    document
+        .getElementById("signupBox")
+        .classList
+        .remove("hidden");
+
+    document
+        .getElementById("authMessage")
+        .className =
+        "authMessage";
+
+};
+
+
+
+/* =====================================================
+   SIGNUP
+===================================================== */
+
+window.signupUser =
+async function(){
+
+    const name =
+        document
+        .getElementById("signupName")
+        .value
+        .trim();
+
+    const email =
+        document
+        .getElementById("signupEmail")
+        .value
+        .trim();
+
+    const password =
+        document
+        .getElementById("signupPassword")
+        .value;
+
+
+    if(!name){
+
+        showAuthMessage(
+            "Please enter your name."
+        );
+
+        return;
+
+    }
+
+
+    if(!email){
+
+        showAuthMessage(
+            "Please enter your email."
+        );
+
+        return;
+
+    }
+
+
+    if(password.length < 6){
+
+        showAuthMessage(
+            "Password must be at least 6 characters."
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        showAuthMessage(
+            "Creating account...",
+            "success"
+        );
+
+
+        const credential =
+            await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+
+        const user =
+            credential.user;
+
+
+        await setDoc(
+
+            doc(
+                db,
+                "users",
+                user.uid
+            ),
+
+            {
+
+                uid:user.uid,
+
+                name:name,
+
+                email:user.email,
+
+                role:"student",
+
+                status:"active",
+
+                createdAt:new Date(),
+
+                updatedAt:new Date()
+
+            }
+
+        );
+
+
+        showAuthMessage(
+            "Account created successfully 🎉",
+            "success"
+        );
+
+
+    }catch(error){
+
+        console.error(error);
+
+        handleAuthError(error);
+
+    }
+
+};
+
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+window.loginUser =
+async function(){
+
+    const email =
+        document
+        .getElementById("loginEmail")
+        .value
+        .trim();
+
+    const password =
+        document
+        .getElementById("loginPassword")
+        .value;
+
+
+    if(!email){
+
+        showAuthMessage(
+            "Please enter your email."
+        );
+
+        return;
+
+    }
+
+
+    if(!password){
+
+        showAuthMessage(
+            "Please enter your password."
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        showAuthMessage(
+            "Logging in...",
+            "success"
+        );
+
+
+        await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
+
+
+    }catch(error){
+
+        console.error(error);
+
+        handleAuthError(error);
+
+    }
+
+};
+
+
+
+/* =====================================================
+   FORGOT PASSWORD
+===================================================== */
+
+window.forgotPassword =
+async function(){
+
+    const email =
+        document
+        .getElementById("loginEmail")
+        .value
+        .trim();
+
+
+    if(!email){
+
+        showAuthMessage(
+            "Enter your email first."
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        await sendPasswordResetEmail(
+            auth,
+            email
+        );
+
+
+        showAuthMessage(
+            "Password reset email sent 📧",
+            "success"
+        );
+
+
+    }catch(error){
+
+        handleAuthError(error);
+
+    }
+
+};
+
+
+
+/* =====================================================
+   AUTH ERROR
+===================================================== */
+
+function handleAuthError(error){
+
+    let message =
+        "Something went wrong.";
+
+
+    switch(error.code){
+
+        case "auth/invalid-email":
+
+            message =
+                "Invalid email address.";
+
+            break;
+
+
+        case "auth/user-not-found":
+
+            message =
+                "No account found.";
+
+            break;
+
+
+        case "auth/wrong-password":
+
+            message =
+                "Incorrect password.";
+
+            break;
+
+
+        case "auth/invalid-credential":
+
+            message =
+                "Email or password is incorrect.";
+
+            break;
+
+
+        case "auth/email-already-in-use":
+
+            message =
+                "This email is already registered.";
+
+            break;
+
+
+        case "auth/weak-password":
+
+            message =
+                "Password must contain at least 6 characters.";
+
+            break;
+
+
+        case "auth/operation-not-allowed":
+
+            message =
+                "Email/Password is disabled in Firebase.";
+
+            break;
+
+
+        case "auth/too-many-requests":
+
+            message =
+                "Too many attempts. Try again later.";
+
+            break;
+
+
+        case "auth/network-request-failed":
+
+            message =
+                "Internet connection problem.";
+
+            break;
+
+    }
+
+
+    showAuthMessage(message);
+
+}
+
+
+
+/* =====================================================
+   AUTH STATE
+===================================================== */
+
+onAuthStateChanged(
+
+    auth,
+
+    async(user)=>{
+
+        if(user){
+
+            currentUser =
+                user;
+
+
+            document
+                .getElementById("authScreen")
+                .classList
+                .add("hidden");
+
+
+            document
+                .getElementById("appScreen")
+                .classList
+                .remove("hidden");
+
+
+            await loadUserProfile();
+
+            await loadUserStats();
+
+            await updateActivity();
+
+            await loadBooks();
+
+            await updateGlobalChapterCount();
+
+            updateProgressUI();
+
+            showPage("homePage");
+
+
+        }else{
+
+            currentUser =
+                null;
+
+
+            document
+                .getElementById("authScreen")
+                .classList
+                .remove("hidden");
+
+
+            document
+                .getElementById("appScreen")
+                .classList
+                .add("hidden");
+
+        }
+
+    }
+
+);
+
+
+
+/* =====================================================
+   USER PROFILE
+===================================================== */
+
+async function loadUserProfile(){
+
+    if(!currentUser)
+        return;
+
+
+    try{
+
+        const snap =
+            await getDoc(
+
+                doc(
+                    db,
+                    "users",
+                    currentUser.uid
+                )
+
+            );
+
+
+        let name =
+            currentUser.email
+            ?
+            currentUser.email.split("@")[0]
+            :
+            "Student";
+
+
+        if(snap.exists()){
+
+            const data =
+                snap.data();
+
+            if(data.name)
+                name =
+                    data.name;
+
+        }
+
+
+        document
+            .getElementById(
+                "welcomeName"
+            )
+            .textContent =
+            name;
+
+
+        document
+            .getElementById(
+                "profileName"
+            )
+            .textContent =
+            name;
+
+
+        document
+            .getElementById(
+                "profileEmail"
+            )
+            .textContent =
+            currentUser.email || "-";
+
+
+        const first =
+            name.charAt(0).toUpperCase();
+
+
+        document
+            .getElementById(
+                "profileAvatar"
+            )
+            .textContent =
+            first;
+
+
+        document
+            .getElementById(
+                "topUserCircle"
+            )
+            .textContent =
+            first;
+
+
+    }catch(error){
+
+        console.error(
+            "Profile:",
+            error
+        );
+
+    }
+
+}
+
+
+
+/* =====================================================
+   USER STATS
+===================================================== */
+
+async function loadUserStats(){
+
+    if(!currentUser)
+        return;
+
+
+    try{
+
+        const ref =
+            doc(
+                db,
+                "userStats",
+                currentUser.uid
+            );
+
+
+        const snap =
+            await getDoc(ref);
+
+
+        if(snap.exists()){
+
+            userStats = {
+
+                ...userStats,
+
+                ...snap.data()
+
+            };
+
+        }else{
+
+            await setDoc(
+                ref,
+                userStats
+            );
+
+        }
+
+
+    }catch(error){
+
+        console.error(
+            "Stats load:",
+            error
+        );
+
+    }
+
+}
+
+
+
+/* =====================================================
+   SAVE STATS
+===================================================== */
+
+async function saveUserStats(){
+
+    if(!currentUser)
+        return;
+
+
+    try{
+
+        await setDoc(
+
+            doc(
+                db,
+                "userStats",
+                currentUser.uid
+            ),
+
+            {
+
+                ...userStats,
+
+                updatedAt:new Date()
+
+            }
+
+        );
+
+    }catch(error){
+
+        console.error(
+            "Stats save:",
+            error
+        );
+
+    }
+
+}
+
+
+
+/* =====================================================
+   DAILY ACTIVITY + STREAK
+===================================================== */
+
+async function updateActivity(){
+
+    if(!currentUser)
+        return;
+
+
+    const today =
+        getDateKey(
+            new Date()
+        );
+
+
+    let dates =
+        Array.isArray(
+            userStats.activeDates
+        )
+        ?
+        [...userStats.activeDates]
+        :
+        [];
+
+
+    if(!dates.includes(today)){
+
+        dates.push(today);
+
+    }
+
+
+    /* Keep last 30 days */
+
+    dates =
+        dates
+        .sort()
+        .slice(-30);
+
+
+    userStats.activeDates =
+        dates;
+
+
+    userStats.streak =
+        calculateStreak(
+            dates
+        );
+
+
+    await saveUserStats();
+
+
+    renderWeekDays();
+
+}
+
+
+
+/* =====================================================
+   DATE KEY
+===================================================== */
+
+function getDateKey(date){
+
+    const y =
+        date.getFullYear();
+
+    const m =
+        String(
+            date.getMonth()+1
+        ).padStart(2,"0");
+
+    const d =
+        String(
+            date.getDate()
+        ).padStart(2,"0");
+
+
+    return `${y}-${m}-${d}`;
+
+}
+
+
+
+/* =====================================================
+   STREAK
+===================================================== */
+
+function calculateStreak(
+    dates
+){
+
+    const set =
+        new Set(dates);
+
+
+    let streak = 0;
+
+
+    const today =
+        new Date();
+
+
+    for(
+        let i=0;
+        i<365;
+        i++
+    ){
+
+        const date =
+            new Date(today);
+
+
+        date.setDate(
+            today.getDate()-i
+        );
+
+
+        const key =
+            getDateKey(date);
+
+
+        if(set.has(key)){
+
+            streak++;
+
+        }else{
+
+            break;
+
+        }
+
+    }
+
+
+    return streak;
+
+}
+
+
+
+/* =====================================================
+   WEEK DAYS
+===================================================== */
+
+function renderWeekDays(){
+
+    const container =
+        document.getElementById(
+            "weekDays"
+        );
+
+
+    const today =
+        new Date();
+
+
+    const day =
+        today.getDay();
+
+
+    const mondayOffset =
+        day === 0
+        ?
+        -6
+        :
+        1-day;
+
+
+    const monday =
+        new Date(today);
+
+
+    monday.setDate(
+        today.getDate() +
+        mondayOffset
+    );
+
+
+    const names =
+        [
+            "Mon",
+            "Tue",
+            "Wed",
+            "Thu",
+            "Fri",
+            "Sat",
+            "Sun"
+        ];
+
+
+    const active =
+        new Set(
+            userStats.activeDates || []
+        );
+
+
+    let html = "";
+
+
+    for(
+        let i=0;
+        i<7;
+        i++
+    ){
+
+        const date =
+            new Date(monday);
+
+
+        date.setDate(
+            monday.getDate()+i
+        );
+
+
+        const key =
+            getDateKey(date);
+
+
+        const isActive =
+            active.has(key);
+
+
+        const isToday =
+            key ===
+            getDateKey(today);
+
+
+        html += `
+
+            <div class="dayItem">
+
+                <div class="dayName">
+
+                    ${names[i]}
+
+                </div>
+
+                <div
+
+                    class="dayCircle
+                    ${isActive ? "active" : ""}
+                    ${isToday ? "today" : ""}"
+
+                >
+
+                    ${isActive ? "✓" : "○"}
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    container.innerHTML =
+        html;
+
+
+    document
+        .getElementById(
+            "streakNumber"
+        )
+        .textContent =
+        userStats.streak || 0;
+
+}
+
+
+
+/* =====================================================
+   UPDATE GLOBAL CHAPTER COUNT
+===================================================== */
+
+async function updateGlobalChapterCount(){
+
+    try{
+
+        const snap =
+            await getDocs(
+                collection(
+                    db,
+                    "chapters"
+                )
+            );
+
+
+        userStats.totalChapters =
+            snap.size;
+
+
+        updateProgressUI();
+
+
+    }catch(error){
+
+        console.error(error);
+
+    }
+
+}
+
+
+
+/* =====================================================
+   PROGRESS UI
+===================================================== */
+
+function updateProgressUI(){
+
+    document
+        .getElementById(
+            "booksStarted"
+        )
+        .textContent =
+        userStats.booksStarted || 0;
+
+
+    document
+        .getElementById(
+            "chaptersCompleted"
+        )
+        .textContent =
+        userStats.chaptersCompleted || 0;
+
+
+    document
+        .getElementById(
+            "mcqsSolved"
+        )
+        .textContent =
+        userStats.mcqsSolved || 0;
+
+
+    document
+        .getElementById(
+            "correctAnswers"
+        )
+        .textContent =
+        userStats.correctAnswers || 0;
+
+
+    const total =
+        Number(
+            userStats.totalChapters || 0
+        );
+
+
+    const completed =
+        Number(
+            userStats.chaptersCompleted || 0
+        );
+
+
+    let percent = 0;
+
+
+    if(total > 0){
+
+        percent =
+            Math.round(
+                (completed / total) * 100
+            );
+
+    }
+
+
+    if(percent > 100)
+        percent = 100;
+
+
+    document
+        .getElementById(
+            "overallPercent"
+        )
+        .textContent =
+        percent + "%";
+
+
+    document
+        .getElementById(
+            "overallFill"
+        )
+        .style.width =
+        percent + "%";
+
+
+    renderAchievements();
+
+    renderContinueLearning();
+
+}
+
+
+
+/* =====================================================
+   ACHIEVEMENTS
+===================================================== */
+
+function renderAchievements(){
+
+    const grid =
+        document.getElementById(
+            "achievementGrid"
+        );
+
+
+    const achievements = [
+
+        {
+            icon:"🥇",
+            name:"First Quiz",
+            unlocked:
+                userStats.mcqsSolved >= 1
+        },
+
+        {
+            icon:"🔥",
+            name:"7 Day Streak",
+            unlocked:
+                userStats.streak >= 7
+        },
+
+        {
+            icon:"🧠",
+            name:"100 MCQs",
+            unlocked:
+                userStats.mcqsSolved >= 100
+        },
+
+        {
+            icon:"📚",
+            name:"First Book",
+            unlocked:
+                userStats.booksStarted >= 1
+        },
+
+        {
+            icon:"🎯",
+            name:"90% Accuracy",
+            unlocked:
+                userStats.mcqsSolved >= 10 &&
+                (
+                    userStats.correctAnswers /
+                    userStats.mcqsSolved
+                ) >= .90
+        },
+
+        {
+            icon:"🏆",
+            name:"First Chapter",
+            unlocked:
+                userStats.chaptersCompleted >= 1
+        }
+
+    ];
+
+
+    grid.innerHTML =
+
+        achievements
+        .map(
+            item=>`
+
+            <div
+                class="achievement
+                ${item.unlocked ? "unlocked" : ""}">
+
+                <div class="achievementIcon">
+
+                    ${item.icon}
+
+                </div>
+
+                <div>
+
+                    <div class="achievementName">
+
+                        ${item.name}
+
+                    </div>
+
+                    <div class="achievementStatus">
+
+                        ${
+                            item.unlocked
+                            ?
+                            "✓ Unlocked"
+                            :
+                            "Locked"
+                        }
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            `
+        )
+        .join("");
+
+}
+
+
+
+/* =====================================================
+   CONTINUE LEARNING
+===================================================== */
+
+function renderContinueLearning(){
+
+    const card =
+        document.getElementById(
+            "continueCard"
+        );
+
+
+    if(!userStats.lastBookId){
+
+        card.classList.add(
+            "hidden"
+        );
+
+        return;
+
+    }
+
+
+    card.classList.remove(
+        "hidden"
+    );
+
+
+    document
+        .getElementById(
+            "continueBook"
+        )
+        .textContent =
+        userStats.lastBookName ||
+        "Book";
+
+
+    document
+        .getElementById(
+            "continueChapter"
+        )
+        .textContent =
+        userStats.lastChapterName ||
+        "Chapter";
+
+
+    const percent =
+        Number(
+            userStats.lastChapterProgress || 0
+        );
+
+
+    document
+        .getElementById(
+            "continueProgressText"
+        )
+        .textContent =
+        percent + "%";
+
+
+    document
+        .getElementById(
+            "continueProgress"
+        )
+        .style.width =
+        percent + "%";
+
+
+    const book =
+        allBooks.find(
+            b =>
+                b.id ===
+                userStats.lastBookId
+        );
+
+
+    if(book){
+
+        const image =
+            book.imageUrl ||
+            book.image ||
+            book.coverImage ||
+            "";
+
+
+        if(image){
+
+            document
+                .getElementById(
+                    "continueImage"
+                )
+                .src =
+                image;
+
+        }
+
+    }
+
+}
+
+
+
+/* =====================================================
+   CONTINUE BUTTON
+===================================================== */
+
+window.continueLearning =
+async function(){
+
+    if(
+        !userStats.lastBookId ||
+        !userStats.lastChapterId
+    ){
+
+        showPage(
+            "booksPage"
+        );
+
+        return;
+
+    }
+
+
+    currentBook =
+        allBooks.find(
+            b =>
+                b.id ===
+                userStats.lastBookId
+        );
+
+
+    if(!currentBook){
+
+        showPage(
+            "booksPage"
+        );
+
+        return;
+
+    }
+
+
+    document
+        .getElementById(
+            "chapterBookTitle"
+        )
+        .textContent =
+        "📖 " +
+        currentBook.name;
+
+
+    showPage(
+        "chaptersPage"
+    );
+
+
+    await loadChapters(
+        currentBook.id
+    );
+
+
+    const chapter =
+        currentChapters.find(
+            c =>
+                c.id ===
+                userStats.lastChapterId
+        );
+
+
+    if(chapter){
+
+        await openChapter(
+            chapter.id
+        );
+
+    }
+
+};
+
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+window.logoutUser =
+async function(){
+
+    await signOut(
+        auth
+    );
+
+};
+
+
+
+/* =====================================================
+   PAGE NAVIGATION
+===================================================== */
+
+window.showPage =
+function(pageId){
+
+    const pages = [
+
+        "homePage",
+        "booksPage",
+        "chaptersPage",
+        "quizPage",
+        "resultPage",
+        "profilePage"
+
+    ];
+
+
+    pages.forEach(
+        id=>{
+
+            document
+                .getElementById(id)
+                .classList
+                .add("hidden");
+
+        }
+    );
+
+
+    document
+        .getElementById(pageId)
+        .classList
+        .remove("hidden");
+
+
+    document
+        .getElementById("navHome")
+        .classList
+        .remove("active");
+
+
+    document
+        .getElementById("navBooks")
+        .classList
+        .remove("active");
+
+
+    document
+        .getElementById("navProfile")
+        .classList
+        .remove("active");
+
+
+    if(pageId === "homePage"){
+
+        document
+            .getElementById("navHome")
+            .classList
+            .add("active");
+
+    }
+
+
+    if(pageId === "booksPage"){
+
+        document
+            .getElementById("navBooks")
+            .classList
+            .add("active");
+
+    }
+
+
+    if(pageId === "profilePage"){
+
+        document
+            .getElementById("navProfile")
+            .classList
+            .add("active");
+
+    }
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+};
+
+
+
+/* =====================================================
+   LOAD BOOKS
+===================================================== */
+
+async function loadBooks(){
+
+    try{
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "books"
+                )
+            );
+
+
+        allBooks = [];
+
+
+        snapshot.forEach(
+            docSnap=>{
+
+                allBooks.push({
+
+                    id:docSnap.id,
+
+                    ...docSnap.data()
+
+                });
+
+            }
+        );
+
+
+        renderBooks(
+            allBooks
+        );
+
+
+        renderHomeBooks(
+            allBooks
+        );
+
+
+        renderContinueLearning();
+
+
+    }catch(error){
+
+        console.error(
+            "Books:",
+            error
+        );
+
+    }
+
+}
+
+
+
+/* =====================================================
+   BOOK HTML
+===================================================== */
+
+function bookHTML(book){
+
+    const imageUrl =
+
+        book.imageUrl ||
+
+        book.image ||
+
+        book.coverImage ||
+
+        "";
+
+
+    const bookName =
+        book.name ||
+        "Untitled Book";
+
+
+    const author =
+        book.author ||
+        "Unknown Author";
+
+
+    const category =
+        book.category ||
+        "";
+
+
+    let imageHTML;
+
+
+    if(imageUrl){
+
+        imageHTML = `
+
+            <div class="bookImageFrame">
+
+                <img
+
+                    class="bookImage"
+
+                    src="${escapeHTML(imageUrl)}"
+
+                    alt="${escapeHTML(bookName)}"
+
+                    loading="lazy"
+
+                    referrerpolicy="no-referrer"
+
+                    onerror="imageError(this)"
+
+                >
+
+
+                <div
+                    class="imageFallback"
+                    style="display:none;">
+
+                    📚
+
+                </div>
+
+            </div>
+
+        `;
+
+    }else{
+
+        imageHTML = `
+
+            <div class="bookImageFrame">
+
+                <div class="imageFallback">
+
+                    📚
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    return `
+
+        <div
+
+            class="bookCard"
+
+            onclick="openBook('${book.id}')"
+
+        >
+
+            ${imageHTML}
+
+
+            <div class="bookContent">
+
+                <h3>
+
+                    ${escapeHTML(bookName)}
+
+                </h3>
+
+
+                <div class="bookAuthor">
+
+                    ${escapeHTML(author)}
+
+                </div>
+
+
+                ${
+                    category
+                    ?
+                    `
+                    <span class="bookCategory">
+
+                        ${escapeHTML(category)}
+
+                    </span>
+                    `
+                    :
+                    ""
+                }
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+
+/* =====================================================
+   IMAGE ERROR
+===================================================== */
+
+window.imageError =
+function(img){
+
+    img.style.display =
+        "none";
+
+
+    const fallback =
+        img.nextElementSibling;
+
+
+    if(fallback){
+
+        fallback.style.display =
+            "flex";
+
+    }
+
+};
+
+
+
+/* =====================================================
+   RENDER BOOKS
+===================================================== */
+
+function renderBooks(
+    books
+){
+
+    const container =
+        document.getElementById(
+            "booksContainer"
+        );
+
+
+    if(!books.length){
+
+        container.innerHTML =
+
+        `
+        <div class="empty">
+
+            📚 No books available yet.
+
+        </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+
+        books
+        .map(
+            book =>
+                bookHTML(book)
+        )
+        .join("");
+
+}
+
+
+
+/* =====================================================
+   HOME BOOKS
+===================================================== */
+
+function renderHomeBooks(
+    books
+){
+
+    const container =
+        document.getElementById(
+            "homeBooks"
+        );
+
+
+    if(!books.length){
+
+        container.innerHTML =
+
+        `
+        <div class="empty">
+
+            No books available.
+
+        </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+
+        books
+        .slice(0,6)
+        .map(
+            book =>
+                bookHTML(book)
+        )
+        .join("");
+
+}
+
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+window.searchBooks =
+function(){
+
+    const value =
+        document
+        .getElementById(
+            "bookSearch"
+        )
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const filtered =
+        allBooks.filter(
+            book=>{
+
+                const name =
+                    (
+                        book.name || ""
+                    )
+                    .toLowerCase();
+
+
+                const author =
+                    (
+                        book.author || ""
+                    )
+                    .toLowerCase();
+
+
+                const category =
+                    (
+                        book.category || ""
+                    )
+                    .toLowerCase();
+
+
+                return (
+
+                    name.includes(value)
+
+                    ||
+
+                    author.includes(value)
+
+                    ||
+
+                    category.includes(value)
+
+                );
+
+            }
+        );
+
+
+    renderBooks(
+        filtered
+    );
+
+};
+
+
+
+/* =====================================================
+   OPEN BOOK
+===================================================== */
+
+window.openBook =
+async function(bookId){
+
+    currentBook =
+        allBooks.find(
+            book =>
+                book.id === bookId
+        );
+
+
+    if(!currentBook)
+        return;
+
+
+    /*
+       Book Started
+    */
+
+    if(
+        !Array.isArray(
+            userStats.booksStartedIds
+        )
+    ){
+
+        userStats.booksStartedIds = [];
+
+    }
+
+
+    if(
+        !userStats.booksStartedIds
+        .includes(bookId)
+    ){
+
+        userStats.booksStartedIds.push(
+            bookId
+        );
+
+        userStats.booksStarted =
+            userStats.booksStartedIds.length;
+
+    }
+
+
+    userStats.lastBookId =
+        bookId;
+
+
+    userStats.lastBookName =
+        currentBook.name || "Book";
+
+
+    await updateActivity();
+
+    await saveUserStats();
+
+    updateProgressUI();
+
+
+    document
+        .getElementById(
+            "chapterBookTitle"
+        )
+        .textContent =
+        "📖 " +
+        (
+            currentBook.name ||
+            "Chapters"
+        );
+
+
+    showPage(
+        "chaptersPage"
+    );
+
+
+    await loadChapters(
+        bookId
+    );
+
+};
+
+
+
+/* =====================================================
+   LOAD CHAPTERS
+===================================================== */
+
+async function loadChapters(
+    bookId
+){
+
+    const container =
+        document.getElementById(
+            "chaptersContainer"
+        );
+
+
+    container.innerHTML =
+
+    `
+    <div class="loading">
+
+        Loading chapters...
+
+    </div>
+    `;
+
+
+    try{
+
+        const q =
+
+            query(
+
+                collection(
+                    db,
+                    "chapters"
+                ),
+
+                where(
+                    "bookId",
+                    "==",
+                    bookId
+                )
+
+            );
+
+
+        const snapshot =
+            await getDocs(q);
+
+
+        currentChapters = [];
+
+
+        snapshot.forEach(
+            docSnap=>{
+
+                currentChapters.push({
+
+                    id:docSnap.id,
+
+                    ...docSnap.data()
+
+                });
+
+            }
+        );
+
+
+        currentChapters.sort(
+
+            (a,b)=>
+
+                Number(
+                    a.chapterNumber || 0
+                )
+
+                -
+
+                Number(
+                    b.chapterNumber || 0
+                )
+
+        );
+
+
+        renderChapters();
+
+
+    }catch(error){
+
+        console.error(
+            "Chapters:",
+            error
+        );
+
+
+        container.innerHTML =
+
+        `
+        <div class="empty">
+
+            ❌ Unable to load chapters.
+
+        </div>
+        `;
+
+    }
+
+}
+
+
+
+/* =====================================================
+   RENDER CHAPTERS
+===================================================== */
+
+function renderChapters(){
+
+    const container =
+        document.getElementById(
+            "chaptersContainer"
+        );
+
+
+    if(!currentChapters.length){
+
+        container.innerHTML =
+
+        `
+        <div class="empty">
+
+            📚 No chapters available.
+
+        </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+
+        currentChapters
+        .map(
+
+            chapter=>`
+
+            <div
+
+                class="chapterCard"
+
+                onclick="openChapter('${chapter.id}')"
+
+            >
+
+                <div
+                    class="chapterNumber">
+
+                    ${escapeHTML(
+                        String(
+                            chapter.chapterNumber ||
+                            "?"
+                        )
+                    )}
+
+                </div>
+
+
+                <div class="chapterInfo">
+
+                    <h3>
+
+                        ${escapeHTML(
+                            chapter.name ||
+                            "Untitled Chapter"
+                        )}
+
+                    </h3>
+
+
+                    <p>
+
+                        ${escapeHTML(
+                            chapter.description ||
+                            "Tap to start quiz"
+                        )}
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            `
+
+        )
+        .join("");
+
+}
+
+
+
+/* =====================================================
+   OPEN CHAPTER
+===================================================== */
+
+window.openChapter =
+async function(chapterId){
+
+    const chapter =
+        currentChapters.find(
+            c =>
+                c.id === chapterId
+        );
+
+
+    if(!chapter)
+        return;
+
+
+    currentChapter =
+        chapter;
+
+
+    userStats.lastBookId =
+        currentBook.id;
+
+
+    userStats.lastBookName =
+        currentBook.name || "Book";
+
+
+    userStats.lastChapterId =
+        chapter.id;
+
+
+    userStats.lastChapterName =
+        chapter.name || "Chapter";
+
+
+    await updateActivity();
+
+    await saveUserStats();
+
+
+    document
+        .getElementById(
+            "quizTitle"
+        )
+        .textContent =
+        "🧠 " +
+        (
+            chapter.name ||
+            "Quiz"
+        );
+
+
+    showPage(
+        "quizPage"
+    );
+
+
+    await loadQuiz(
+
+        currentBook.id,
+
+        chapterId
+
+    );
+
+};
+
+
+
+/* =====================================================
+   LOAD QUIZ
+===================================================== */
+
+async function loadQuiz(
+
+    bookId,
+
+    chapterId
+
+){
+
+    const container =
+        document.getElementById(
+            "quizContainer"
+        );
+
+
+    container.innerHTML =
+
+    `
+    <div class="loading">
+
+        Loading MCQs...
+
+    </div>
+    `;
+
+
+    try{
+
+        const q =
+
+            query(
+
+                collection(
+                    db,
+                    "mcqs"
+                ),
+
+                where(
+                    "bookId",
+                    "==",
+                    bookId
+                ),
+
+                where(
+                    "chapterId",
+                    "==",
+                    chapterId
+                )
+
+            );
+
+
+        const snapshot =
+            await getDocs(q);
+
+
+        currentQuiz = [];
+
+
+        snapshot.forEach(
+            docSnap=>{
+
+                currentQuiz.push({
+
+                    id:docSnap.id,
+
+                    ...docSnap.data()
+
+                });
+
+            }
+        );
+
+
+        if(!currentQuiz.length){
+
+            container.innerHTML =
+
+            `
+            <div class="empty">
+
+                🧠 No MCQs available
+                for this chapter yet.
+
+            </div>
+            `;
+
+            return;
+
+        }
+
+
+        /*
+           Resume previous position
+        */
+
+        let savedIndex = 0;
+
+
+        if(
+            userStats.lastChapterId ===
+            chapterId
+        ){
+
+            savedIndex =
+                Number(
+                    userStats.lastQuestionIndex || 0
+                );
+
+        }
+
+
+        if(
+            savedIndex >=
+            currentQuiz.length
+        ){
+
+            savedIndex = 0;
+
+        }
+
+
+        currentQuestion =
+            savedIndex;
+
+
+        score = 0;
+
+        answered = false;
+
+
+        showQuestion();
+
+
+    }catch(error){
+
+        console.error(
+            "Quiz:",
+            error
+        );
+
+
+        container.innerHTML =
+
+        `
+        <div class="empty">
+
+            ❌ Unable to load MCQs.
+
+        </div>
+        `;
+
+    }
+
+}
+
+
+
+/* =====================================================
+   SHOW QUESTION
+===================================================== */
+
+function showQuestion(){
+
+    const container =
+        document.getElementById(
+            "quizContainer"
+        );
+
+
+    const q =
+        currentQuiz[
+            currentQuestion
+        ];
+
+
+    if(!q){
+
+        finishQuiz();
+
+        return;
+
+    }
+
+
+    answered = false;
+
+
+    const total =
+        currentQuiz.length;
+
+
+    const progress =
+        Math.round(
+
+            (
+                currentQuestion /
+                total
+            ) * 100
+
+        );
+
+
+    document
+        .getElementById(
+            "quizProgressFill"
+        )
+        .style.width =
+        progress + "%";
+
+
+    const options =
+        q.options || {};
+
+
+    container.innerHTML = `
+
+        <div class="questionCard">
+
+
+            <div class="questionNumber">
+
+                Question
+                ${currentQuestion + 1}
+                / ${total}
+
+            </div>
+
+
+            <div class="questionText">
+
+                ${escapeHTML(
+                    q.question || ""
+                )}
+
+            </div>
+
+
+            <button
+                class="option"
+                onclick="selectAnswer('A',this)">
+
+                <b>A.</b>
+                ${escapeHTML(
+                    options.A || ""
+                )}
+
+            </button>
+
+
+            <button
+                class="option"
+                onclick="selectAnswer('B',this)">
+
+                <b>B.</b>
+                ${escapeHTML(
+                    options.B || ""
+                )}
+
+            </button>
+
+
+            <button
+                class="option"
+                onclick="selectAnswer('C',this)">
+
+                <b>C.</b>
+                ${escapeHTML(
+                    options.C || ""
+                )}
+
+            </button>
+
+
+            <button
+                class="option"
+                onclick="selectAnswer('D',this)">
+
+                <b>D.</b>
+                ${escapeHTML(
+                    options.D || ""
+                )}
+
+            </button>
+
+
+            <button
+                id="nextQuestionBtn"
+                class="nextBtn hidden"
+                onclick="nextQuestion()">
+
+                ${
+                    currentQuestion ===
+                    total - 1
+                    ?
+                    "Finish Quiz"
+                    :
+                    "Next Question →"
+                }
+
+            </button>
+
+
+        </div>
+
+    `;
+
+}
+
+
+
+/* =====================================================
+   SELECT ANSWER
+===================================================== */
+
+window.selectAnswer =
+async function(
+    answer,
+    button
+){
+
+    if(answered)
+        return;
+
+
+    answered = true;
+
+
+    const q =
+        currentQuiz[
+            currentQuestion
+        ];
+
+
+    const correct =
+
+        String(
+            q.correctAnswer || ""
+        )
+        .trim()
+        .toUpperCase();
+
+
+    const buttons =
+        document.querySelectorAll(
+            ".option"
+        );
+
+
+    buttons.forEach(
+        btn=>{
+            btn.disabled = true;
+        }
+    );
+
+
+    /*
+       MCQ solved
+    */
+
+    userStats.mcqsSolved =
+        Number(
+            userStats.mcqsSolved || 0
+        ) + 1;
+
+
+    if(answer === correct){
+
+        button.classList.add(
+            "correct"
+        );
+
+
+        score++;
+
+
+        userStats.correctAnswers =
+            Number(
+                userStats.correctAnswers || 0
+            ) + 1;
+
+    }else{
+
+        button.classList.add(
+            "wrong"
+        );
+
+
+        buttons.forEach(
+            btn=>{
+
+                const text =
+                    btn.textContent
+                    .trim();
+
+
+                if(
+                    text.startsWith(
+                        correct + "."
+                    )
+                ){
+
+                    btn.classList.add(
+                        "correct"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /*
+       Progress
+    */
+
+    const total =
+        currentQuiz.length;
+
+
+    const answeredCount =
+        currentQuestion + 1;
+
+
+    const percent =
+        Math.round(
+
+            (
+                answeredCount /
+                total
+            ) * 100
+
+        );
+
+
+    userStats.lastQuestionIndex =
+        currentQuestion + 1;
+
+
+    userStats.lastChapterProgress =
+        percent;
+
+
+    userStats.lastBookId =
+        currentBook.id;
+
+
+    userStats.lastBookName =
+        currentBook.name;
+
+
+    userStats.lastChapterId =
+        currentChapter.id;
+
+
+    userStats.lastChapterName =
+        currentChapter.name;
+
+
+    await updateActivity();
+
+    await saveUserStats();
+
+
+    updateProgressUI();
+
+
+    /*
+       Explanation
+    */
+
+    if(q.explanation){
+
+        const box =
+            document.createElement(
+                "div"
+            );
+
+
+        box.className =
+            "explanationBox";
+
+
+        box.innerHTML =
+
+            "<b>💡 Explanation</b><br>" +
+
+            escapeHTML(
+                q.explanation
+            );
+
+
+        button
+            .parentElement
+            .appendChild(
+                box
+            );
+
+    }
+
+
+    /*
+       Memory Tip
+    */
+
+    if(q.memoryTip){
+
+        const box =
+            document.createElement(
+                "div"
+            );
+
+
+        box.className =
+            "memoryBox";
+
+
+        box.innerHTML =
+
+            "<b>🧠 याद रखने की जानकारी</b><br>" +
+
+            escapeHTML(
+                q.memoryTip
+            );
+
+
+        button
+            .parentElement
+            .appendChild(
+                box
+            );
+
+    }
+
+
+    const nextBtn =
+        document.getElementById(
+            "nextQuestionBtn"
+        );
+
+
+    if(nextBtn){
+
+        nextBtn.classList.remove(
+            "hidden"
+        );
+
+    }
+
+};
+
+
+
+/* =====================================================
+   NEXT QUESTION
+===================================================== */
+
+window.nextQuestion =
+function(){
+
+    currentQuestion++;
+
+    showQuestion();
+
+};
+
+
+
+/* =====================================================
+   FINISH QUIZ
+===================================================== */
+
+async function finishQuiz(){
+
+    const total =
+        currentQuiz.length;
+
+
+    /*
+       Mark chapter complete
+    */
+
+    if(
+        !Array.isArray(
+            userStats.chaptersCompletedIds
+        )
+    ){
+
+        userStats.chaptersCompletedIds = [];
+
+    }
+
+
+    if(
+        currentChapter &&
+        !userStats
+        .chaptersCompletedIds
+        .includes(
+            currentChapter.id
+        )
+    ){
+
+        userStats
+        .chaptersCompletedIds
+        .push(
+            currentChapter.id
+        );
+
+    }
+
+
+    userStats.chaptersCompleted =
+        userStats
+        .chaptersCompletedIds
+        .length;
+
+
+    /*
+       Chapter progress 100%
+    */
+
+    userStats.lastChapterProgress =
+        100;
+
+
+    userStats.lastQuestionIndex =
+        0;
+
+
+    await updateActivity();
+
+    await saveUserStats();
+
+
+    updateProgressUI();
+
+
+    const percentage =
+        total
+        ?
+        Math.round(
+            (score / total) * 100
+        )
+        :
+        0;
+
+
+    document
+        .getElementById(
+            "finalScore"
+        )
+        .textContent =
+
+        score +
+        "/" +
+        total;
+
+
+    document
+        .getElementById(
+            "resultText"
+        )
+        .textContent =
+
+        `You scored ${percentage}%. Keep learning! 🚀`;
+
+
+    showPage(
+        "resultPage"
+    );
+
+}
+
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(
+    value
+){
+
+    return String(
+        value ?? ""
+    )
+
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+
+    .replace(
+        /</g,
+        "&lt;"
+    )
+
+    .replace(
+        />/g,
+        "&gt;"
+    )
+
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+</script>
+
+</body>
+</html>
