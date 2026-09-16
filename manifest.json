@@ -1,0 +1,25 @@
+{
+  "name": "GyaaniFly – Read • Recall • Master",
+  "short_name": "GyaaniFly",
+  "description": "Read, recall and master knowledge with GyaaniFly.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#1683f2",
+  "lang": "en",
+  "categories": [
+    "education",
+    "books",
+    "learning"
+  ],
+  "icons": [
+    {
+      "src": "./logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
