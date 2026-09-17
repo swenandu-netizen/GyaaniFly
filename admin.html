@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+content="width=device-width, initial-scale=1.0">
 
-<meta name="theme-color" content="#111827">
-
-<title>GyaaniFly Admin Panel</title>
+<title>GyaaniFly Admin</title>
 
 <link rel="icon" href="logo.png">
 
@@ -28,23 +28,30 @@ body{
     color:#111827;
 }
 
-/* =========================
-   LOGIN
-========================= */
+button,
+input,
+select,
+textarea{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
+}
 
 .loginPage{
     min-height:100vh;
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
     padding:20px;
-    background:linear-gradient(135deg,#111827,#1e3a8a);
+    background:linear-gradient(135deg,#111827,#2563eb);
 }
 
 .loginBox{
     width:100%;
-    max-width:420px;
-    background:white;
+    max-width:430px;
+    background:#fff;
     border-radius:22px;
     padding:30px;
     box-shadow:0 20px 60px rgba(0,0,0,.25);
@@ -53,26 +60,21 @@ body{
 .loginLogo{
     width:80px;
     height:80px;
-    object-fit:contain;
     display:block;
     margin:0 auto 15px;
+    object-fit:contain;
 }
 
 .loginBox h1{
     text-align:center;
-    font-size:25px;
-    margin-bottom:7px;
+    font-size:27px;
 }
 
-.loginBox p{
+.subtitle{
     text-align:center;
     color:#6b7280;
-    margin-bottom:25px;
+    margin:7px 0 25px;
 }
-
-/* =========================
-   INPUTS
-========================= */
 
 .formGroup{
     margin-bottom:15px;
@@ -80,8 +82,8 @@ body{
 
 .formGroup label{
     display:block;
-    font-size:14px;
     font-weight:bold;
+    font-size:14px;
     margin-bottom:7px;
 }
 
@@ -89,17 +91,12 @@ input,
 select,
 textarea{
     width:100%;
+    padding:12px;
     border:1px solid #d1d5db;
     border-radius:10px;
-    padding:12px;
-    font-size:14px;
     outline:none;
-    background:white;
-}
-
-textarea{
-    min-height:100px;
-    resize:vertical;
+    font-size:14px;
+    background:#fff;
 }
 
 input:focus,
@@ -108,67 +105,59 @@ textarea:focus{
     border-color:#2563eb;
 }
 
-button{
-    border:none;
-    cursor:pointer;
-    font-size:14px;
+textarea{
+    min-height:100px;
+    resize:vertical;
 }
 
-/* =========================
-   BUTTONS
-========================= */
-
 .btn{
+    border:none;
     padding:11px 16px;
     border-radius:9px;
     font-weight:bold;
 }
 
-.btnPrimary{
+.primary{
     background:#2563eb;
-    color:white;
+    color:#fff;
 }
 
-.btnSuccess{
+.success{
     background:#16a34a;
-    color:white;
+    color:#fff;
 }
 
-.btnDanger{
+.danger{
     background:#dc2626;
-    color:white;
+    color:#fff;
 }
 
-.btnWarning{
+.warning{
     background:#d97706;
-    color:white;
+    color:#fff;
 }
 
-.btnSecondary{
+.secondary{
     background:#e5e7eb;
     color:#111827;
 }
 
-.btnFull{
+.full{
     width:100%;
 }
 
-.btn:hover{
-    opacity:.9;
+.loginMessage{
+    text-align:center;
+    color:#dc2626;
+    margin-top:15px;
+    font-size:13px;
+    word-break:break-word;
 }
-
-/* =========================
-   APP
-========================= */
 
 .app{
     display:none;
     min-height:100vh;
 }
-
-/* =========================
-   SIDEBAR
-========================= */
 
 .sidebar{
     position:fixed;
@@ -177,9 +166,8 @@ button{
     width:250px;
     height:100vh;
     background:#111827;
-    color:white;
+    color:#fff;
     padding:18px;
-    overflow-y:auto;
     z-index:1000;
 }
 
@@ -187,23 +175,23 @@ button{
     display:flex;
     align-items:center;
     gap:10px;
-    padding:8px 5px 20px;
-    border-bottom:1px solid #374151;
+    padding-bottom:18px;
     margin-bottom:15px;
+    border-bottom:1px solid #374151;
 }
 
 .brand img{
-    width:42px;
-    height:42px;
+    width:45px;
+    height:45px;
     object-fit:contain;
 }
 
-.brandText{
+.brandTitle{
+    font-size:20px;
     font-weight:bold;
-    font-size:19px;
 }
 
-.brandText small{
+.brandSmall{
     display:block;
     font-size:10px;
     color:#9ca3af;
@@ -212,29 +200,27 @@ button{
 
 .navBtn{
     width:100%;
+    border:none;
+    background:transparent;
+    color:#d1d5db;
     text-align:left;
     padding:13px;
     margin:4px 0;
     border-radius:9px;
-    background:transparent;
-    color:#d1d5db;
+    font-size:14px;
 }
 
 .navBtn:hover,
 .navBtn.active{
     background:#2563eb;
-    color:white;
+    color:#fff;
 }
 
 .logoutBtn{
-    margin-top:20px;
     background:#991b1b;
-    color:white;
+    color:#fff;
+    margin-top:20px;
 }
-
-/* =========================
-   MAIN
-========================= */
 
 .main{
     margin-left:250px;
@@ -243,18 +229,34 @@ button{
 
 .topbar{
     height:70px;
-    background:white;
+    background:#fff;
     border-bottom:1px solid #e5e7eb;
     display:flex;
-    align-items:center;
     justify-content:space-between;
+    align-items:center;
     padding:0 25px;
     position:sticky;
     top:0;
     z-index:900;
 }
 
-.topTitle{
+.topLeft{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.menuBtn{
+    display:none;
+    border:none;
+    background:#111827;
+    color:#fff;
+    padding:9px 12px;
+    border-radius:8px;
+    font-size:18px;
+}
+
+.pageTitle{
     font-size:21px;
     font-weight:bold;
 }
@@ -263,16 +265,15 @@ button{
     display:flex;
     align-items:center;
     gap:10px;
-    color:#374151;
     font-size:13px;
 }
 
-.adminAvatar{
+.avatar{
     width:38px;
     height:38px;
     border-radius:50%;
     background:#2563eb;
-    color:white;
+    color:#fff;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -282,22 +283,6 @@ button{
 .content{
     padding:25px;
 }
-
-/* =========================
-   MOBILE MENU
-========================= */
-
-.menuBtn{
-    display:none;
-    background:#111827;
-    color:white;
-    padding:9px 12px;
-    border-radius:8px;
-}
-
-/* =========================
-   SECTIONS
-========================= */
 
 .section{
     display:none;
@@ -309,19 +294,20 @@ button{
 
 .sectionHeader{
     display:flex;
-    align-items:center;
     justify-content:space-between;
-    gap:10px;
+    align-items:center;
+    gap:15px;
     margin-bottom:20px;
 }
 
 .sectionHeader h2{
-    font-size:23px;
+    font-size:24px;
 }
 
-/* =========================
-   DASHBOARD
-========================= */
+.sub{
+    color:#6b7280;
+    margin-top:5px;
+}
 
 .statsGrid{
     display:grid;
@@ -331,19 +317,19 @@ button{
 }
 
 .statCard{
-    background:white;
+    background:#fff;
     border-radius:15px;
     padding:20px;
     box-shadow:0 3px 15px rgba(0,0,0,.05);
 }
 
 .statIcon{
-    font-size:28px;
+    font-size:30px;
     margin-bottom:10px;
 }
 
 .statNumber{
-    font-size:28px;
+    font-size:30px;
     font-weight:bold;
 }
 
@@ -352,25 +338,13 @@ button{
     margin-top:5px;
 }
 
-/* =========================
-   CARD
-========================= */
-
 .card{
-    background:white;
+    background:#fff;
     border-radius:15px;
     padding:20px;
     margin-bottom:20px;
     box-shadow:0 3px 15px rgba(0,0,0,.05);
 }
-
-.card h3{
-    margin-bottom:15px;
-}
-
-/* =========================
-   GRID
-========================= */
 
 .grid2{
     display:grid;
@@ -384,23 +358,20 @@ button{
     gap:15px;
 }
 
-/* =========================
-   TABLE
-========================= */
-
 .tableWrap{
+    width:100%;
     overflow-x:auto;
 }
 
 table{
     width:100%;
+    min-width:750px;
     border-collapse:collapse;
-    min-width:800px;
 }
 
 th,
 td{
-    padding:11px;
+    padding:12px;
     border-bottom:1px solid #e5e7eb;
     text-align:left;
     vertical-align:top;
@@ -409,62 +380,68 @@ td{
 
 th{
     background:#f9fafb;
-    font-weight:bold;
 }
 
-.actionBox{
+.actions{
     display:flex;
     gap:6px;
     flex-wrap:wrap;
 }
 
-.actionBtn{
+.action{
+    border:none;
     padding:7px 10px;
     border-radius:7px;
     font-size:12px;
 }
 
-/* =========================
-   BOOK PREVIEW
-========================= */
-
-.bookPreview{
-    display:flex;
-    gap:15px;
-    align-items:flex-start;
+.badge{
+    display:inline-block;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
 }
 
-.bookImage{
-    width:80px;
-    height:115px;
-    object-fit:contain;
-    border-radius:8px;
-    background:#f1f1f1;
+.blue{
+    background:#dbeafe;
+    color:#1e40af;
 }
 
-.bookFallback{
-    width:80px;
-    height:115px;
-    border-radius:8px;
-    background:#e5e7eb;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:30px;
+.green{
+    background:#dcfce7;
+    color:#166534;
 }
 
-/* =========================
-   MODAL
-========================= */
+.red{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.orange{
+    background:#ffedd5;
+    color:#9a3412;
+}
+
+.yellow{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+.empty{
+    text-align:center;
+    color:#6b7280;
+    padding:40px;
+}
 
 .modal{
     display:none;
     position:fixed;
     inset:0;
     background:rgba(0,0,0,.55);
-    z-index:2000;
+    z-index:3000;
     padding:20px;
-    overflow-y:auto;
+    overflow:auto;
 }
 
 .modal.show{
@@ -474,13 +451,13 @@ th{
 }
 
 .modalBox{
-    background:white;
     width:100%;
     max-width:700px;
+    max-height:92vh;
+    overflow:auto;
+    background:#fff;
     border-radius:18px;
     padding:25px;
-    max-height:90vh;
-    overflow-y:auto;
 }
 
 .modalHeader{
@@ -490,53 +467,35 @@ th{
     margin-bottom:20px;
 }
 
-.closeBtn{
-    width:35px;
-    height:35px;
+.close{
+    width:36px;
+    height:36px;
+    border:none;
     border-radius:50%;
     background:#e5e7eb;
     font-size:20px;
 }
 
-/* =========================
-   TOAST
-========================= */
-
-.toast{
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    background:#111827;
-    color:white;
-    padding:14px 18px;
-    border-radius:10px;
-    display:none;
-    z-index:5000;
-    max-width:350px;
+.bookPreview{
+    display:flex;
+    gap:12px;
+    align-items:center;
 }
 
-.toast.show{
-    display:block;
+.bookImage{
+    width:55px;
+    height:80px;
+    object-fit:contain;
+    background:#f1f1f1;
+    border-radius:6px;
 }
-
-/* =========================
-   IMPORT
-========================= */
 
 .dropArea{
     border:2px dashed #9ca3af;
-    padding:30px;
     border-radius:15px;
+    padding:30px;
     text-align:center;
     background:#f9fafb;
-}
-
-.importSummary{
-    margin-top:15px;
-    padding:15px;
-    background:#f3f4f6;
-    border-radius:10px;
-    line-height:1.8;
 }
 
 .progressBox{
@@ -553,57 +512,26 @@ th{
 }
 
 .progressFill{
-    width:0%;
+    width:0;
     height:100%;
     background:#2563eb;
-    transition:.2s;
 }
 
-/* =========================
-   BADGES
-========================= */
-
-.badge{
-    display:inline-block;
-    padding:5px 8px;
-    border-radius:20px;
-    font-size:11px;
-    font-weight:bold;
+.toast{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:5000;
+    background:#111827;
+    color:#fff;
+    padding:14px 18px;
+    border-radius:10px;
+    display:none;
 }
 
-.badgeGreen{
-    background:#dcfce7;
-    color:#166534;
+.toast.show{
+    display:block;
 }
-
-.badgeRed{
-    background:#fee2e2;
-    color:#991b1b;
-}
-
-.badgeBlue{
-    background:#dbeafe;
-    color:#1e40af;
-}
-
-.badgeOrange{
-    background:#ffedd5;
-    color:#9a3412;
-}
-
-/* =========================
-   EMPTY
-========================= */
-
-.empty{
-    text-align:center;
-    padding:35px;
-    color:#6b7280;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
 
 @media(max-width:900px){
 
@@ -628,14 +556,13 @@ th{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .grid2,
     .grid3{
         grid-template-columns:1fr;
     }
 
 }
 
-@media(max-width:550px){
+@media(max-width:600px){
 
     .content{
         padding:15px;
@@ -645,12 +572,15 @@ th{
         padding:0 15px;
     }
 
-    .topTitle{
-        font-size:17px;
+    .adminInfo span{
+        display:none;
+    }
+
+    .grid2{
+        grid-template-columns:1fr;
     }
 
     .statsGrid{
-        grid-template-columns:1fr 1fr;
         gap:10px;
     }
 
@@ -659,96 +589,88 @@ th{
     }
 
     .statNumber{
-        font-size:22px;
-    }
-
-    .sectionHeader{
-        align-items:flex-start;
-        flex-direction:column;
-    }
-
-    .adminInfo span{
-        display:none;
+        font-size:23px;
     }
 
 }
 
 </style>
+
 </head>
 
 <body>
 
 
-<!-- =====================================================
-     LOGIN PAGE
-===================================================== -->
+<!-- ================= LOGIN ================= -->
 
 <div id="loginPage" class="loginPage">
 
-    <div class="loginBox">
+<div class="loginBox">
 
-        <img
-            src="logo.png"
-            class="loginLogo"
-            onerror="this.style.display='none'"
-        >
+<img
+src="logo.png"
+class="loginLogo"
+onerror="this.style.display='none'"
+>
 
-        <h1>GyaaniFly Admin</h1>
+<h1>GyaaniFly Admin</h1>
 
-        <p>Read • Recall • Master</p>
+<div class="subtitle">
+Read • Recall • Master
+</div>
 
-        <div class="formGroup">
+<div class="formGroup">
 
-            <label>Email</label>
+<label>Email</label>
 
-            <input
-                type="email"
-                id="loginEmail"
-                placeholder="Admin email"
-            >
+<input
+id="loginEmail"
+type="email"
+placeholder="Admin email"
+autocomplete="username"
+>
 
-        </div>
+</div>
 
-        <div class="formGroup">
+<div class="formGroup">
 
-            <label>Password</label>
+<label>Password</label>
 
-            <input
-                type="password"
-                id="loginPassword"
-                placeholder="Password"
-            >
+<input
+id="loginPassword"
+type="password"
+placeholder="Password"
+autocomplete="current-password"
+>
 
-        </div>
+</div>
 
-        <button
-            class="btn btnPrimary btnFull"
-            onclick="adminLogin()"
-        >
-            Login
-        </button>
+<button
+class="btn primary full"
+onclick="adminLogin()"
+>
+Login
+</button>
 
-        <button
-            class="btn btnSecondary btnFull"
-            style="margin-top:10px"
-            onclick="forgotPassword()"
-        >
-            Forgot Password
-        </button>
+<button
+class="btn secondary full"
+style="margin-top:10px"
+onclick="forgotPassword()"
+>
+Forgot Password
+</button>
 
-        <p
-            id="loginMessage"
-            style="margin-top:15px;margin-bottom:0"
-        ></p>
+<div
+id="loginMessage"
+class="loginMessage"
+></div>
 
-    </div>
+</div>
 
 </div>
 
 
-<!-- =====================================================
-     APP
-===================================================== -->
+<!-- ================= APP ================= -->
 
 <div id="app" class="app">
 
@@ -757,83 +679,90 @@ th{
 
 <aside id="sidebar" class="sidebar">
 
-    <div class="brand">
+<div class="brand">
 
-        <img
-            src="logo.png"
-            onerror="this.style.display='none'"
-        >
+<img
+src="logo.png"
+onerror="this.style.display='none'"
+>
 
-        <div class="brandText">
-            GyaaniFly
-            <small>Admin Panel</small>
-        </div>
+<div>
 
-    </div>
+<div class="brandTitle">
+GyaaniFly
+</div>
 
+<span class="brandSmall">
+Admin Panel
+</span>
 
-    <button
-        class="navBtn active"
-        onclick="showSection('dashboard',this)"
-    >
-        📊 Dashboard
-    </button>
+</div>
 
-
-    <button
-        class="navBtn"
-        onclick="showSection('books',this)"
-    >
-        📚 Books
-    </button>
+</div>
 
 
-    <button
-        class="navBtn"
-        onclick="showSection('chapters',this)"
-    >
-        📖 Chapters
-    </button>
+<button
+class="navBtn active"
+onclick="showSection('dashboard',this)"
+>
+📊 Dashboard
+</button>
 
 
-    <button
-        class="navBtn"
-        onclick="showSection('mcqs',this)"
-    >
-        🧠 MCQs
-    </button>
+<button
+class="navBtn"
+onclick="showSection('books',this)"
+>
+📚 Books
+</button>
 
 
-    <button
-        class="navBtn"
-        onclick="showSection('users',this)"
-    >
-        👤 Users
-    </button>
+<button
+class="navBtn"
+onclick="showSection('chapters',this)"
+>
+📖 Chapters
+</button>
 
 
-    <button
-        class="navBtn"
-        onclick="showSection('import',this)"
-    >
-        📥 Bulk Import
-    </button>
+<button
+class="navBtn"
+onclick="showSection('mcqs',this)"
+>
+🧠 MCQs
+</button>
 
 
-    <button
-        class="navBtn"
-        onclick="showSection('settings',this)"
-    >
-        ⚙️ Settings
-    </button>
+<button
+class="navBtn"
+onclick="showSection('users',this)"
+>
+👤 Users
+</button>
 
 
-    <button
-        class="navBtn logoutBtn"
-        onclick="adminLogout()"
-    >
-        🚪 Logout
-    </button>
+<button
+class="navBtn"
+onclick="showSection('import',this)"
+>
+📥 Bulk Import
+</button>
+
+
+<button
+class="navBtn"
+onclick="showSection('settings',this)"
+>
+⚙️ Settings
+</button>
+
+
+<button
+class="navBtn logoutBtn"
+onclick="adminLogout()"
+>
+🚪 Logout
+</button>
 
 </aside>
 
@@ -842,1311 +771,1215 @@ th{
 
 <main class="main">
 
-    <header class="topbar">
+<header class="topbar">
 
-        <div style="display:flex;align-items:center;gap:12px">
+<div class="topLeft">
 
-            <button
-                class="menuBtn"
-                onclick="toggleSidebar()"
-            >
-                ☰
-            </button>
+<button
+class="menuBtn"
+onclick="toggleSidebar()"
+>
+☰
+</button>
 
-            <div id="pageTitle" class="topTitle">
-                Dashboard
-            </div>
+<div id="pageTitle" class="pageTitle">
+Dashboard
+</div>
 
-        </div>
-
-
-        <div class="adminInfo">
-
-            <span id="adminEmail"></span>
-
-            <div
-                id="adminAvatar"
-                class="adminAvatar"
-            >
-                A
-            </div>
-
-        </div>
-
-    </header>
+</div>
 
 
-    <div class="content">
+<div class="adminInfo">
+
+<span id="adminEmail"></span>
+
+<div id="avatar" class="avatar">
+A
+</div>
+
+</div>
+
+</header>
 
 
-<!-- =====================================================
-     DASHBOARD
-===================================================== -->
-
-<section id="dashboard" class="section active">
-
-    <div class="sectionHeader">
-
-        <div>
-            <h2>Dashboard</h2>
-            <p style="color:#6b7280;margin-top:5px">
-                GyaaniFly content overview
-            </p>
-        </div>
-
-    </div>
+<div class="content">
 
 
-    <div class="statsGrid">
+<!-- ================= DASHBOARD ================= -->
 
-        <div class="statCard">
+<section
+id="dashboard"
+class="section active"
+>
 
-            <div class="statIcon">📚</div>
+<div class="sectionHeader">
 
-            <div
-                id="bookCount"
-                class="statNumber"
-            >
-                0
-            </div>
+<div>
 
-            <div class="statLabel">
-                Books
-            </div>
+<h2>Dashboard</h2>
 
-        </div>
+<div class="sub">
+GyaaniFly content overview
+</div>
 
+</div>
 
-        <div class="statCard">
-
-            <div class="statIcon">📖</div>
-
-            <div
-                id="chapterCount"
-                class="statNumber"
-            >
-                0
-            </div>
-
-            <div class="statLabel">
-                Chapters
-            </div>
-
-        </div>
+</div>
 
 
-        <div class="statCard">
-
-            <div class="statIcon">🧠</div>
-
-            <div
-                id="mcqCount"
-                class="statNumber"
-            >
-                0
-            </div>
-
-            <div class="statLabel">
-                MCQs
-            </div>
-
-        </div>
+<div class="statsGrid">
 
 
-        <div class="statCard">
+<div class="statCard">
 
-            <div class="statIcon">👤</div>
+<div class="statIcon">
+📚
+</div>
 
-            <div
-                id="userCount"
-                class="statNumber"
-            >
-                0
-            </div>
+<div
+id="bookCount"
+class="statNumber"
+>
+0
+</div>
 
-            <div class="statLabel">
-                Users
-            </div>
+<div class="statLabel">
+Total Books
+</div>
 
-        </div>
-
-    </div>
-
-
-    <div class="card">
-
-        <h3>Quick Actions</h3>
-
-        <div class="grid3">
-
-            <button
-                class="btn btnPrimary"
-                onclick="openBookModal()"
-            >
-                ➕ Add Book
-            </button>
-
-            <button
-                class="btn btnSuccess"
-                onclick="openChapterModal()"
-            >
-                ➕ Add Chapter
-            </button>
-
-            <button
-                class="btn btnWarning"
-                onclick="openMCQModal()"
-            >
-                ➕ Add MCQ
-            </button>
-
-        </div>
-
-    </div>
+</div>
 
 
-    <div class="card">
+<div class="statCard">
 
-        <h3>GyaaniFly Content Flow</h3>
+<div class="statIcon">
+📖
+</div>
 
-        <p style="line-height:1.9;color:#4b5563">
+<div
+id="chapterCount"
+class="statNumber"
+>
+0
+</div>
 
-            📚 <b>Book</b>
-            →
-            📖 <b>Chapter</b>
-            →
-            🧠 <b>MCQs</b>
-            →
-            🎯 <b>Recall & Master</b>
+<div class="statLabel">
+Total Chapters
+</div>
 
-        </p>
+</div>
 
-    </div>
+
+<div class="statCard">
+
+<div class="statIcon">
+🧠
+</div>
+
+<div
+id="mcqCount"
+class="statNumber"
+>
+0
+</div>
+
+<div class="statLabel">
+Total MCQs
+</div>
+
+</div>
+
+
+<div class="statCard">
+
+<div class="statIcon">
+👤
+</div>
+
+<div
+id="userCount"
+class="statNumber"
+>
+0
+</div>
+
+<div class="statLabel">
+Total Users
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="card">
+
+<h3>Quick Actions</h3>
+
+<div class="grid3">
+
+<button
+class="btn primary"
+onclick="openBookModal()"
+>
+➕ Add Book
+</button>
+
+<button
+class="btn success"
+onclick="openChapterModal()"
+>
+➕ Add Chapter
+</button>
+
+<button
+class="btn warning"
+onclick="openMCQModal()"
+>
+➕ Add MCQ
+</button>
+
+</div>
+
+</div>
+
 
 </section>
 
 
-<!-- =====================================================
-     BOOKS
-===================================================== -->
+<!-- ================= BOOKS ================= -->
 
-<section id="books" class="section">
+<section
+id="books"
+class="section"
+>
 
-    <div class="sectionHeader">
+<div class="sectionHeader">
 
-        <h2>📚 Books</h2>
+<h2>📚 Books</h2>
 
-        <button
-            class="btn btnPrimary"
-            onclick="openBookModal()"
-        >
-            + Add Book
-        </button>
+<button
+class="btn primary"
+onclick="openBookModal()"
+>
++ Add Book
+</button>
 
-    </div>
-
-
-    <div class="card">
-
-        <input
-            id="bookSearch"
-            placeholder="🔎 Search books..."
-            oninput="renderBooks()"
-        >
-
-    </div>
+</div>
 
 
-    <div class="card">
+<div class="card">
 
-        <div
-            id="booksTable"
-            class="tableWrap"
-        ></div>
+<input
+id="bookSearch"
+placeholder="🔎 Search books..."
+oninput="renderBooks()"
+>
 
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     CHAPTERS
-===================================================== -->
-
-<section id="chapters" class="section">
-
-    <div class="sectionHeader">
-
-        <h2>📖 Chapters</h2>
-
-        <button
-            class="btn btnSuccess"
-            onclick="openChapterModal()"
-        >
-            + Add Chapter
-        </button>
-
-    </div>
+</div>
 
 
-    <div class="card">
+<div class="card">
 
-        <div class="grid2">
+<div
+id="booksTable"
+class="tableWrap"
+></div>
 
-            <div>
-
-                <label
-                    style="display:block;margin-bottom:7px;font-weight:bold"
-                >
-                    Filter by Book
-                </label>
-
-                <select
-                    id="chapterBookFilter"
-                    onchange="renderChapters()"
-                >
-                    <option value="">
-                        All Books
-                    </option>
-                </select>
-
-            </div>
-
-
-            <div>
-
-                <label
-                    style="display:block;margin-bottom:7px;font-weight:bold"
-                >
-                    Search
-                </label>
-
-                <input
-                    id="chapterSearch"
-                    placeholder="Search chapter..."
-                    oninput="renderChapters()"
-                >
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="card">
-
-        <div
-            id="chaptersTable"
-            class="tableWrap"
-        ></div>
-
-    </div>
+</div>
 
 </section>
 
 
-<!-- =====================================================
-     MCQS
-===================================================== -->
+<!-- ================= CHAPTERS ================= -->
 
-<section id="mcqs" class="section">
+<section
+id="chapters"
+class="section"
+>
 
-    <div class="sectionHeader">
+<div class="sectionHeader">
 
-        <h2>🧠 MCQs</h2>
+<h2>📖 Chapters</h2>
 
-        <button
-            class="btn btnWarning"
-            onclick="openMCQModal()"
-        >
-            + Add MCQ
-        </button>
+<button
+class="btn success"
+onclick="openChapterModal()"
+>
++ Add Chapter
+</button>
 
-    </div>
-
-
-    <div class="card">
-
-        <div class="grid3">
-
-            <div>
-
-                <label
-                    style="display:block;margin-bottom:7px;font-weight:bold"
-                >
-                    Book
-                </label>
-
-                <select
-                    id="mcqBookFilter"
-                    onchange="loadMCQFilterChapters()"
-                >
-                    <option value="">
-                        All Books
-                    </option>
-                </select>
-
-            </div>
+</div>
 
 
-            <div>
+<div class="card">
 
-                <label
-                    style="display:block;margin-bottom:7px;font-weight:bold"
-                >
-                    Chapter
-                </label>
+<div class="grid2">
 
-                <select
-                    id="mcqChapterFilter"
-                    onchange="renderMCQs()"
-                >
-                    <option value="">
-                        All Chapters
-                    </option>
-                </select>
+<div>
 
-            </div>
+<label>Book</label>
 
+<select
+id="chapterBookFilter"
+onchange="renderChapters()"
+>
 
-            <div>
+<option value="">
+All Books
+</option>
 
-                <label
-                    style="display:block;margin-bottom:7px;font-weight:bold"
-                >
-                    Search
-                </label>
+</select>
 
-                <input
-                    id="mcqSearch"
-                    placeholder="Search question..."
-                    oninput="renderMCQs()"
-                >
-
-            </div>
-
-        </div>
-
-    </div>
+</div>
 
 
-    <div class="card">
+<div>
 
-        <div
-            id="mcqsTable"
-            class="tableWrap"
-        ></div>
+<label>Search</label>
 
-    </div>
+<input
+id="chapterSearch"
+placeholder="Search chapter..."
+oninput="renderChapters()"
+>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div
+id="chaptersTable"
+class="tableWrap"
+></div>
+
+</div>
 
 </section>
 
 
-<!-- =====================================================
-     USERS
-===================================================== -->
+<!-- ================= MCQS ================= -->
 
-<section id="users" class="section">
+<section
+id="mcqs"
+class="section"
+>
 
-    <div class="sectionHeader">
+<div class="sectionHeader">
 
-        <h2>👤 Users</h2>
+<h2>🧠 MCQs</h2>
 
-        <button
-            class="btn btnPrimary"
-            onclick="openUserModal()"
-        >
-            + Add User
-        </button>
+<button
+class="btn warning"
+onclick="openMCQModal()"
+>
++ Add MCQ
+</button>
 
-    </div>
+</div>
 
 
-    <div class="card">
+<div class="card">
 
-        <div
-            id="usersTable"
-            class="tableWrap"
-        ></div>
+<div class="grid3">
 
-    </div>
+<div>
+
+<label>Book</label>
+
+<select
+id="mcqBookFilter"
+onchange="loadMCQFilterChapters()"
+>
+
+<option value="">
+All Books
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>Chapter</label>
+
+<select
+id="mcqChapterFilter"
+onchange="renderMCQs()"
+>
+
+<option value="">
+All Chapters
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>Search</label>
+
+<input
+id="mcqSearch"
+placeholder="Search question..."
+oninput="renderMCQs()"
+>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div
+id="mcqsTable"
+class="tableWrap"
+></div>
+
+</div>
 
 </section>
 
 
-<!-- =====================================================
-     BULK IMPORT
-===================================================== -->
+<!-- ================= USERS ================= -->
 
-<section id="import" class="section">
+<section
+id="users"
+class="section"
+>
 
-    <div class="sectionHeader">
+<div class="sectionHeader">
 
-        <h2>📥 Bulk Import</h2>
+<div>
 
-    </div>
+<h2>👤 Users</h2>
 
+<div class="sub">
+Create and manage GyaaniFly users
+</div>
 
-    <div class="card">
-
-        <h3>Excel / XLSX Import</h3>
-
-        <p style="color:#6b7280;line-height:1.7;margin-bottom:15px">
-
-            एक Excel file में कई Books, Chapters और MCQs
-            डालकर एक साथ Firebase में import कर सकते हैं।
-
-        </p>
+</div>
 
 
-        <div class="dropArea">
+<button
+class="btn primary"
+onclick="openUserModal()"
+>
++ Add User
+</button>
 
-            <p style="font-size:35px">
-                📊
-            </p>
-
-            <p style="margin:10px 0;font-weight:bold">
-                Select Excel File
-            </p>
-
-            <input
-                type="file"
-                id="excelFile"
-                accept=".xlsx,.xls,.csv"
-            >
-
-        </div>
+</div>
 
 
-        <div style="margin-top:15px">
+<div class="card">
 
-            <button
-                class="btn btnPrimary"
-                onclick="previewExcel()"
-            >
-                👁️ Preview Excel
-            </button>
+<input
+id="userSearch"
+placeholder="🔎 Search users..."
+oninput="renderUsers()"
+>
 
-            <button
-                class="btn btnSuccess"
-                onclick="importExcel()"
-            >
-                🚀 Import to Firebase
-            </button>
-
-            <button
-                class="btn btnSecondary"
-                onclick="clearExcel()"
-            >
-                Clear
-            </button>
-
-        </div>
+</div>
 
 
-        <div
-            id="importSummary"
-            class="importSummary"
-            style="display:none"
-        ></div>
+<div class="card">
 
+<div
+id="usersTable"
+class="tableWrap"
+></div>
 
-        <div
-            id="importProgress"
-            class="progressBox"
-        >
-
-            <p
-                id="progressText"
-                style="margin-bottom:8px"
-            >
-                Importing...
-            </p>
-
-            <div class="progressBar">
-
-                <div
-                    id="progressFill"
-                    class="progressFill"
-                ></div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="card">
-
-        <h3>Excel Column Format</h3>
-
-        <div class="tableWrap">
-
-            <table>
-
-                <thead>
-
-                    <tr>
-
-                        <th>Book Name</th>
-                        <th>Chapter No</th>
-                        <th>Chapter Name</th>
-                        <th>Question</th>
-                        <th>A</th>
-                        <th>B</th>
-                        <th>C</th>
-                        <th>D</th>
-                        <th>Answer</th>
-                        <th>Explanation</th>
-                        <th>Memory Tip</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    <tr>
-
-                        <td>Rich Dad Poor Dad</td>
-                        <td>1</td>
-                        <td>The Rich Don't Work for Money</td>
-                        <td>Question...</td>
-                        <td>Option A</td>
-                        <td>Option B</td>
-                        <td>Option C</td>
-                        <td>Option D</td>
-                        <td>A</td>
-                        <td>Explanation...</td>
-                        <td>Memory Tip...</td>
-
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    </div>
-
-
-    <div
-        id="excelPreview"
-        class="card"
-        style="display:none"
-    >
-
-        <h3>Excel Preview</h3>
-
-        <div
-            id="previewTable"
-            class="tableWrap"
-        ></div>
-
-    </div>
+</div>
 
 </section>
 
 
-<!-- =====================================================
-     SETTINGS
-===================================================== -->
+<!-- ================= IMPORT ================= -->
 
-<section id="settings" class="section">
+<section
+id="import"
+class="section"
+>
 
-    <div class="sectionHeader">
+<div class="sectionHeader">
 
-        <h2>⚙️ Settings</h2>
+<h2>📥 Bulk Import</h2>
 
-    </div>
-
-
-    <div class="card">
-
-        <h3>Application</h3>
-
-        <p style="margin-top:10px">
-            <b>App Name:</b> GyaaniFly
-        </p>
-
-        <p style="margin-top:10px">
-            <b>Tagline:</b> Read • Recall • Master
-        </p>
-
-        <p style="margin-top:10px">
-            <b>Database:</b> Firebase Firestore
-        </p>
-
-    </div>
+</div>
 
 
-    <div class="card">
+<div class="card">
 
-        <h3>Collections</h3>
+<h3>Excel Import</h3>
 
-        <p style="line-height:1.9;color:#4b5563">
+<p
+style="
+color:#6b7280;
+line-height:1.7;
+margin:10px 0 20px;
+"
+>
+Excel file से Books, Chapters और MCQs
+एक साथ Firebase में import करें।
+</p>
 
-            📚 <b>books</b><br>
-            📖 <b>chapters</b><br>
-            🧠 <b>mcqs</b><br>
-            👤 <b>users</b><br>
-            📊 <b>userStats</b>
 
-        </p>
+<div class="dropArea">
 
-    </div>
+<div style="font-size:35px">
+📊
+</div>
+
+<br>
+
+<b>Select Excel File</b>
+
+<br><br>
+
+<input
+type="file"
+id="excelFile"
+accept=".xlsx,.xls,.csv"
+>
+
+</div>
+
+
+<div
+style="
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-top:15px;
+"
+>
+
+<button
+class="btn primary"
+onclick="previewExcel()"
+>
+👁️ Preview
+</button>
+
+
+<button
+class="btn success"
+onclick="importExcel()"
+>
+🚀 Import
+</button>
+
+
+<button
+class="btn secondary"
+onclick="clearExcel()"
+>
+Clear
+</button>
+
+</div>
+
+
+<div
+id="importSummary"
+style="
+display:none;
+margin-top:15px;
+padding:15px;
+background:#f3f4f6;
+border-radius:10px;
+line-height:1.8;
+"
+></div>
+
+
+<div
+id="progressBox"
+class="progressBox"
+>
+
+<div
+id="progressText"
+style="margin-bottom:8px"
+>
+Importing...
+</div>
+
+<div class="progressBar">
+
+<div
+id="progressFill"
+class="progressFill"
+></div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div
+id="excelPreview"
+class="card"
+style="display:none"
+>
+
+<h3>Preview</h3>
+
+<div
+id="previewTable"
+class="tableWrap"
+></div>
+
+</div>
 
 </section>
 
 
-    </div>
+<!-- ================= SETTINGS ================= -->
+
+<section
+id="settings"
+class="section"
+>
+
+<div class="sectionHeader">
+
+<h2>⚙️ Settings</h2>
+
+</div>
+
+
+<div class="card">
+
+<h3>GyaaniFly</h3>
+
+<p
+style="
+line-height:2;
+color:#4b5563;
+margin-top:10px;
+"
+>
+
+<b>App:</b> GyaaniFly
+
+<br>
+
+<b>Tagline:</b>
+Read • Recall • Master
+
+<br>
+
+<b>Backend:</b>
+Firebase
+
+<br>
+
+<b>Database:</b>
+Cloud Firestore
+
+<br>
+
+<b>Authentication:</b>
+Firebase Authentication
+
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>Collections</h3>
+
+<p
+style="
+line-height:2;
+color:#4b5563;
+margin-top:10px;
+"
+>
+📚 books
+<br>
+📖 chapters
+<br>
+🧠 mcqs
+<br>
+👤 users
+<br>
+📊 userStats
+</p>
+
+</div>
+
+</section>
+
+
+</div>
 
 </main>
 
 </div>
 
 
-<!-- =====================================================
-     BOOK MODAL
-===================================================== -->
+<!-- ================= BOOK MODAL ================= -->
 
 <div
-    id="bookModal"
-    class="modal"
+id="bookModal"
+class="modal"
 >
 
-    <div class="modalBox">
+<div class="modalBox">
 
-        <div class="modalHeader">
+<div class="modalHeader">
 
-            <h2 id="bookModalTitle">
-                Add Book
-            </h2>
+<h2 id="bookModalTitle">
+Add Book
+</h2>
 
-            <button
-                class="closeBtn"
-                onclick="closeModal('bookModal')"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <input
-            type="hidden"
-            id="bookEditId"
-        >
-
-
-        <div class="formGroup">
-
-            <label>Book Name *</label>
-
-            <input
-                id="bookName"
-                placeholder="Example: Rich Dad Poor Dad"
-            >
-
-        </div>
-
-
-        <div class="grid2">
-
-            <div class="formGroup">
-
-                <label>Author</label>
-
-                <input
-                    id="bookAuthor"
-                    placeholder="Author name"
-                >
-
-            </div>
-
-
-            <div class="formGroup">
-
-                <label>Category</label>
-
-                <input
-                    id="bookCategory"
-                    placeholder="Self Help"
-                >
-
-            </div>
-
-        </div>
-
-
-        <div class="formGroup">
-
-            <label>Image URL</label>
-
-            <input
-                id="bookImageUrl"
-                placeholder="https://..."
-            >
-
-        </div>
-
-
-        <div class="formGroup">
-
-            <label>Description</label>
-
-            <textarea
-                id="bookDescription"
-                placeholder="Book description..."
-            ></textarea>
-
-        </div>
-
-
-        <div style="display:flex;gap:10px">
-
-            <button
-                class="btn btnPrimary"
-                onclick="saveBook()"
-            >
-                💾 Save Book
-            </button>
-
-            <button
-                class="btn btnSecondary"
-                onclick="closeModal('bookModal')"
-            >
-                Cancel
-            </button>
-
-        </div>
-
-    </div>
+<button
+class="close"
+onclick="closeModal('bookModal')"
+>
+×
+</button>
 
 </div>
 
 
-<!-- =====================================================
-     CHAPTER MODAL
-===================================================== -->
-
-<div
-    id="chapterModal"
-    class="modal"
+<input
+type="hidden"
+id="bookEditId"
 >
 
-    <div class="modalBox">
 
-        <div class="modalHeader">
+<div class="formGroup">
 
-            <h2 id="chapterModalTitle">
-                Add Chapter
-            </h2>
+<label>Book Name *</label>
 
-            <button
-                class="closeBtn"
-                onclick="closeModal('chapterModal')"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <input
-            type="hidden"
-            id="chapterEditId"
-        >
-
-
-        <div class="formGroup">
-
-            <label>Book *</label>
-
-            <select id="chapterBook">
-                <option value="">
-                    Select Book
-                </option>
-            </select>
-
-        </div>
-
-
-        <div class="grid2">
-
-            <div class="formGroup">
-
-                <label>Chapter Number *</label>
-
-                <input
-                    type="number"
-                    id="chapterNumber"
-                    placeholder="1"
-                    min="1"
-                >
-
-            </div>
-
-
-            <div class="formGroup">
-
-                <label>Chapter Name *</label>
-
-                <input
-                    id="chapterName"
-                    placeholder="Chapter name"
-                >
-
-            </div>
-
-        </div>
-
-
-        <div class="formGroup">
-
-            <label>Description</label>
-
-            <textarea
-                id="chapterDescription"
-                placeholder="Chapter description..."
-            ></textarea>
-
-        </div>
-
-
-        <div style="display:flex;gap:10px">
-
-            <button
-                class="btn btnSuccess"
-                onclick="saveChapter()"
-            >
-                💾 Save Chapter
-            </button>
-
-            <button
-                class="btn btnSecondary"
-                onclick="closeModal('chapterModal')"
-            >
-                Cancel
-            </button>
-
-        </div>
-
-    </div>
+<input
+id="bookName"
+placeholder="Rich Dad Poor Dad"
+>
 
 </div>
 
 
-<!-- =====================================================
-     MCQ MODAL
-===================================================== -->
+<div class="grid2">
 
-<div
-    id="mcqModal"
-    class="modal"
+<div class="formGroup">
+
+<label>Author</label>
+
+<input
+id="bookAuthor"
+placeholder="Author"
 >
-
-    <div class="modalBox">
-
-        <div class="modalHeader">
-
-            <h2 id="mcqModalTitle">
-                Add MCQ
-            </h2>
-
-            <button
-                class="closeBtn"
-                onclick="closeModal('mcqModal')"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <input
-            type="hidden"
-            id="mcqEditId"
-        >
-
-
-        <div class="grid2">
-
-            <div class="formGroup">
-
-                <label>Book *</label>
-
-                <select
-                    id="mcqBook"
-                    onchange="loadMCQModalChapters()"
-                >
-                    <option value="">
-                        Select Book
-                    </option>
-                </select>
-
-            </div>
-
-
-            <div class="formGroup">
-
-                <label>Chapter *</label>
-
-                <select id="mcqChapter">
-
-                    <option value="">
-                        Select Chapter
-                    </option>
-
-                </select>
-
-            </div>
-
-        </div>
-
-
-        <div class="formGroup">
-
-            <label>Question *</label>
-
-            <textarea
-                id="mcqQuestion"
-                placeholder="Enter question..."
-            ></textarea>
-
-        </div>
-
-
-        <div class="grid2">
-
-            <div class="formGroup">
-
-                <label>Option A *</label>
-
-                <input
-                    id="optionA"
-                    placeholder="Option A"
-                >
-
-            </div>
-
-
-            <div class="formGroup">
-
-                <label>Option B *</label>
-
-                <input
-                    id="optionB"
-                    placeholder="Option B"
-                >
-
-            </div>
-
-
-            <div class="formGroup">
-
-                <label>Option C *</label>
-
-                <input
-                    id="optionC"
-                    placeholder="Option C"
-                >
-
-            </div>
-
-
-            <div class="formGroup">
-
-                <label>Option D *</label>
-
-                <input
-                    id="optionD"
-                    placeholder="Option D"
-                >
-
-            </div>
-
-        </div>
-
-
-        <div class="grid2">
-
-            <div class="formGroup">
-
-                <label>Correct Answer *</label>
-
-                <select id="correctAnswer">
-
-                    <option value="">
-                        Select Answer
-                    </option>
-
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="C">C</option>
-                    <option value="D">D</option>
-
-                </select>
-
-            </div>
-
-
-            <div class="formGroup">
-
-                <label>Question Type</label>
-
-                <select id="mcqType">
-
-                    <option value="recall">
-                        Recall
-                    </option>
-
-                    <option value="normal">
-                        Normal
-                    </option>
-
-                </select>
-
-            </div>
-
-        </div>
-
-
-        <div class="formGroup">
-
-            <label>Explanation</label>
-
-            <textarea
-                id="mcqExplanation"
-                placeholder="Explain the answer..."
-            ></textarea>
-
-        </div>
-
-
-        <div class="formGroup">
-
-            <label>Memory Tip</label>
-
-            <textarea
-                id="mcqMemoryTip"
-                placeholder="Easy memory trick..."
-            ></textarea>
-
-        </div>
-
-
-        <div style="display:flex;gap:10px">
-
-            <button
-                class="btn btnWarning"
-                onclick="saveMCQ()"
-            >
-                💾 Save MCQ
-            </button>
-
-            <button
-                class="btn btnSecondary"
-                onclick="closeModal('mcqModal')"
-            >
-                Cancel
-            </button>
-
-        </div>
-
-    </div>
 
 </div>
 
 
-<!-- =====================================================
-     USER MODAL
-===================================================== -->
+<div class="formGroup">
 
-<div
-    id="userModal"
-    class="modal"
+<label>Category</label>
+
+<input
+id="bookCategory"
+placeholder="Self Help"
 >
 
-    <div class="modalBox">
-
-        <div class="modalHeader">
-
-            <h2>
-                Add User
-            </h2>
-
-            <button
-                class="closeBtn"
-                onclick="closeModal('userModal')"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <div class="formGroup">
-
-            <label>Name *</label>
-
-            <input
-                id="newUserName"
-                placeholder="Student name"
-            >
-
-        </div>
-
-
-        <div class="formGroup">
-
-            <label>Email *</label>
-
-            <input
-                type="email"
-                id="newUserEmail"
-                placeholder="student@email.com"
-            >
-
-        </div>
-
-
-        <div class="formGroup">
-
-            <label>Password *</label>
-
-            <input
-                type="password"
-                id="newUserPassword"
-                placeholder="Minimum 6 characters"
-            >
-
-        </div>
-
-
-        <div class="grid2">
-
-            <div class="formGroup">
-
-                <label>Role</label>
-
-                <select id="newUserRole">
-
-                    <option value="student">
-                        Student
-                    </option>
-
-                    <option value="admin">
-                        Admin
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="formGroup">
-
-                <label>Status</label>
-
-                <select id="newUserStatus">
-
-                    <option value="active">
-                        Active
-                    </option>
-
-                    <option value="blocked">
-                        Blocked
-                    </option>
-
-                </select>
-
-            </div>
-
-        </div>
-
-
-        <div
-            style="
-                padding:12px;
-                background:#fff7ed;
-                border-radius:10px;
-                margin-bottom:15px;
-                font-size:13px;
-                line-height:1.6;
-            "
-        >
-
-            ⚠️ User password Firebase Authentication में
-            create होगा। Admin panel current admin login को
-            disturb नहीं करेगा।
-
-        </div>
-
-
-        <div style="display:flex;gap:10px">
-
-            <button
-                class="btn btnPrimary"
-                onclick="createUser()"
-            >
-                ➕ Create User
-            </button>
-
-            <button
-                class="btn btnSecondary"
-                onclick="closeModal('userModal')"
-            >
-                Cancel
-            </button>
-
-        </div>
-
-    </div>
+</div>
 
 </div>
 
 
-<!-- TOAST -->
+<div class="formGroup">
+
+<label>Image URL</label>
+
+<input
+id="bookImageUrl"
+placeholder="https://..."
+>
+
+</div>
+
+
+<div class="formGroup">
+
+<label>Description</label>
+
+<textarea
+id="bookDescription"
+placeholder="Book description..."
+></textarea>
+
+</div>
+
+
+<button
+class="btn primary"
+onclick="saveBook()"
+>
+💾 Save Book
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= CHAPTER MODAL ================= -->
 
 <div
-    id="toast"
-    class="toast"
+id="chapterModal"
+class="modal"
+>
+
+<div class="modalBox">
+
+<div class="modalHeader">
+
+<h2 id="chapterModalTitle">
+Add Chapter
+</h2>
+
+<button
+class="close"
+onclick="closeModal('chapterModal')"
+>
+×
+</button>
+
+</div>
+
+
+<input
+type="hidden"
+id="chapterEditId"
+>
+
+
+<div class="formGroup">
+
+<label>Book *</label>
+
+<select id="chapterBook">
+
+<option value="">
+Select Book
+</option>
+
+</select>
+
+</div>
+
+
+<div class="grid2">
+
+<div class="formGroup">
+
+<label>Chapter Number *</label>
+
+<input
+type="number"
+id="chapterNumber"
+min="1"
+>
+
+</div>
+
+
+<div class="formGroup">
+
+<label>Chapter Name *</label>
+
+<input
+id="chapterName"
+placeholder="Chapter name"
+>
+
+</div>
+
+</div>
+
+
+<div class="formGroup">
+
+<label>Description</label>
+
+<textarea
+id="chapterDescription"
+></textarea>
+
+</div>
+
+
+<button
+class="btn success"
+onclick="saveChapter()"
+>
+💾 Save Chapter
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= MCQ MODAL ================= -->
+
+<div
+id="mcqModal"
+class="modal"
+>
+
+<div class="modalBox">
+
+<div class="modalHeader">
+
+<h2 id="mcqModalTitle">
+Add MCQ
+</h2>
+
+<button
+class="close"
+onclick="closeModal('mcqModal')"
+>
+×
+</button>
+
+</div>
+
+
+<input
+type="hidden"
+id="mcqEditId"
+>
+
+
+<div class="grid2">
+
+<div class="formGroup">
+
+<label>Book *</label>
+
+<select
+id="mcqBook"
+onchange="loadMCQModalChapters()"
+>
+
+<option value="">
+Select Book
+</option>
+
+</select>
+
+</div>
+
+
+<div class="formGroup">
+
+<label>Chapter *</label>
+
+<select id="mcqChapter">
+
+<option value="">
+Select Chapter
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<div class="formGroup">
+
+<label>Question *</label>
+
+<textarea
+id="mcqQuestion"
+placeholder="Question..."
+></textarea>
+
+</div>
+
+
+<div class="grid2">
+
+<div class="formGroup">
+
+<label>Option A *</label>
+
+<input id="optionA">
+
+</div>
+
+
+<div class="formGroup">
+
+<label>Option B *</label>
+
+<input id="optionB">
+
+</div>
+
+
+<div class="formGroup">
+
+<label>Option C *</label>
+
+<input id="optionC">
+
+</div>
+
+
+<div class="formGroup">
+
+<label>Option D *</label>
+
+<input id="optionD">
+
+</div>
+
+</div>
+
+
+<div class="grid2">
+
+<div class="formGroup">
+
+<label>Correct Answer *</label>
+
+<select id="correctAnswer">
+
+<option value="">
+Select
+</option>
+
+<option value="A">A</option>
+<option value="B">B</option>
+<option value="C">C</option>
+<option value="D">D</option>
+
+</select>
+
+</div>
+
+
+<div class="formGroup">
+
+<label>Type</label>
+
+<select id="mcqType">
+
+<option value="recall">
+Recall
+</option>
+
+<option value="normal">
+Normal
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<div class="formGroup">
+
+<label>Explanation</label>
+
+<textarea id="mcqExplanation"></textarea>
+
+</div>
+
+
+<div class="formGroup">
+
+<label>Memory Tip</label>
+
+<textarea id="mcqMemoryTip"></textarea>
+
+</div>
+
+
+<button
+class="btn warning"
+onclick="saveMCQ()"
+>
+💾 Save MCQ
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= USER MODAL ================= -->
+
+<div
+id="userModal"
+class="modal"
+>
+
+<div class="modalBox">
+
+<div class="modalHeader">
+
+<h2 id="userModalTitle">
+Add User
+</h2>
+
+<button
+class="close"
+onclick="closeModal('userModal')"
+>
+×
+</button>
+
+</div>
+
+
+<input
+type="hidden"
+id="userEditId"
+>
+
+
+<div class="formGroup">
+
+<label>Name *</label>
+
+<input
+id="newUserName"
+placeholder="Student name"
+>
+
+</div>
+
+
+<div class="formGroup">
+
+<label>Email *</label>
+
+<input
+id="newUserEmail"
+type="email"
+placeholder="student@gmail.com"
+>
+
+</div>
+
+
+<div
+id="passwordGroup"
+class="formGroup"
+>
+
+<label>Password *</label>
+
+<input
+id="newUserPassword"
+type="password"
+placeholder="Minimum 6 characters"
+>
+
+</div>
+
+
+<div class="grid2">
+
+<div class="formGroup">
+
+<label>Role</label>
+
+<select id="newUserRole">
+
+<option value="student">
+Student
+</option>
+
+<option value="admin">
+Admin
+</option>
+
+</select>
+
+</div>
+
+
+<div class="formGroup">
+
+<label>Status</label>
+
+<select id="newUserStatus">
+
+<option value="active">
+Active
+</option>
+
+<option value="blocked">
+Blocked
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<button
+id="saveUserButton"
+class="btn primary"
+onclick="saveUser()"
+>
+➕ Create User
+</button>
+
+</div>
+
+</div>
+
+
+<div
+id="toast"
+class="toast"
 ></div>
 
 
-<!-- =====================================================
-     FIREBASE
-===================================================== -->
-
 <script type="module">
 
-import {
-    initializeApp,
-    getApps,
-    getApp
-}
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
+/* =====================================================
+   FIREBASE IMPORTS
+===================================================== */
 
 import {
-    getFirestore,
-    collection,
-    addDoc,
-    getDocs,
-    getDoc,
-    deleteDoc,
-    doc,
-    updateDoc,
-    setDoc,
-    query,
-    where,
-    serverTimestamp
+    initializeApp
 }
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
 
 import {
@@ -2157,32 +1990,49 @@ import {
     sendPasswordResetEmail,
     onAuthStateChanged
 }
-from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    getDoc,
+    addDoc,
+    setDoc,
+    updateDoc,
+    deleteDoc,
+    doc,
+    serverTimestamp
+}
+from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
 /* =====================================================
-   FIREBASE CONFIG
+   YOUR FIREBASE CONFIG
 ===================================================== */
 
 const firebaseConfig = {
 
     apiKey:
-        "AIzaSyAmI0I3e5f3Egq1KTilHH8XdxMJxCD8BKQ",
+    "AIzaSyAmQ0I3e5f3Egq1KTilHH8XdxMJxCD8BKQ",
 
     authDomain:
-        "m-techwala.firebaseapp.com",
+    "m-techwala.firebaseapp.com",
 
     projectId:
-        "m-techwala",
+    "m-techwala",
 
     storageBucket:
-        "m-techwala.firebasestorage.app",
+    "m-techwala.firebasestorage.app",
 
     messagingSenderId:
-        "976106704812",
+    "976106704812",
 
     appId:
-        "1:976106704812:web:1d603580d5bf695abef409"
+    "1:976106704812:web:1d603580d5bf695abef409"
 
 };
 
@@ -2192,48 +2042,36 @@ const firebaseConfig = {
 ===================================================== */
 
 const app =
-    initializeApp(firebaseConfig);
+    initializeApp(
+        firebaseConfig
+    );
+
 
 const db =
     getFirestore(app);
+
 
 const auth =
     getAuth(app);
 
 
 /* =====================================================
-   SECONDARY APP
-   User create करने के लिए
+   AUTH REFERENCE (Fixed to use main auth directly)
 ===================================================== */
 
-let secondaryApp;
-
-try{
-
-    secondaryApp =
-        initializeApp(
-            firebaseConfig,
-            "secondaryApp"
-        );
-
-}catch(error){
-
-    secondaryApp =
-        getApp("secondaryApp");
-
-}
-
-const secondaryAuth =
-    getAuth(secondaryApp);
+const secondaryAuth = auth;
 
 
 /* =====================================================
-   GLOBAL DATA
+   DATA
 ===================================================== */
 
 let books = [];
+
 let chapters = [];
+
 let mcqs = [];
+
 let users = [];
 
 let excelRows = [];
@@ -2242,7 +2080,7 @@ let currentAdmin = null;
 
 
 /* =====================================================
-   WINDOW EXPORT
+   GLOBAL FUNCTIONS
 ===================================================== */
 
 window.adminLogin = adminLogin;
@@ -2262,7 +2100,7 @@ window.closeModal = closeModal;
 window.saveBook = saveBook;
 window.saveChapter = saveChapter;
 window.saveMCQ = saveMCQ;
-window.createUser = createUser;
+window.saveUser = saveUser;
 
 window.editBook = editBook;
 window.deleteBook = deleteBook;
@@ -2273,11 +2111,13 @@ window.deleteChapter = deleteChapter;
 window.editMCQ = editMCQ;
 window.deleteMCQ = deleteMCQ;
 
+window.editUser = editUser;
 window.deleteUser = deleteUser;
 
 window.renderBooks = renderBooks;
 window.renderChapters = renderChapters;
 window.renderMCQs = renderMCQs;
+window.renderUsers = renderUsers;
 
 window.loadMCQFilterChapters =
     loadMCQFilterChapters;
@@ -2306,28 +2146,13 @@ onAuthStateChanged(
 
         }
 
+
         currentAdmin = user;
 
-        document.getElementById(
-            "adminEmail"
-        ).textContent = user.email || "";
-
-        document.getElementById(
-            "adminAvatar"
-        ).textContent =
-            (user.email || "A")
-            .charAt(0)
-            .toUpperCase();
-
-        /*
-           Admin role check.
-           users/{uid} document में role = admin
-           रखना recommended है.
-        */
 
         try{
 
-            const userSnap =
+            const adminDoc =
                 await getDoc(
                     doc(
                         db,
@@ -2336,46 +2161,97 @@ onAuthStateChanged(
                     )
                 );
 
-            if(userSnap.exists()){
 
-                const userData =
-                    userSnap.data();
+            if(!adminDoc.exists()){
 
-                /*
-                  अगर role मौजूद है और admin नहीं है,
-                  तो access deny.
-                */
+                alert(
+                    "Admin profile नहीं मिला."
+                );
 
-                if(
-                    userData.role &&
-                    userData.role !== "admin"
-                ){
+                await signOut(auth);
 
-                    alert(
-                        "Access denied. Admin account required."
-                    );
-
-                    await signOut(auth);
-
-                    return;
-
-                }
+                return;
 
             }
 
-        }catch(error){
 
-            console.log(
-                "Role check:",
+            const data =
+                adminDoc.data();
+
+
+            if(
+                data.role !== "admin"
+            ){
+
+                alert(
+                    "इस account को Admin permission नहीं है."
+                );
+
+                await signOut(auth);
+
+                return;
+
+            }
+
+
+            if(
+                data.status === "blocked"
+            ){
+
+                alert(
+                    "यह Admin account blocked है."
+                );
+
+                await signOut(auth);
+
+                return;
+
+            }
+
+
+            document
+            .getElementById(
+                "adminEmail"
+            )
+            .textContent =
+                user.email || "";
+
+
+            document
+            .getElementById(
+                "avatar"
+            )
+            .textContent =
+                (
+                    data.name ||
+                    user.email ||
+                    "A"
+                )
+                .charAt(0)
+                .toUpperCase();
+
+
+            showApp();
+
+
+            await loadAllData();
+
+        }
+        catch(error){
+
+            console.error(
                 error
             );
 
+            alert(
+                "Admin verification error:\n\n"
+                +
+                error.message
+            );
+
+            await signOut(auth);
+
         }
-
-
-        showApp();
-
-        await loadAllData();
 
     }
 );
@@ -2389,18 +2265,24 @@ async function adminLogin(){
 
     const email =
         document
-        .getElementById("loginEmail")
+        .getElementById(
+            "loginEmail"
+        )
         .value
         .trim();
 
+
     const password =
         document
-        .getElementById("loginPassword")
+        .getElementById(
+            "loginPassword"
+        )
         .value;
 
 
     const message =
-        document.getElementById(
+        document
+        .getElementById(
             "loginMessage"
         );
 
@@ -2408,10 +2290,7 @@ async function adminLogin(){
     if(!email || !password){
 
         message.textContent =
-            "Email और password डालें।";
-
-        message.style.color =
-            "#dc2626";
+            "Email और password डालें.";
 
         return;
 
@@ -2419,10 +2298,7 @@ async function adminLogin(){
 
 
     message.textContent =
-        "Logging in...";
-
-    message.style.color =
-        "#2563eb";
+        "Login हो रहा है...";
 
 
     try{
@@ -2433,18 +2309,19 @@ async function adminLogin(){
             password
         );
 
+    }
+    catch(error){
+
+        console.error(
+            "LOGIN ERROR:",
+            error
+        );
+
+
         message.textContent =
-            "Login successful.";
-
-    }catch(error){
-
-        console.error(error);
-
-        message.textContent =
-            firebaseError(error);
-
-        message.style.color =
-            "#dc2626";
+            getFirebaseError(
+                error
+            );
 
     }
 
@@ -2459,12 +2336,16 @@ async function forgotPassword(){
 
     const email =
         document
-        .getElementById("loginEmail")
+        .getElementById(
+            "loginEmail"
+        )
         .value
         .trim();
 
+
     const message =
-        document.getElementById(
+        document
+        .getElementById(
             "loginMessage"
         );
 
@@ -2472,10 +2353,7 @@ async function forgotPassword(){
     if(!email){
 
         message.textContent =
-            "पहले email डालें।";
-
-        message.style.color =
-            "#dc2626";
+            "पहले email डालें.";
 
         return;
 
@@ -2489,21 +2367,75 @@ async function forgotPassword(){
             email
         );
 
-        message.textContent =
-            "Password reset email भेज दिया गया।";
 
         message.style.color =
             "#16a34a";
 
-    }catch(error){
 
         message.textContent =
-            firebaseError(error);
+            "Password reset email भेज दिया गया.";
+
+    }
+    catch(error){
 
         message.style.color =
             "#dc2626";
 
+
+        message.textContent =
+            getFirebaseError(
+                error
+            );
+
     }
+
+}
+
+
+/* =====================================================
+   SHOW LOGIN
+===================================================== */
+
+function showLogin(){
+
+    document
+    .getElementById(
+        "loginPage"
+    )
+    .style.display =
+        "flex";
+
+
+    document
+    .getElementById(
+        "app"
+    )
+    .style.display =
+        "none";
+
+}
+
+
+/* =====================================================
+   SHOW APP
+===================================================== */
+
+function showApp(){
+
+    document
+    .getElementById(
+        "loginPage"
+    )
+    .style.display =
+        "none";
+
+
+    document
+    .getElementById(
+        "app"
+    )
+    .style.display =
+        "block";
 
 }
 
@@ -2514,45 +2446,7 @@ async function forgotPassword(){
 
 async function adminLogout(){
 
-    if(
-        !confirm(
-            "क्या आप logout करना चाहते हैं?"
-        )
-    ){
-        return;
-    }
-
     await signOut(auth);
-
-}
-
-
-/* =====================================================
-   LOGIN / APP DISPLAY
-===================================================== */
-
-function showLogin(){
-
-    document.getElementById(
-        "loginPage"
-    ).style.display = "flex";
-
-    document.getElementById(
-        "app"
-    ).style.display = "none";
-
-}
-
-
-function showApp(){
-
-    document.getElementById(
-        "loginPage"
-    ).style.display = "none";
-
-    document.getElementById(
-        "app"
-    ).style.display = "block";
 
 }
 
@@ -2563,42 +2457,25 @@ function showApp(){
 
 async function loadAllData(){
 
-    try{
+    await loadBooks();
 
-        await Promise.all([
+    await loadChapters();
 
-            loadBooks(),
+    await loadMCQs();
 
-            loadChapters(),
+    await loadUsers();
 
-            loadMCQs(),
+    populateBookSelects();
 
-            loadUsers()
+    updateDashboard();
 
-        ]);
+    renderBooks();
 
-        updateDashboard();
+    renderChapters();
 
-        populateBookSelects();
+    renderMCQs();
 
-        renderBooks();
-
-        renderChapters();
-
-        renderMCQs();
-
-        renderUsers();
-
-    }catch(error){
-
-        console.error(error);
-
-        toast(
-            "Data load error: " +
-            error.message
-        );
-
-    }
+    renderUsers();
 
 }
 
@@ -2609,116 +2486,149 @@ async function loadAllData(){
 
 async function loadBooks(){
 
-    const snapshot =
+    const snap =
         await getDocs(
-            collection(db,"books")
+            collection(
+                db,
+                "books"
+            )
         );
 
+
     books =
-        snapshot.docs.map(
+        snap.docs.map(
             d => ({
                 id:d.id,
                 ...d.data()
             })
         );
 
-    books.sort(
-        (a,b)=>
-            String(a.name || "")
-            .localeCompare(
-                String(b.name || "")
-            )
-    );
-
 }
 
 
 function openBookModal(){
 
-    clearBookForm();
+    document
+    .getElementById(
+        "bookEditId"
+    )
+    .value = "";
 
-    document.getElementById(
+
+    document
+    .getElementById(
+        "bookName"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "bookAuthor"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "bookCategory"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "bookImageUrl"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "bookDescription"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
         "bookModalTitle"
-    ).textContent =
+    )
+    .textContent =
         "Add Book";
 
-    document.getElementById(
+
+    document
+    .getElementById(
         "bookModal"
-    ).classList.add("show");
-
-}
-
-
-function clearBookForm(){
-
-    document.getElementById(
-        "bookEditId"
-    ).value = "";
-
-    document.getElementById(
-        "bookName"
-    ).value = "";
-
-    document.getElementById(
-        "bookAuthor"
-    ).value = "";
-
-    document.getElementById(
-        "bookCategory"
-    ).value = "";
-
-    document.getElementById(
-        "bookImageUrl"
-    ).value = "";
-
-    document.getElementById(
-        "bookDescription"
-    ).value = "";
+    )
+    .classList.add(
+        "show"
+    );
 
 }
 
 
 async function saveBook(){
 
-    const editId =
+    const id =
         document
-        .getElementById("bookEditId")
+        .getElementById(
+            "bookEditId"
+        )
         .value;
+
 
     const name =
         document
-        .getElementById("bookName")
+        .getElementById(
+            "bookName"
+        )
         .value
         .trim();
+
 
     const author =
         document
-        .getElementById("bookAuthor")
+        .getElementById(
+            "bookAuthor"
+        )
         .value
         .trim();
+
 
     const category =
         document
-        .getElementById("bookCategory")
+        .getElementById(
+            "bookCategory"
+        )
         .value
         .trim();
+
 
     const imageUrl =
         document
-        .getElementById("bookImageUrl")
+        .getElementById(
+            "bookImageUrl"
+        )
         .value
         .trim();
 
+
     const description =
         document
-        .getElementById("bookDescription")
+        .getElementById(
+            "bookDescription"
+        )
         .value
         .trim();
 
 
     if(!name){
 
-        alert("Book Name required.");
+        alert(
+            "Book name required."
+        );
 
         return;
 
@@ -2728,15 +2638,10 @@ async function saveBook(){
     const data = {
 
         name,
-
         author,
-
         category,
-
         imageUrl,
-
         description,
-
         updatedAt:
             serverTimestamp()
 
@@ -2745,22 +2650,23 @@ async function saveBook(){
 
     try{
 
-        if(editId){
+        if(id){
 
             await updateDoc(
                 doc(
                     db,
                     "books",
-                    editId
+                    id
                 ),
                 data
             );
 
             toast(
-                "Book updated successfully."
+                "Book updated."
             );
 
-        }else{
+        }
+        else{
 
             await addDoc(
                 collection(
@@ -2768,20 +2674,26 @@ async function saveBook(){
                     "books"
                 ),
                 {
+
                     ...data,
+
                     createdAt:
                         serverTimestamp()
+
                 }
             );
 
             toast(
-                "Book added successfully."
+                "Book added."
             );
 
         }
 
 
-        closeModal("bookModal");
+        closeModal(
+            "bookModal"
+        );
+
 
         await loadBooks();
 
@@ -2791,13 +2703,10 @@ async function saveBook(){
 
         updateDashboard();
 
-
-    }catch(error){
-
-        console.error(error);
+    }
+    catch(error){
 
         alert(
-            "Book save error:\n" +
             error.message
         );
 
@@ -2806,10 +2715,6 @@ async function saveBook(){
 }
 
 
-/* =====================================================
-   EDIT BOOK
-===================================================== */
-
 function editBook(id){
 
     const book =
@@ -2817,63 +2722,77 @@ function editBook(id){
             b => b.id === id
         );
 
+
     if(!book) return;
 
 
-    document.getElementById(
-        "bookModalTitle"
-    ).textContent =
-        "Edit Book";
-
-
-    document.getElementById(
+    document
+    .getElementById(
         "bookEditId"
-    ).value = id;
+    )
+    .value = id;
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "bookName"
-    ).value =
+    )
+    .value =
         book.name || "";
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "bookAuthor"
-    ).value =
+    )
+    .value =
         book.author || "";
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "bookCategory"
-    ).value =
+    )
+    .value =
         book.category || "";
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "bookImageUrl"
-    ).value =
+    )
+    .value =
         book.imageUrl ||
         book.image ||
-        book.coverImage ||
         "";
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "bookDescription"
-    ).value =
+    )
+    .value =
         book.description || "";
 
 
-    document.getElementById(
+    document
+    .getElementById(
+        "bookModalTitle"
+    )
+    .textContent =
+        "Edit Book";
+
+
+    document
+    .getElementById(
         "bookModal"
-    ).classList.add("show");
+    )
+    .classList.add(
+        "show"
+    );
 
 }
 
-
-/* =====================================================
-   DELETE BOOK
-===================================================== */
 
 async function deleteBook(id){
 
@@ -2883,16 +2802,9 @@ async function deleteBook(id){
         );
 
 
-    if(!book) return;
-
-
     if(
         !confirm(
-            `Delete "${book.name}"?\n\n`
-            +
-            "Book delete करने से उसके Chapters "
-            +
-            "और MCQs automatically delete नहीं होंगे."
+            `Delete "${book?.name || "book"}"?`
         )
     ){
 
@@ -2901,50 +2813,38 @@ async function deleteBook(id){
     }
 
 
-    try{
+    await deleteDoc(
+        doc(
+            db,
+            "books",
+            id
+        )
+    );
 
-        await deleteDoc(
-            doc(
-                db,
-                "books",
-                id
-            )
-        );
 
-        toast(
-            "Book deleted."
-        );
+    await loadBooks();
 
-        await loadBooks();
+    renderBooks();
 
-        populateBookSelects();
+    populateBookSelects();
 
-        renderBooks();
+    updateDashboard();
 
-        updateDashboard();
-
-    }catch(error){
-
-        alert(
-            "Delete error:\n" +
-            error.message
-        );
-
-    }
+    toast(
+        "Book deleted."
+    );
 
 }
 
 
-/* =====================================================
-   RENDER BOOKS
-===================================================== */
-
 function renderBooks(){
 
-    const container =
-        document.getElementById(
+    const box =
+        document
+        .getElementById(
             "booksTable"
         );
+
 
     const search =
         (
@@ -2957,26 +2857,23 @@ function renderBooks(){
         .toLowerCase();
 
 
-    const filtered =
-        books.filter(book => {
-
-            const text =
+    const list =
+        books.filter(
+            b =>
                 [
-                    book.name,
-                    book.author,
-                    book.category
+                    b.name,
+                    b.author,
+                    b.category
                 ]
                 .join(" ")
-                .toLowerCase();
-
-            return text.includes(search);
-
-        });
+                .toLowerCase()
+                .includes(search)
+        );
 
 
-    if(!filtered.length){
+    if(!list.length){
 
-        container.innerHTML =
+        box.innerHTML =
             `<div class="empty">
                 📚 No books found.
             </div>`;
@@ -2988,139 +2885,118 @@ function renderBooks(){
 
     let html = `
 
-        <table>
+<table>
 
-        <thead>
+<thead>
 
-        <tr>
+<tr>
 
-            <th>Book</th>
-            <th>Author</th>
-            <th>Category</th>
-            <th>Actions</th>
+<th>Book</th>
+<th>Author</th>
+<th>Category</th>
+<th>Actions</th>
 
-        </tr>
+</tr>
 
-        </thead>
+</thead>
 
-        <tbody>
+<tbody>
 
-    `;
-
-
-    filtered.forEach(book => {
-
-        const image =
-            book.imageUrl ||
-            book.image ||
-            book.coverImage ||
-            "";
+`;
 
 
-        html += `
+    list.forEach(
+        b => {
 
-        <tr>
-
-            <td>
-
-                <div class="bookPreview">
-
-                    ${
-                        image
-                        ?
-                        `<img
-                            src="${escapeHTML(image)}"
-                            class="bookImage"
-                            onerror="this.outerHTML='<div class=\\'bookFallback\\'>📚</div>'"
-                        >`
-                        :
-                        `<div class="bookFallback">
-                            📚
-                        </div>`
-                    }
-
-                    <div>
-
-                        <b>
-                            ${escapeHTML(
-                                book.name || "Untitled"
-                            )}
-                        </b>
-
-                        <div
-                            style="
-                                color:#6b7280;
-                                margin-top:5px;
-                                font-size:12px;
-                            "
-                        >
-                            ID:
-                            ${escapeHTML(book.id)}
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </td>
+            const image =
+                b.imageUrl ||
+                b.image ||
+                "";
 
 
-            <td>
-                ${escapeHTML(
-                    book.author || "-"
-                )}
-            </td>
+            html += `
+
+<tr>
+
+<td>
+
+<div class="bookPreview">
+
+${
+image
+?
+`
+<img
+src="${escapeHTML(image)}"
+class="bookImage"
+onerror="this.style.display='none'"
+>
+`
+:
+`📚`
+}
+
+<div>
+
+<b>
+${escapeHTML(b.name || "")}
+</b>
+
+</div>
+
+</div>
+
+</td>
 
 
-            <td>
-                ${
-                    book.category
-                    ?
-                    `<span class="badge badgeBlue">
-                        ${escapeHTML(book.category)}
-                    </span>`
-                    :
-                    "-"
-                }
-            </td>
+<td>
+${escapeHTML(b.author || "-")}
+</td>
 
 
-            <td>
+<td>
+${escapeHTML(b.category || "-")}
+</td>
 
-                <div class="actionBox">
 
-                    <button
-                        class="actionBtn btnPrimary"
-                        onclick="editBook('${book.id}')"
-                    >
-                        Edit
-                    </button>
+<td>
 
-                    <button
-                        class="actionBtn btnDanger"
-                        onclick="deleteBook('${book.id}')"
-                    >
-                        Delete
-                    </button>
+<div class="actions">
 
-                </div>
+<button
+class="action primary"
+onclick="editBook('${b.id}')"
+>
+Edit
+</button>
 
-            </td>
+<button
+class="action danger"
+onclick="deleteBook('${b.id}')"
+>
+Delete
+</button>
 
-        </tr>
+</div>
 
-        `;
+</td>
 
-    });
+</tr>
+
+`;
+
+        }
+    );
 
 
     html += `
-        </tbody>
-        </table>
-    `;
+</tbody>
+</table>
+`;
 
 
-    container.innerHTML = html;
+    box.innerHTML =
+        html;
 
 }
 
@@ -3131,7 +3007,7 @@ function renderBooks(){
 
 async function loadChapters(){
 
-    const snapshot =
+    const snap =
         await getDocs(
             collection(
                 db,
@@ -3141,7 +3017,7 @@ async function loadChapters(){
 
 
     chapters =
-        snapshot.docs.map(
+        snap.docs.map(
             d => ({
                 id:d.id,
                 ...d.data()
@@ -3151,9 +3027,13 @@ async function loadChapters(){
 
     chapters.sort(
         (a,b) =>
-            Number(a.chapterNumber || 0)
+            Number(
+                a.chapterNumber || 0
+            )
             -
-            Number(b.chapterNumber || 0)
+            Number(
+                b.chapterNumber || 0
+            )
     );
 
 }
@@ -3161,52 +3041,66 @@ async function loadChapters(){
 
 function openChapterModal(){
 
-    clearChapterForm();
-
-    document.getElementById(
-        "chapterModalTitle"
-    ).textContent =
-        "Add Chapter";
-
-
     populateBookSelects();
 
 
-    document.getElementById(
-        "chapterModal"
-    ).classList.add("show");
-
-}
-
-
-function clearChapterForm(){
-
-    document.getElementById(
+    document
+    .getElementById(
         "chapterEditId"
-    ).value = "";
+    )
+    .value = "";
 
-    document.getElementById(
+
+    document
+    .getElementById(
         "chapterBook"
-    ).value = "";
+    )
+    .value = "";
 
-    document.getElementById(
+
+    document
+    .getElementById(
         "chapterNumber"
-    ).value = "";
+    )
+    .value = "";
 
-    document.getElementById(
+
+    document
+    .getElementById(
         "chapterName"
-    ).value = "";
+    )
+    .value = "";
 
-    document.getElementById(
+
+    document
+    .getElementById(
         "chapterDescription"
-    ).value = "";
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "chapterModalTitle"
+    )
+    .textContent =
+        "Add Chapter";
+
+
+    document
+    .getElementById(
+        "chapterModal"
+    )
+    .classList.add(
+        "show"
+    );
 
 }
 
 
 async function saveChapter(){
 
-    const editId =
+    const id =
         document
         .getElementById(
             "chapterEditId"
@@ -3256,32 +3150,14 @@ async function saveChapter(){
         );
 
 
-    if(!bookId){
+    if(
+        !bookId ||
+        !chapterNumber ||
+        !name
+    ){
 
         alert(
-            "Book select करें."
-        );
-
-        return;
-
-    }
-
-
-    if(!chapterNumber){
-
-        alert(
-            "Chapter number डालें."
-        );
-
-        return;
-
-    }
-
-
-    if(!name){
-
-        alert(
-            "Chapter name डालें."
+            "Book, Chapter Number और Name जरूरी हैं."
         );
 
         return;
@@ -3308,130 +3184,131 @@ async function saveChapter(){
     };
 
 
-    try{
+    if(id){
 
-        if(editId){
+        await updateDoc(
+            doc(
+                db,
+                "chapters",
+                id
+            ),
+            data
+        );
 
-            await updateDoc(
-                doc(
-                    db,
-                    "chapters",
-                    editId
-                ),
-                data
-            );
+        toast(
+            "Chapter updated."
+        );
 
-            toast(
-                "Chapter updated."
-            );
+    }
+    else{
 
-        }else{
+        await addDoc(
+            collection(
+                db,
+                "chapters"
+            ),
+            {
 
-            await addDoc(
-                collection(
-                    db,
-                    "chapters"
-                ),
-                {
-                    ...data,
-                    createdAt:
-                        serverTimestamp()
-                }
-            );
+                ...data,
 
-            toast(
-                "Chapter added."
-            );
+                createdAt:
+                    serverTimestamp()
 
-        }
+            }
+        );
 
-
-        closeModal("chapterModal");
-
-        await loadChapters();
-
-        renderChapters();
-
-        updateDashboard();
-
-
-    }catch(error){
-
-        console.error(error);
-
-        alert(
-            "Chapter save error:\n" +
-            error.message
+        toast(
+            "Chapter added."
         );
 
     }
 
+
+    closeModal(
+        "chapterModal"
+    );
+
+
+    await loadChapters();
+
+    renderChapters();
+
+    updateDashboard();
+
 }
 
 
-/* =====================================================
-   EDIT CHAPTER
-===================================================== */
-
 function editChapter(id){
 
-    const chapter =
+    const c =
         chapters.find(
-            c => c.id === id
+            x => x.id === id
         );
 
 
-    if(!chapter) return;
+    if(!c) return;
 
 
     populateBookSelects();
 
 
-    document.getElementById(
+    document
+    .getElementById(
+        "chapterEditId"
+    )
+    .value = id;
+
+
+    document
+    .getElementById(
+        "chapterBook"
+    )
+    .value =
+        c.bookId || "";
+
+
+    document
+    .getElementById(
+        "chapterNumber"
+    )
+    .value =
+        c.chapterNumber || "";
+
+
+    document
+    .getElementById(
+        "chapterName"
+    )
+    .value =
+        c.name || "";
+
+
+    document
+    .getElementById(
+        "chapterDescription"
+    )
+    .value =
+        c.description || "";
+
+
+    document
+    .getElementById(
         "chapterModalTitle"
-    ).textContent =
+    )
+    .textContent =
         "Edit Chapter";
 
 
-    document.getElementById(
-        "chapterEditId"
-    ).value = id;
-
-
-    document.getElementById(
-        "chapterBook"
-    ).value =
-        chapter.bookId || "";
-
-
-    document.getElementById(
-        "chapterNumber"
-    ).value =
-        chapter.chapterNumber || "";
-
-
-    document.getElementById(
-        "chapterName"
-    ).value =
-        chapter.name || "";
-
-
-    document.getElementById(
-        "chapterDescription"
-    ).value =
-        chapter.description || "";
-
-
-    document.getElementById(
+    document
+    .getElementById(
         "chapterModal"
-    ).classList.add("show");
+    )
+    .classList.add(
+        "show"
+    );
 
 }
 
-
-/* =====================================================
-   DELETE CHAPTER
-===================================================== */
 
 async function deleteChapter(id){
 
@@ -3446,96 +3323,87 @@ async function deleteChapter(id){
     }
 
 
-    try{
-
-        await deleteDoc(
-            doc(
-                db,
-                "chapters",
-                id
-            )
-        );
+    await deleteDoc(
+        doc(
+            db,
+            "chapters",
+            id
+        )
+    );
 
 
-        toast(
-            "Chapter deleted."
-        );
+    await loadChapters();
 
+    renderChapters();
 
-        await loadChapters();
+    updateDashboard();
 
-        renderChapters();
-
-        updateDashboard();
-
-    }catch(error){
-
-        alert(
-            "Delete error:\n" +
-            error.message
-        );
-
-    }
+    toast(
+        "Chapter deleted."
+    );
 
 }
 
 
-/* =====================================================
-   RENDER CHAPTERS
-===================================================== */
-
 function renderChapters(){
 
-    const container =
-        document.getElementById(
+    const box =
+        document
+        .getElementById(
             "chaptersTable"
         );
 
 
     const bookFilter =
-        document.getElementById(
+        document
+        .getElementById(
             "chapterBookFilter"
-        )?.value || "";
+        )
+        ?.value || "";
 
 
     const search =
         (
-            document.getElementById(
+            document
+            .getElementById(
                 "chapterSearch"
-            )?.value || ""
+            )
+            ?.value || ""
         )
         .toLowerCase();
 
 
-    const filtered =
-        chapters.filter(chapter => {
+    const list =
+        chapters.filter(
+            c => {
 
-            const matchesBook =
-                !bookFilter ||
-                chapter.bookId === bookFilter;
-
-
-            const text =
-                [
-                    chapter.name,
-                    chapter.bookName,
-                    chapter.description
-                ]
-                .join(" ")
-                .toLowerCase();
+                const bookMatch =
+                    !bookFilter ||
+                    c.bookId === bookFilter;
 
 
-            return (
-                matchesBook &&
-                text.includes(search)
-            );
+                const text =
+                    [
+                        c.name,
+                        c.bookName,
+                        c.description
+                    ]
+                    .join(" ")
+                    .toLowerCase();
 
-        });
+
+                return (
+                    bookMatch &&
+                    text.includes(search)
+                );
+
+            }
+        );
 
 
-    if(!filtered.length){
+    if(!list.length){
 
-        container.innerHTML =
+        box.innerHTML =
             `<div class="empty">
                 📖 No chapters found.
             </div>`;
@@ -3547,112 +3415,93 @@ function renderChapters(){
 
     let html = `
 
-        <table>
+<table>
 
-        <thead>
+<thead>
 
-        <tr>
+<tr>
 
-            <th>No.</th>
-            <th>Book</th>
-            <th>Chapter</th>
-            <th>Description</th>
-            <th>Actions</th>
+<th>No.</th>
+<th>Book</th>
+<th>Chapter</th>
+<th>Actions</th>
 
-        </tr>
+</tr>
 
-        </thead>
+</thead>
 
-        <tbody>
-
-    `;
+<tbody>
+`;
 
 
-    filtered.forEach(chapter => {
+    list.forEach(
+        c => {
 
-        html += `
+            html += `
 
-        <tr>
+<tr>
 
-            <td>
-                <b>
-                    ${escapeHTML(
-                        String(
-                            chapter.chapterNumber || "-"
-                        )
-                    )}
-                </b>
-            </td>
+<td>
+${c.chapterNumber || "-"}
+</td>
 
+<td>
+${escapeHTML(c.bookName || "-")}
+</td>
 
-            <td>
-                ${escapeHTML(
-                    chapter.bookName || "-"
-                )}
-            </td>
+<td>
+${escapeHTML(c.name || "-")}
+</td>
 
+<td>
 
-            <td>
-                ${escapeHTML(
-                    chapter.name || "-"
-                )}
-            </td>
+<div class="actions">
 
+<button
+class="action primary"
+onclick="editChapter('${c.id}')"
+>
+Edit
+</button>
 
-            <td>
-                ${escapeHTML(
-                    chapter.description || "-"
-                )}
-            </td>
+<button
+class="action danger"
+onclick="deleteChapter('${c.id}')"
+>
+Delete
+</button>
 
+</div>
 
-            <td>
+</td>
 
-                <div class="actionBox">
+</tr>
 
-                    <button
-                        class="actionBtn btnPrimary"
-                        onclick="editChapter('${chapter.id}')"
-                    >
-                        Edit
-                    </button>
+`;
 
-                    <button
-                        class="actionBtn btnDanger"
-                        onclick="deleteChapter('${chapter.id}')"
-                    >
-                        Delete
-                    </button>
-
-                </div>
-
-            </td>
-
-        </tr>
-
-        `;
-
-    });
+        }
+    );
 
 
     html += `
-        </tbody>
-        </table>
-    `;
+</tbody>
+</table>
+`;
 
 
-    container.innerHTML = html;
+    box.innerHTML =
+        html;
 
 }
 
 
 /* =====================================================
-   MCQS
+   MCQ
 ===================================================== */
 
 async function loadMCQs(){
 
-    const snapshot =
+    const snap =
         await getDocs(
             collection(
                 db,
@@ -3662,7 +3511,7 @@ async function loadMCQs(){
 
 
     mcqs =
-        snapshot.docs.map(
+        snap.docs.map(
             d => ({
                 id:d.id,
                 ...d.data()
@@ -3672,82 +3521,108 @@ async function loadMCQs(){
 }
 
 
-/* =====================================================
-   MCQ MODAL
-===================================================== */
-
 function openMCQModal(){
-
-    clearMCQForm();
 
     populateBookSelects();
 
 
-    document.getElementById(
+    document
+    .getElementById(
+        "mcqEditId"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "mcqBook"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "mcqChapter"
+    )
+    .innerHTML =
+        `
+        <option value="">
+        Select Chapter
+        </option>
+        `;
+
+
+    document
+    .getElementById(
+        "mcqQuestion"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "optionA"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "optionB"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "optionC"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "optionD"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "correctAnswer"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "mcqExplanation"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "mcqMemoryTip"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
         "mcqModalTitle"
-    ).textContent =
+    )
+    .textContent =
         "Add MCQ";
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "mcqModal"
-    ).classList.add("show");
-
-}
-
-
-function clearMCQForm(){
-
-    document.getElementById(
-        "mcqEditId"
-    ).value = "";
-
-    document.getElementById(
-        "mcqBook"
-    ).value = "";
-
-    document.getElementById(
-        "mcqChapter"
-    ).innerHTML =
-        `<option value="">
-            Select Chapter
-        </option>`;
-
-    document.getElementById(
-        "mcqQuestion"
-    ).value = "";
-
-    document.getElementById(
-        "optionA"
-    ).value = "";
-
-    document.getElementById(
-        "optionB"
-    ).value = "";
-
-    document.getElementById(
-        "optionC"
-    ).value = "";
-
-    document.getElementById(
-        "optionD"
-    ).value = "";
-
-    document.getElementById(
-        "correctAnswer"
-    ).value = "";
-
-    document.getElementById(
-        "mcqType"
-    ).value = "recall";
-
-    document.getElementById(
-        "mcqExplanation"
-    ).value = "";
-
-    document.getElementById(
-        "mcqMemoryTip"
-    ).value = "";
+    )
+    .classList.add(
+        "show"
+    );
 
 }
 
@@ -3755,66 +3630,67 @@ function clearMCQForm(){
 function loadMCQModalChapters(){
 
     const bookId =
-        document.getElementById(
+        document
+        .getElementById(
             "mcqBook"
-        ).value;
+        )
+        .value;
 
 
     const select =
-        document.getElementById(
+        document
+        .getElementById(
             "mcqChapter"
         );
 
 
     select.innerHTML =
-        `<option value="">
-            Select Chapter
-        </option>`;
+        `
+        <option value="">
+        Select Chapter
+        </option>
+        `;
 
 
-    if(!bookId) return;
+    chapters
+    .filter(
+        c =>
+            c.bookId === bookId
+    )
+    .forEach(
+        c => {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
 
 
-    const filtered =
-        chapters
-        .filter(
-            c => c.bookId === bookId
-        )
-        .sort(
-            (a,b)=>
-                Number(a.chapterNumber || 0)
-                -
-                Number(b.chapterNumber || 0)
-        );
+            option.value =
+                c.id;
 
 
-    filtered.forEach(chapter => {
+            option.textContent =
+                `Chapter ${
+                    c.chapterNumber
+                } - ${
+                    c.name
+                }`;
 
-        const option =
-            document.createElement(
-                "option"
+
+            select.appendChild(
+                option
             );
 
-        option.value =
-            chapter.id;
-
-        option.textContent =
-            `Chapter ${chapter.chapterNumber} - ${chapter.name}`;
-
-        select.appendChild(option);
-
-    });
+        }
+    );
 
 }
 
 
-/* =====================================================
-   SAVE MCQ
-===================================================== */
-
 async function saveMCQ(){
 
-    const editId =
+    const id =
         document
         .getElementById(
             "mcqEditId"
@@ -3929,54 +3805,19 @@ async function saveMCQ(){
         );
 
 
-    if(!bookId){
+    if(
+        !bookId ||
+        !chapterId ||
+        !question ||
+        !A ||
+        !B ||
+        !C ||
+        !D ||
+        !correctAnswer
+    ){
 
         alert(
-            "Book select करें."
-        );
-
-        return;
-
-    }
-
-
-    if(!chapterId){
-
-        alert(
-            "Chapter select करें."
-        );
-
-        return;
-
-    }
-
-
-    if(!question){
-
-        alert(
-            "Question डालें."
-        );
-
-        return;
-
-    }
-
-
-    if(!A || !B || !C || !D){
-
-        alert(
-            "चारों options डालें."
-        );
-
-        return;
-
-    }
-
-
-    if(!correctAnswer){
-
-        alert(
-            "Correct answer select करें."
+            "सभी जरूरी fields भरें."
         );
 
         return;
@@ -4019,175 +3860,190 @@ async function saveMCQ(){
     };
 
 
-    try{
+    if(id){
 
-        if(editId){
+        await updateDoc(
+            doc(
+                db,
+                "mcqs",
+                id
+            ),
+            data
+        );
 
-            await updateDoc(
-                doc(
-                    db,
-                    "mcqs",
-                    editId
-                ),
-                data
-            );
+        toast(
+            "MCQ updated."
+        );
 
-            toast(
-                "MCQ updated."
-            );
+    }
+    else{
 
-        }else{
+        await addDoc(
+            collection(
+                db,
+                "mcqs"
+            ),
+            {
 
-            await addDoc(
-                collection(
-                    db,
-                    "mcqs"
-                ),
-                {
-                    ...data,
-                    createdAt:
-                        serverTimestamp()
-                }
-            );
+                ...data,
 
-            toast(
-                "MCQ added."
-            );
+                createdAt:
+                    serverTimestamp()
 
-        }
+            }
+        );
 
-
-        closeModal("mcqModal");
-
-        await loadMCQs();
-
-        renderMCQs();
-
-        updateDashboard();
-
-
-    }catch(error){
-
-        console.error(error);
-
-        alert(
-            "MCQ save error:\n" +
-            error.message
+        toast(
+            "MCQ added."
         );
 
     }
 
+
+    closeModal(
+        "mcqModal"
+    );
+
+
+    await loadMCQs();
+
+    renderMCQs();
+
+    updateDashboard();
+
 }
 
 
-/* =====================================================
-   EDIT MCQ
-===================================================== */
-
 function editMCQ(id){
 
-    const item =
+    const m =
         mcqs.find(
-            m => m.id === id
+            x => x.id === id
         );
 
 
-    if(!item) return;
+    if(!m) return;
 
 
     populateBookSelects();
 
 
-    document.getElementById(
-        "mcqModalTitle"
-    ).textContent =
-        "Edit MCQ";
-
-
-    document.getElementById(
+    document
+    .getElementById(
         "mcqEditId"
-    ).value = id;
+    )
+    .value = id;
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "mcqBook"
-    ).value =
-        item.bookId || "";
+    )
+    .value =
+        m.bookId || "";
 
 
     loadMCQModalChapters();
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "mcqChapter"
-    ).value =
-        item.chapterId || "";
+    )
+    .value =
+        m.chapterId || "";
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "mcqQuestion"
-    ).value =
-        item.question || "";
+    )
+    .value =
+        m.question || "";
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "optionA"
-    ).value =
-        item.options?.A || "";
+    )
+    .value =
+        m.options?.A || "";
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "optionB"
-    ).value =
-        item.options?.B || "";
+    )
+    .value =
+        m.options?.B || "";
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "optionC"
-    ).value =
-        item.options?.C || "";
+    )
+    .value =
+        m.options?.C || "";
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "optionD"
-    ).value =
-        item.options?.D || "";
+    )
+    .value =
+        m.options?.D || "";
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "correctAnswer"
-    ).value =
-        item.correctAnswer || "";
+    )
+    .value =
+        m.correctAnswer || "";
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "mcqType"
-    ).value =
-        item.type || "recall";
+    )
+    .value =
+        m.type || "recall";
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "mcqExplanation"
-    ).value =
-        item.explanation || "";
+    )
+    .value =
+        m.explanation || "";
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "mcqMemoryTip"
-    ).value =
-        item.memoryTip || "";
+    )
+    .value =
+        m.memoryTip || "";
 
 
-    document.getElementById(
+    document
+    .getElementById(
+        "mcqModalTitle"
+    )
+    .textContent =
+        "Edit MCQ";
+
+
+    document
+    .getElementById(
         "mcqModal"
-    ).classList.add("show");
+    )
+    .classList.add(
+        "show"
+    );
 
 }
 
-
-/* =====================================================
-   DELETE MCQ
-===================================================== */
 
 async function deleteMCQ(id){
 
@@ -4202,103 +4058,86 @@ async function deleteMCQ(id){
     }
 
 
-    try{
-
-        await deleteDoc(
-            doc(
-                db,
-                "mcqs",
-                id
-            )
-        );
+    await deleteDoc(
+        doc(
+            db,
+            "mcqs",
+            id
+        )
+    );
 
 
-        toast(
-            "MCQ deleted."
-        );
+    await loadMCQs();
 
+    renderMCQs();
 
-        await loadMCQs();
+    updateDashboard();
 
-        renderMCQs();
-
-        updateDashboard();
-
-    }catch(error){
-
-        alert(
-            "Delete error:\n" +
-            error.message
-        );
-
-    }
+    toast(
+        "MCQ deleted."
+    );
 
 }
 
 
-/* =====================================================
-   MCQ FILTER CHAPTERS
-===================================================== */
-
 function loadMCQFilterChapters(){
 
     const bookId =
-        document.getElementById(
+        document
+        .getElementById(
             "mcqBookFilter"
-        ).value;
+        )
+        .value;
 
 
     const select =
-        document.getElementById(
+        document
+        .getElementById(
             "mcqChapterFilter"
         );
 
 
     select.innerHTML =
-        `<option value="">
-            All Chapters
-        </option>`;
+        `
+        <option value="">
+        All Chapters
+        </option>
+        `;
 
 
-    let filtered =
-        chapters;
+    chapters
+    .filter(
+        c =>
+            !bookId ||
+            c.bookId === bookId
+    )
+    .forEach(
+        c => {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
 
 
-    if(bookId){
+            option.value =
+                c.id;
 
-        filtered =
-            chapters.filter(
-                c =>
-                    c.bookId === bookId
+
+            option.textContent =
+                `Chapter ${
+                    c.chapterNumber
+                } - ${
+                    c.name
+                }`;
+
+
+            select.appendChild(
+                option
             );
 
-    }
-
-
-    filtered.sort(
-        (a,b)=>
-            Number(a.chapterNumber || 0)
-            -
-            Number(b.chapterNumber || 0)
+        }
     );
-
-
-    filtered.forEach(chapter => {
-
-        const option =
-            document.createElement(
-                "option"
-            );
-
-        option.value =
-            chapter.id;
-
-        option.textContent =
-            `Chapter ${chapter.chapterNumber} - ${chapter.name}`;
-
-        select.appendChild(option);
-
-    });
 
 
     renderMCQs();
@@ -4306,73 +4145,73 @@ function loadMCQFilterChapters(){
 }
 
 
-/* =====================================================
-   RENDER MCQS
-===================================================== */
-
 function renderMCQs(){
 
-    const container =
-        document.getElementById(
+    const box =
+        document
+        .getElementById(
             "mcqsTable"
         );
 
 
     const bookId =
-        document.getElementById(
+        document
+        .getElementById(
             "mcqBookFilter"
-        )?.value || "";
+        )
+        ?.value || "";
 
 
     const chapterId =
-        document.getElementById(
+        document
+        .getElementById(
             "mcqChapterFilter"
-        )?.value || "";
+        )
+        ?.value || "";
 
 
     const search =
         (
-            document.getElementById(
+            document
+            .getElementById(
                 "mcqSearch"
-            )?.value || ""
+            )
+            ?.value || ""
         )
         .toLowerCase();
 
 
-    const filtered =
-        mcqs.filter(item => {
+    const list =
+        mcqs.filter(
+            m => {
 
-            const bookMatch =
-                !bookId ||
-                item.bookId === bookId;
+                return (
 
+                    (!bookId ||
+                    m.bookId === bookId)
 
-            const chapterMatch =
-                !chapterId ||
-                item.chapterId === chapterId;
+                    &&
 
+                    (!chapterId ||
+                    m.chapterId === chapterId)
 
-            const searchMatch =
-                !search ||
-                String(
-                    item.question || ""
-                )
-                .toLowerCase()
-                .includes(search);
+                    &&
 
+                    String(
+                        m.question || ""
+                    )
+                    .toLowerCase()
+                    .includes(search)
 
-            return (
-                bookMatch &&
-                chapterMatch &&
-                searchMatch
-            );
+                );
 
-        });
+            }
+        );
 
 
-    if(!filtered.length){
+    if(!list.length){
 
-        container.innerHTML =
+        box.innerHTML =
             `<div class="empty">
                 🧠 No MCQs found.
             </div>`;
@@ -4384,121 +4223,91 @@ function renderMCQs(){
 
     let html = `
 
-        <table>
+<table>
 
-        <thead>
+<thead>
 
-        <tr>
+<tr>
 
-            <th>Question</th>
-            <th>Book</th>
-            <th>Chapter</th>
-            <th>Answer</th>
-            <th>Type</th>
-            <th>Actions</th>
+<th>Question</th>
+<th>Book</th>
+<th>Chapter</th>
+<th>Answer</th>
+<th>Actions</th>
 
-        </tr>
+</tr>
 
-        </thead>
+</thead>
 
-        <tbody>
-
-    `;
+<tbody>
+`;
 
 
-    filtered.forEach(item => {
+    list.forEach(
+        m => {
 
-        html += `
+            html += `
 
-        <tr>
+<tr>
 
-            <td style="max-width:350px">
+<td>
+${escapeHTML(m.question || "")}
+</td>
 
-                <b>
-                    ${escapeHTML(
-                        item.question || ""
-                    )}
-                </b>
+<td>
+${escapeHTML(m.bookName || "-")}
+</td>
 
-            </td>
+<td>
+${escapeHTML(m.chapterName || "-")}
+</td>
 
+<td>
 
-            <td>
-                ${escapeHTML(
-                    item.bookName || "-"
-                )}
-            </td>
+<span class="badge green">
+${escapeHTML(m.correctAnswer || "-")}
+</span>
 
+</td>
 
-            <td>
-                ${escapeHTML(
-                    item.chapterName || "-"
-                )}
-            </td>
+<td>
 
+<div class="actions">
 
-            <td>
+<button
+class="action primary"
+onclick="editMCQ('${m.id}')"
+>
+Edit
+</button>
 
-                <span class="badge badgeGreen">
+<button
+class="action danger"
+onclick="deleteMCQ('${m.id}')"
+>
+Delete
+</button>
 
-                    ${escapeHTML(
-                        item.correctAnswer || "-"
-                    )}
+</div>
 
-                </span>
+</td>
 
-            </td>
+</tr>
 
+`;
 
-            <td>
-
-                <span class="badge badgeOrange">
-
-                    ${escapeHTML(
-                        item.type || "recall"
-                    )}
-
-                </span>
-
-            </td>
-
-
-            <td>
-
-                <div class="actionBox">
-
-                    <button
-                        class="actionBtn btnPrimary"
-                        onclick="editMCQ('${item.id}')"
-                    >
-                        Edit
-                    </button>
-
-                    <button
-                        class="actionBtn btnDanger"
-                        onclick="deleteMCQ('${item.id}')"
-                    >
-                        Delete
-                    </button>
-
-                </div>
-
-            </td>
-
-        </tr>
-
-        `;
-
-    });
+        }
+    );
 
 
     html += `
-        </tbody>
-        </table>
-    `;
+</tbody>
+</table>
+`;
 
 
-    container.innerHTML = html;
+    box.innerHTML =
+        html;
 
 }
 
@@ -4509,7 +4318,7 @@ function renderMCQs(){
 
 async function loadUsers(){
 
-    const snapshot =
+    const snap =
         await getDocs(
             collection(
                 db,
@@ -4519,7 +4328,7 @@ async function loadUsers(){
 
 
     users =
-        snapshot.docs.map(
+        snap.docs.map(
             d => ({
                 id:d.id,
                 ...d.data()
@@ -4531,39 +4340,100 @@ async function loadUsers(){
 
 function openUserModal(){
 
-    document.getElementById(
+    document
+    .getElementById(
+        "userModalTitle"
+    )
+    .textContent =
+        "Add User";
+
+
+    document
+    .getElementById(
+        "userEditId"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
         "newUserName"
-    ).value = "";
+    )
+    .value = "";
 
-    document.getElementById(
+
+    document
+    .getElementById(
         "newUserEmail"
-    ).value = "";
+    )
+    .value = "";
 
-    document.getElementById(
+
+    document
+    .getElementById(
         "newUserPassword"
-    ).value = "";
+    )
+    .value = "";
 
-    document.getElementById(
+
+    document
+    .getElementById(
         "newUserRole"
-    ).value = "student";
+    )
+    .value = "student";
 
-    document.getElementById(
+
+    document
+    .getElementById(
         "newUserStatus"
-    ).value = "active";
+    )
+    .value = "active";
 
 
-    document.getElementById(
+    document
+    .getElementById(
+        "passwordGroup"
+    )
+    .style.display =
+        "block";
+
+
+    document
+    .getElementById(
+        "newUserEmail"
+    )
+    .disabled =
+        false;
+
+
+    document
+    .getElementById(
+        "saveUserButton"
+    )
+    .textContent =
+        "➕ Create User";
+
+
+    document
+    .getElementById(
         "userModal"
-    ).classList.add("show");
+    )
+    .classList.add(
+        "show"
+    );
 
 }
 
 
-/* =====================================================
-   CREATE USER
-===================================================== */
+async function saveUser(){
 
-async function createUser(){
+    const editId =
+        document
+        .getElementById(
+            "userEditId"
+        )
+        .value;
+
 
     const name =
         document
@@ -4618,6 +4488,53 @@ async function createUser(){
     }
 
 
+    /* EDIT */
+
+    if(editId){
+
+        await updateDoc(
+            doc(
+                db,
+                "users",
+                editId
+            ),
+            {
+
+                name,
+
+                role,
+
+                status,
+
+                updatedAt:
+                    serverTimestamp()
+
+            }
+        );
+
+
+        closeModal(
+            "userModal"
+        );
+
+
+        await loadUsers();
+
+        renderUsers();
+
+        updateDashboard();
+
+        toast(
+            "User updated."
+        );
+
+        return;
+
+    }
+
+
+    /* CREATE */
+
     if(!email){
 
         alert(
@@ -4657,12 +4574,6 @@ async function createUser(){
             credential.user.uid;
 
 
-        /*
-          UID को document ID बनाया गया है.
-          यही structure frontend index.html
-          में भी use किया जा रहा है.
-        */
-
         await setDoc(
             doc(
                 db,
@@ -4691,11 +4602,6 @@ async function createUser(){
         );
 
 
-        toast(
-            "User created successfully."
-        );
-
-
         closeModal(
             "userModal"
         );
@@ -4708,26 +4614,17 @@ async function createUser(){
         updateDashboard();
 
 
-        /*
-          Secondary auth को sign out.
-        */
+        toast(
+            "✅ User created."
+        );
 
-        try{
-
-            await signOut(
-                secondaryAuth
-            );
-
-        }catch(e){}
-
-
-    }catch(error){
-
-        console.error(error);
+    }
+    catch(error){
 
         alert(
-            "User create error:\n" +
-            firebaseError(error)
+            getFirebaseError(
+                error
+            )
         );
 
     }
@@ -4735,161 +4632,131 @@ async function createUser(){
 }
 
 
-/* =====================================================
-   RENDER USERS
-===================================================== */
+function editUser(uid){
 
-function renderUsers(){
-
-    const container =
-        document.getElementById(
-            "usersTable"
+    const user =
+        users.find(
+            u =>
+                (u.uid || u.id) === uid
         );
 
 
-    if(!users.length){
+    if(!user) return;
 
-        container.innerHTML =
-            `<div class="empty">
-                👤 No users found.
-            </div>`;
+
+    document
+    .getElementById(
+        "userEditId"
+    )
+    .value =
+        user.uid || user.id;
+
+
+    document
+    .getElementById(
+        "newUserName"
+    )
+    .value =
+        user.name || "";
+
+
+    document
+    .getElementById(
+        "newUserEmail"
+    )
+    .value =
+        user.email || "";
+
+
+    document
+    .getElementById(
+        "newUserEmail"
+    )
+    .disabled =
+        true;
+
+
+    document
+    .getElementById(
+        "newUserRole"
+    )
+    .value =
+        user.role || "student";
+
+
+    document
+    .getElementById(
+        "newUserStatus"
+    )
+    .value =
+        user.status || "active";
+
+
+    document
+    .getElementById(
+        "passwordGroup"
+    )
+    .style.display =
+        "none";
+
+
+    document
+    .getElementById(
+        "userModalTitle"
+    )
+    .textContent =
+        "Edit User";
+
+
+    document
+    .getElementById(
+        "saveUserButton"
+    )
+    .textContent =
+        "💾 Update User";
+
+
+    document
+    .getElementById(
+        "userModal"
+    )
+    .classList.add(
+        "show"
+    );
+
+}
+
+
+async function deleteUser(uid){
+
+    if(
+        currentAdmin &&
+        uid === currentAdmin.uid
+    ){
+
+        alert(
+            "आप अपने current admin account को delete नहीं कर सकते."
+        );
 
         return;
 
     }
 
 
-    let html = `
+    const user =
+        users.find(
+            u =>
+                (u.uid || u.id) === uid
+        );
 
-        <table>
-
-        <thead>
-
-        <tr>
-
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Status</th>
-            <th>UID</th>
-            <th>Actions</th>
-
-        </tr>
-
-        </thead>
-
-        <tbody>
-
-    `;
-
-
-    users.forEach(user => {
-
-        html += `
-
-        <tr>
-
-            <td>
-                <b>
-                    ${escapeHTML(
-                        user.name || "-"
-                    )}
-                </b>
-            </td>
-
-
-            <td>
-                ${escapeHTML(
-                    user.email || "-"
-                )}
-            </td>
-
-
-            <td>
-
-                <span class="badge badgeBlue">
-
-                    ${escapeHTML(
-                        user.role || "student"
-                    )}
-
-                </span>
-
-            </td>
-
-
-            <td>
-
-                ${
-                    user.status === "blocked"
-
-                    ?
-
-                    `<span class="badge badgeRed">
-                        Blocked
-                    </span>`
-
-                    :
-
-                    `<span class="badge badgeGreen">
-                        Active
-                    </span>`
-                }
-
-            </td>
-
-
-            <td style="font-size:11px">
-
-                ${escapeHTML(
-                    user.uid || user.id
-                )}
-
-            </td>
-
-
-            <td>
-
-                <button
-                    class="actionBtn btnDanger"
-                    onclick="deleteUser('${user.id}')"
-                >
-                    Delete Profile
-                </button>
-
-            </td>
-
-        </tr>
-
-        `;
-
-    });
-
-
-    html += `
-        </tbody>
-        </table>
-    `;
-
-
-    container.innerHTML = html;
-
-}
-
-
-/* =====================================================
-   DELETE USER PROFILE
-===================================================== */
-
-async function deleteUser(id){
 
     if(
         !confirm(
-            "Delete this user's Firestore profile?\n\n"
-            +
-            "Note: इससे Firebase Authentication account "
-            +
-            "delete नहीं होगा."
+            `Delete "${
+                user?.name ||
+                user?.email ||
+                "user"
+            }"?`
         )
     ){
 
@@ -4904,13 +4771,8 @@ async function deleteUser(id){
             doc(
                 db,
                 "users",
-                id
+                uid
             )
-        );
-
-
-        toast(
-            "User profile deleted."
         );
 
 
@@ -4921,10 +4783,14 @@ async function deleteUser(id){
         updateDashboard();
 
 
-    }catch(error){
+        toast(
+            "User profile deleted."
+        );
+
+    }
+    catch(error){
 
         alert(
-            "Delete error:\n" +
             error.message
         );
 
@@ -4933,13 +4799,191 @@ async function deleteUser(id){
 }
 
 
+function renderUsers(){
+
+    const box =
+        document
+        .getElementById(
+            "usersTable"
+        );
+
+
+    const search =
+        (
+            document
+            .getElementById(
+                "userSearch"
+            )
+            ?.value || ""
+        )
+        .toLowerCase();
+
+
+    const list =
+        users.filter(
+            u =>
+                [
+                    u.name,
+                    u.email,
+                    u.role,
+                    u.status,
+                    u.uid
+                ]
+                .join(" ")
+                .toLowerCase()
+                .includes(search)
+        );
+
+
+    if(!list.length){
+
+        box.innerHTML =
+            `<div class="empty">
+                👤 No users found.
+            </div>`;
+
+        return;
+
+    }
+
+
+    let html = `
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Name</th>
+<th>Email</th>
+<th>Role</th>
+<th>Status</th>
+<th>UID</th>
+<th>Actions</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+`;
+
+
+    list.forEach(
+        u => {
+
+            const uid =
+                u.uid || u.id;
+
+
+            html += `
+
+<tr>
+
+<td>
+<b>
+${escapeHTML(u.name || "-")}
+</b>
+</td>
+
+<td>
+${escapeHTML(u.email || "-")}
+</td>
+
+<td>
+
+<span class="badge ${
+    u.role === "admin"
+    ? "yellow"
+    : "blue"
+}">
+
+${escapeHTML(
+    u.role || "student"
+)}
+
+</span>
+
+</td>
+
+<td>
+
+<span class="badge ${
+    u.status === "blocked"
+    ? "red"
+    : "green"
+}">
+
+${escapeHTML(
+    u.status || "active"
+)}
+
+</span>
+
+</td>
+
+<td
+style="
+font-size:10px;
+word-break:break-all;
+max-width:160px;
+"
+>
+
+${escapeHTML(uid)}
+
+</td>
+
+<td>
+
+<div class="actions">
+
+<button
+class="action warning"
+onclick="editUser('${uid}')"
+>
+Edit
+</button>
+
+<button
+class="action danger"
+onclick="deleteUser('${uid}')"
+>
+Delete
+</button>
+
+</div>
+
+</td>
+
+</tr>
+
+`;
+
+        }
+    );
+
+
+    html += `
+</tbody>
+</table>
+`;
+
+
+    box.innerHTML =
+        html;
+
+}
+
+
 /* =====================================================
-   POPULATE BOOK SELECTS
+   SELECTS
 ===================================================== */
 
 function populateBookSelects(){
 
-    const selects = [
+    const ids = [
 
         "chapterBook",
         "mcqBook",
@@ -4949,79 +4993,90 @@ function populateBookSelects(){
     ];
 
 
-    selects.forEach(id => {
+    ids.forEach(
+        id => {
 
-        const select =
-            document.getElementById(id);
-
-
-        if(!select) return;
-
-
-        const current =
-            select.value;
-
-
-        const isFilter =
-            id.includes("Filter");
-
-
-        select.innerHTML =
-            isFilter
-            ?
-            `<option value="">
-                ${
-                    id === "mcqBookFilter"
-                    ||
-                    id === "chapterBookFilter"
-                    ?
-                    "All Books"
-                    :
-                    "All"
-                }
-            </option>`
-            :
-            `<option value="">
-                Select Book
-            </option>`;
-
-
-        books.forEach(book => {
-
-            const option =
-                document.createElement(
-                    "option"
+            const select =
+                document
+                .getElementById(
+                    id
                 );
 
 
-            option.value =
-                book.id;
+            if(!select) return;
 
 
-            option.textContent =
-                book.name || "Untitled";
+            const old =
+                select.value;
 
 
-            select.appendChild(
-                option
+            const filter =
+                id.includes(
+                    "Filter"
+                );
+
+
+            select.innerHTML =
+                filter
+
+                ?
+
+                `
+                <option value="">
+                All Books
+                </option>
+                `
+
+                :
+
+                `
+                <option value="">
+                Select Book
+                </option>
+                `;
+
+
+            books.forEach(
+                b => {
+
+                    const option =
+                        document.createElement(
+                            "option"
+                        );
+
+
+                    option.value =
+                        b.id;
+
+
+                    option.textContent =
+                        b.name ||
+                        "Untitled";
+
+
+                    select.appendChild(
+                        option
+                    );
+
+                }
             );
 
-        });
 
+            if(
+                [...select.options]
+                .some(
+                    o =>
+                        o.value === old
+                )
+            ){
 
-        if(
-            [...select.options]
-            .some(
-                o => o.value === current
-            )
-        ){
+                select.value =
+                    old;
 
-            select.value =
-                current;
+            }
 
         }
-
-    });
+    );
 
 }
 
@@ -5032,27 +5087,35 @@ function populateBookSelects(){
 
 function updateDashboard(){
 
-    document.getElementById(
+    document
+    .getElementById(
         "bookCount"
-    ).textContent =
+    )
+    .textContent =
         books.length;
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "chapterCount"
-    ).textContent =
+    )
+    .textContent =
         chapters.length;
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "mcqCount"
-    ).textContent =
+    )
+    .textContent =
         mcqs.length;
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "userCount"
-    ).textContent =
+    )
+    .textContent =
         users.length;
 
 }
@@ -5063,45 +5126,41 @@ function updateDashboard(){
 ===================================================== */
 
 function showSection(
-    sectionId,
+    id,
     button
 ){
 
     document
-        .querySelectorAll(".section")
-        .forEach(section => {
-
-            section.classList.remove(
+    .querySelectorAll(
+        ".section"
+    )
+    .forEach(
+        s =>
+            s.classList.remove(
                 "active"
-            );
-
-        });
-
-
-    const target =
-        document.getElementById(
-            sectionId
-        );
-
-
-    if(target){
-
-        target.classList.add(
-            "active"
-        );
-
-    }
+            )
+    );
 
 
     document
-        .querySelectorAll(".navBtn")
-        .forEach(btn => {
+    .getElementById(
+        id
+    )
+    .classList.add(
+        "active"
+    );
 
-            btn.classList.remove(
+
+    document
+    .querySelectorAll(
+        ".navBtn"
+    )
+    .forEach(
+        b =>
+            b.classList.remove(
                 "active"
-            );
-
-        });
+            )
+    );
 
 
     if(button){
@@ -5116,36 +5175,31 @@ function showSection(
     const titles = {
 
         dashboard:"Dashboard",
-
         books:"Books",
-
         chapters:"Chapters",
-
         mcqs:"MCQs",
-
         users:"Users",
-
         import:"Bulk Import",
-
         settings:"Settings"
 
     };
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "pageTitle"
-    ).textContent =
-        titles[sectionId] ||
-        "GyaaniFly";
+    )
+    .textContent =
+        titles[id];
 
 
     document
-        .getElementById(
-            "sidebar"
-        )
-        .classList.remove(
-            "open"
-        );
+    .getElementById(
+        "sidebar"
+    )
+    .classList.remove(
+        "open"
+    );
 
 }
 
@@ -5153,33 +5207,31 @@ function showSection(
 function toggleSidebar(){
 
     document
-        .getElementById(
-            "sidebar"
-        )
-        .classList.toggle(
-            "open"
-        );
+    .getElementById(
+        "sidebar"
+    )
+    .classList.toggle(
+        "open"
+    );
 
 }
 
-
-/* =====================================================
-   MODAL
-===================================================== */
 
 function closeModal(id){
 
     document
-        .getElementById(id)
-        .classList.remove(
-            "show"
-        );
+    .getElementById(
+        id
+    )
+    .classList.remove(
+        "show"
+    );
 
 }
 
 
 /* =====================================================
-   BULK EXCEL
+   EXCEL
 ===================================================== */
 
 async function previewExcel(){
@@ -5195,7 +5247,7 @@ async function previewExcel(){
     if(!file){
 
         alert(
-            "पहले Excel file select करें."
+            "Excel file select करें."
         );
 
         return;
@@ -5203,106 +5255,39 @@ async function previewExcel(){
     }
 
 
-    try{
-
-        const data =
-            await file.arrayBuffer();
+    const buffer =
+        await file.arrayBuffer();
 
 
-        const workbook =
-            XLSX.read(
-                data,
-                {
-                    type:"array"
-                }
-            );
-
-
-        const sheetName =
-            workbook.SheetNames[0];
-
-
-        const sheet =
-            workbook.Sheets[
-                sheetName
-            ];
-
-
-        excelRows =
-            XLSX.utils.sheet_to_json(
-                sheet,
-                {
-                    defval:""
-                }
-            );
-
-
-        if(!excelRows.length){
-
-            alert(
-                "Excel खाली है."
-            );
-
-            return;
-
-        }
-
-
-        renderExcelPreview();
-
-
-        document.getElementById(
-            "excelPreview"
-        ).style.display =
-            "block";
-
-
-        document.getElementById(
-            "importSummary"
-        ).style.display =
-            "block";
-
-
-        document.getElementById(
-            "importSummary"
-        ).innerHTML =
-
-            `📊 Rows found:
-            <b>${excelRows.length}</b>`;
-
-
-    }catch(error){
-
-        console.error(error);
-
-        alert(
-            "Excel preview error:\n" +
-            error.message
+    const workbook =
+        XLSX.read(
+            buffer,
+            {
+                type:"array"
+            }
         );
 
-    }
 
-}
+    const sheet =
+        workbook.Sheets[
+            workbook.SheetNames[0]
+        ];
 
 
-/* =====================================================
-   EXCEL PREVIEW
-===================================================== */
-
-function renderExcelPreview(){
-
-    const container =
-        document.getElementById(
-            "previewTable"
+    excelRows =
+        XLSX.utils.sheet_to_json(
+            sheet,
+            {
+                defval:""
+            }
         );
 
 
     if(!excelRows.length){
 
-        container.innerHTML =
-            `<div class="empty">
-                No data
-            </div>`;
+        alert(
+            "Excel empty है."
+        );
 
         return;
 
@@ -5315,75 +5300,97 @@ function renderExcelPreview(){
         );
 
 
-    let html = `
-
-        <table>
-
-        <thead>
-
-        <tr>
-
-    `;
+    let html =
+        `<table><thead><tr>`;
 
 
-    columns.forEach(column => {
+    columns.forEach(
+        c => {
 
-        html +=
-            `<th>
-                ${escapeHTML(column)}
-            </th>`;
+            html +=
+                `<th>
+                    ${escapeHTML(c)}
+                </th>`;
 
-    });
+        }
+    );
 
 
-    html += `
-        </tr>
-        </thead>
-        <tbody>
-    `;
+    html +=
+        `</tr></thead><tbody>`;
 
 
     excelRows
-        .slice(0,50)
-        .forEach(row => {
+    .slice(0,30)
+    .forEach(
+        row => {
 
-            html += `<tr>`;
-
-
-            columns.forEach(column => {
-
-                html +=
-                    `<td>
-                        ${escapeHTML(
-                            String(
-                                row[column] ?? ""
-                            )
-                        )}
-                    </td>`;
-
-            });
+            html +=
+                `<tr>`;
 
 
-            html += `</tr>`;
+            columns.forEach(
+                c => {
 
-        });
+                    html +=
+                        `<td>
+                            ${escapeHTML(
+                                String(
+                                    row[c] || ""
+                                )
+                            )}
+                        </td>`;
+
+                }
+            );
 
 
-    html += `
-        </tbody>
-        </table>
-    `;
+            html +=
+                `</tr>`;
+
+        }
+    );
 
 
-    container.innerHTML =
+    html +=
+        `</tbody></table>`;
+
+
+    document
+    .getElementById(
+        "previewTable"
+    )
+    .innerHTML =
         html;
+
+
+    document
+    .getElementById(
+        "excelPreview"
+    )
+    .style.display =
+        "block";
+
+
+    document
+    .getElementById(
+        "importSummary"
+    )
+    .style.display =
+        "block";
+
+
+    document
+    .getElementById(
+        "importSummary"
+    )
+    .innerHTML =
+        `📊 ${
+            excelRows.length
+        } rows found.`;
 
 }
 
-
-/* =====================================================
-   EXCEL IMPORT
-===================================================== */
 
 async function importExcel(){
 
@@ -5403,7 +5410,9 @@ async function importExcel(){
 
     if(
         !confirm(
-            `${excelRows.length} rows Firebase में import करें?`
+            `${
+                excelRows.length
+            } rows import करें?`
         )
     ){
 
@@ -5412,484 +5421,198 @@ async function importExcel(){
     }
 
 
-    const progressBox =
-        document.getElementById(
-            "importProgress"
+    const progress =
+        document
+        .getElementById(
+            "progressBox"
         );
 
 
-    const progressFill =
-        document.getElementById(
+    const fill =
+        document
+        .getElementById(
             "progressFill"
         );
 
 
-    const progressText =
-        document.getElementById(
+    const text =
+        document
+        .getElementById(
             "progressText"
         );
 
 
-    progressBox.style.display =
+    progress.style.display =
         "block";
 
 
-    let addedBooks = 0;
-    let addedChapters = 0;
-    let addedMCQs = 0;
-    let skippedMCQs = 0;
+    let bookCount = 0;
+    let chapterCount = 0;
+    let mcqCount = 0;
 
-
-    /*
-      Refresh current data
-    */
 
     await loadBooks();
-
     await loadChapters();
-
     await loadMCQs();
 
 
-    /*
-      Cache maps
-    */
+    for(
+        let i=0;
+        i<excelRows.length;
+        i++
+    ){
 
-    const bookMap =
-        new Map();
-
-
-    books.forEach(book => {
-
-        bookMap.set(
-            normalize(book.name),
-            book
-        );
-
-    });
+        const row =
+            excelRows[i];
 
 
-    const chapterMap =
-        new Map();
+        const bookName =
+            value(
+                row,
+                [
+                    "Book Name",
+                    "bookName",
+                    "Book"
+                ]
+            ).trim();
 
 
-    chapters.forEach(chapter => {
-
-        chapterMap.set(
-            chapterKey(
-                chapter.bookId,
-                chapter.chapterNumber
-            ),
-            chapter
-        );
-
-    });
-
-
-    const mcqKeys =
-        new Set();
-
-
-    mcqs.forEach(item => {
-
-        mcqKeys.add(
-            mcqKey(
-                item.bookId,
-                item.chapterId,
-                item.question
-            )
-        );
-
-    });
-
-
-    try{
-
-        for(
-            let i=0;
-            i<excelRows.length;
-            i++
-        ){
-
-            const row =
-                excelRows[i];
-
-
-            const bookName =
-                getValue(
-                    row,
-                    [
-                        "Book Name",
-                        "bookName",
-                        "Book",
-                        "book"
-                    ]
-                ).trim();
-
-
-            const chapterNoRaw =
-                getValue(
+        const chapterNumber =
+            Number(
+                value(
                     row,
                     [
                         "Chapter No",
-                        "chapterNumber",
                         "Chapter Number",
-                        "chapterNo"
-                    ]
-                );
-
-
-            const chapterNumber =
-                Number(
-                    chapterNoRaw
-                );
-
-
-            const chapterName =
-                getValue(
-                    row,
-                    [
-                        "Chapter Name",
-                        "chapterName",
-                        "Chapter"
-                    ]
-                ).trim();
-
-
-            const question =
-                getValue(
-                    row,
-                    [
-                        "Question",
-                        "question"
-                    ]
-                ).trim();
-
-
-            const A =
-                getValue(
-                    row,
-                    [
-                        "A",
-                        "Option A",
-                        "optionA"
-                    ]
-                ).trim();
-
-
-            const B =
-                getValue(
-                    row,
-                    [
-                        "B",
-                        "Option B",
-                        "optionB"
-                    ]
-                ).trim();
-
-
-            const C =
-                getValue(
-                    row,
-                    [
-                        "C",
-                        "Option C",
-                        "optionC"
-                    ]
-                ).trim();
-
-
-            const D =
-                getValue(
-                    row,
-                    [
-                        "D",
-                        "Option D",
-                        "optionD"
-                    ]
-                ).trim();
-
-
-            let answer =
-                getValue(
-                    row,
-                    [
-                        "Answer",
-                        "answer",
-                        "Correct Answer",
-                        "correctAnswer"
+                        "chapterNumber"
                     ]
                 )
-                .trim()
-                .toUpperCase();
+            );
 
 
-            const explanation =
-                getValue(
-                    row,
-                    [
-                        "Explanation",
-                        "explanation"
-                    ]
-                ).trim();
+        const chapterName =
+            value(
+                row,
+                [
+                    "Chapter Name",
+                    "chapterName"
+                ]
+            ).trim();
 
 
-            const memoryTip =
-                getValue(
-                    row,
-                    [
-                        "Memory Tip",
-                        "memoryTip",
-                        "Memory"
-                    ]
-                ).trim();
+        const question =
+            value(
+                row,
+                [
+                    "Question",
+                    "question"
+                ]
+            ).trim();
 
 
-            /*
-              Empty row skip
-            */
-
-            if(
-                !bookName &&
-                !question
-            ){
-
-                continue;
-
-            }
+        const A =
+            value(
+                row,
+                ["A","Option A"]
+            ).trim();
 
 
-            if(
-                !bookName ||
-                !chapterName ||
-                !chapterNumber ||
-                !question ||
-                !A ||
-                !B ||
-                !C ||
-                !D ||
-                !["A","B","C","D"]
-                    .includes(answer)
-            ){
-
-                skippedMCQs++;
-
-                continue;
-
-            }
+        const B =
+            value(
+                row,
+                ["B","Option B"]
+            ).trim();
 
 
-            /*
-              BOOK
-            */
+        const C =
+            value(
+                row,
+                ["C","Option C"]
+            ).trim();
 
-            const bookKey =
-                normalize(
+
+        const D =
+            value(
+                row,
+                ["D","Option D"]
+            ).trim();
+
+
+        const answer =
+            value(
+                row,
+                [
+                    "Answer",
+                    "Correct Answer"
+                ]
+            )
+            .trim()
+            .toUpperCase();
+
+
+        const explanation =
+            value(
+                row,
+                ["Explanation"]
+            ).trim();
+
+
+        const memoryTip =
+            value(
+                row,
+                ["Memory Tip"]
+            ).trim();
+
+
+        if(
+            !bookName ||
+            !chapterNumber ||
+            !chapterName ||
+            !question ||
+            !A ||
+            !B ||
+            !C ||
+            !D
+        ){
+
+            continue;
+
+        }
+
+
+        let book =
+            books.find(
+                b =>
+                    String(
+                        b.name || ""
+                    )
+                    .trim()
+                    .toLowerCase()
+                    ===
                     bookName
-                );
+                    .toLowerCase()
+            );
 
 
-            let book =
-                bookMap.get(
-                    bookKey
-                );
+        if(!book){
 
-
-            if(!book){
-
-                const ref =
-                    await addDoc(
-                        collection(
-                            db,
-                            "books"
-                        ),
-                        {
-
-                            name:
-                                bookName,
-
-                            author:"",
-
-                            category:"",
-
-                            imageUrl:"",
-
-                            description:"",
-
-                            createdAt:
-                                serverTimestamp(),
-
-                            updatedAt:
-                                serverTimestamp()
-
-                        }
-                    );
-
-
-                book = {
-
-                    id:ref.id,
-
-                    name:bookName
-
-                };
-
-
-                books.push(book);
-
-
-                bookMap.set(
-                    bookKey,
-                    book
-                );
-
-
-                addedBooks++;
-
-            }
-
-
-            /*
-              CHAPTER
-            */
-
-            const cKey =
-                chapterKey(
-                    book.id,
-                    chapterNumber
-                );
-
-
-            let chapter =
-                chapterMap.get(
-                    cKey
-                );
-
-
-            if(!chapter){
-
-                const ref =
-                    await addDoc(
-                        collection(
-                            db,
-                            "chapters"
-                        ),
-                        {
-
-                            bookId:
-                                book.id,
-
-                            bookName:
-                                book.name,
-
-                            chapterNumber,
-
-                            name:
-                                chapterName,
-
-                            description:"",
-
-                            createdAt:
-                                serverTimestamp(),
-
-                            updatedAt:
-                                serverTimestamp()
-
-                        }
-                    );
-
-
-                chapter = {
-
-                    id:ref.id,
-
-                    bookId:
-                        book.id,
-
-                    bookName:
-                        book.name,
-
-                    chapterNumber,
-
-                    name:
-                        chapterName
-
-                };
-
-
-                chapters.push(
-                    chapter
-                );
-
-
-                chapterMap.set(
-                    cKey,
-                    chapter
-                );
-
-
-                addedChapters++;
-
-            }
-
-
-            /*
-              MCQ DUPLICATE CHECK
-            */
-
-            const key =
-                mcqKey(
-                    book.id,
-                    chapter.id,
-                    question
-                );
-
-
-            if(
-                mcqKeys.has(key)
-            ){
-
-                skippedMCQs++;
-
-            }else{
-
+            const ref =
                 await addDoc(
                     collection(
                         db,
-                        "mcqs"
+                        "books"
                     ),
                     {
 
-                        bookId:
-                            book.id,
+                        name:bookName,
 
-                        bookName:
-                            book.name,
+                        author:"",
 
-                        chapterId:
-                            chapter.id,
+                        category:"",
 
-                        chapterName:
-                            chapter.name,
+                        imageUrl:"",
 
-                        question,
-
-                        options:{
-                            A,
-                            B,
-                            C,
-                            D
-                        },
-
-                        correctAnswer:
-                            answer,
-
-                        type:
-                            "recall",
-
-                        explanation,
-
-                        memoryTip,
+                        description:"",
 
                         createdAt:
                             serverTimestamp(),
@@ -5901,122 +5624,272 @@ async function importExcel(){
                 );
 
 
-                mcqKeys.add(key);
+            book = {
 
-                addedMCQs++;
+                id:ref.id,
 
-            }
+                name:bookName
 
-
-            const percent =
-                Math.round(
-                    ((i+1) /
-                    excelRows.length)
-                    * 100
-                );
+            };
 
 
-            progressFill.style.width =
-                percent + "%";
+            books.push(
+                book
+            );
 
 
-            progressText.textContent =
-                `Importing ${i+1} / ${excelRows.length} (${percent}%)`;
+            bookCount++;
 
         }
 
 
-        progressText.textContent =
-            "✅ Import completed.";
+        let chapter =
+            chapters.find(
+                c =>
+                    c.bookId ===
+                    book.id
+                    &&
+                    Number(
+                        c.chapterNumber
+                    ) ===
+                    chapterNumber
+            );
 
 
-        document.getElementById(
-            "importSummary"
-        ).innerHTML = `
+        if(!chapter){
 
-            <b>Import Complete</b><br>
+            const ref =
+                await addDoc(
+                    collection(
+                        db,
+                        "chapters"
+                    ),
+                    {
 
-            📚 New Books:
-            <b>${addedBooks}</b><br>
+                        bookId:
+                            book.id,
 
-            📖 New Chapters:
-            <b>${addedChapters}</b><br>
+                        bookName:
+                            book.name,
 
-            🧠 New MCQs:
-            <b>${addedMCQs}</b><br>
+                        chapterNumber,
 
-            ⏭️ Skipped/Duplicate:
-            <b>${skippedMCQs}</b>
+                        name:
+                            chapterName,
 
-        `;
+                        description:"",
+
+                        createdAt:
+                            serverTimestamp(),
+
+                        updatedAt:
+                            serverTimestamp()
+
+                    }
+                );
 
 
-        await loadAllData();
+            chapter = {
+
+                id:ref.id,
+
+                bookId:book.id,
+
+                bookName:book.name,
+
+                chapterNumber,
+
+                name:chapterName
+
+            };
 
 
-        toast(
-            "Bulk import completed."
-        );
+            chapters.push(
+                chapter
+            );
 
 
-    }catch(error){
+            chapterCount++;
 
-        console.error(error);
+        }
 
-        progressText.textContent =
-            "❌ Import failed.";
 
-        alert(
-            "Import error:\n" +
-            error.message
-        );
+        const exists =
+            mcqs.some(
+                m =>
+                    m.bookId ===
+                    book.id
+                    &&
+                    m.chapterId ===
+                    chapter.id
+                    &&
+                    String(
+                        m.question || ""
+                    )
+                    .trim()
+                    .toLowerCase()
+                    ===
+                    question
+                    .toLowerCase()
+            );
+
+
+        if(!exists){
+
+            await addDoc(
+                collection(
+                    db,
+                    "mcqs"
+                ),
+                {
+
+                    bookId:
+                        book.id,
+
+                    bookName:
+                        book.name,
+
+                    chapterId:
+                        chapter.id,
+
+                    chapterName:
+                        chapter.name,
+
+                    question,
+
+                    options:{
+                        A,
+                        B,
+                        C,
+                        D
+                    },
+
+                    correctAnswer:
+                        answer,
+
+                    type:"recall",
+
+                    explanation,
+
+                    memoryTip,
+
+                    createdAt:
+                        serverTimestamp(),
+
+                    updatedAt:
+                        serverTimestamp()
+
+                }
+            );
+
+
+            mcqCount++;
+
+        }
+
+
+        const percent =
+            Math.round(
+                (
+                    (i+1) /
+                    excelRows.length
+                ) * 100
+            );
+
+
+        fill.style.width =
+            percent + "%";
+
+
+        text.textContent =
+            `Importing ${
+                i+1
+            } / ${
+                excelRows.length
+            } (${percent}%)`;
 
     }
 
+
+    await loadAllData();
+
+
+    text.textContent =
+        "✅ Import completed.";
+
+
+    document
+    .getElementById(
+        "importSummary"
+    )
+    .innerHTML =
+
+        `
+        <b>Import Complete</b>
+        <br>
+        📚 New Books:
+        ${bookCount}
+
+        <br>
+
+        📖 New Chapters:
+        ${chapterCount}
+
+        <br>
+
+        🧠 New MCQs:
+        ${mcqCount}
+        `;
+
+
+    toast(
+        "Bulk import completed."
+    );
+
 }
 
-
-/* =====================================================
-   CLEAR EXCEL
-===================================================== */
 
 function clearExcel(){
 
     excelRows = [];
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "excelFile"
-    ).value = "";
+    )
+    .value = "";
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "excelPreview"
-    ).style.display =
+    )
+    .style.display =
         "none";
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "importSummary"
-    ).style.display =
+    )
+    .style.display =
         "none";
 
 
-    document.getElementById(
-        "importSummary"
-    ).innerHTML =
-        "";
-
-
-    document.getElementById(
-        "importProgress"
-    ).style.display =
+    document
+    .getElementById(
+        "progressBox"
+    )
+    .style.display =
         "none";
 
 
-    document.getElementById(
+    document
+    .getElementById(
         "progressFill"
-    ).style.width =
+    )
+    .style.width =
         "0%";
 
 }
@@ -6026,55 +5899,7 @@ function clearExcel(){
    HELPERS
 ===================================================== */
 
-function normalize(value){
-
-    return String(
-        value || ""
-    )
-    .trim()
-    .toLowerCase();
-
-}
-
-
-function chapterKey(
-    bookId,
-    chapterNumber
-){
-
-    return (
-        String(bookId)
-        +
-        "__"
-        +
-        String(chapterNumber)
-    );
-
-}
-
-
-function mcqKey(
-    bookId,
-    chapterId,
-    question
-){
-
-    return (
-
-        String(bookId)
-        +
-        "__" +
-        String(chapterId)
-        +
-        "__" +
-        normalize(question)
-
-    );
-
-}
-
-
-function getValue(
+function value(
     row,
     keys
 ){
@@ -6101,11 +5926,9 @@ function getValue(
 }
 
 
-/* =====================================================
-   HTML ESCAPE
-===================================================== */
-
-function escapeHTML(value){
+function escapeHTML(
+    value
+){
 
     return String(
         value ?? ""
@@ -6134,79 +5957,109 @@ function escapeHTML(value){
 }
 
 
-/* =====================================================
-   FIREBASE ERROR
-===================================================== */
+function getFirebaseError(
+    error
+){
 
-function firebaseError(error){
+    console.error(
+        error
+    );
+
 
     const code =
         error?.code || "";
 
 
-    const messages = {
+    if(
+        code ===
+        "auth/api-key-not-valid"
+    ){
 
-        "auth/invalid-credential":
-            "Email या password गलत है.",
+        return `
+        Firebase API key invalid है।
+        admin.html में Firebase Config
+        check करें।
+        `;
 
-        "auth/invalid-email":
-            "Email format गलत है.",
+    }
 
-        "auth/user-not-found":
-            "यह user नहीं मिला.",
 
-        "auth/wrong-password":
-            "Password गलत है.",
+    if(
+        code ===
+        "auth/invalid-credential"
+    ){
 
-        "auth/email-already-in-use":
-            "यह email पहले से registered है.",
+        return `
+        Email या Password गलत है।
+        `;
 
-        "auth/weak-password":
-            "Password कम से कम 6 characters होना चाहिए.",
+    }
 
-        "auth/operation-not-allowed":
-            "Firebase Authentication में Email/Password provider enable करें.",
 
-        "auth/configuration-not-found":
-            "Firebase Authentication अभी configure नहीं है.",
+    if(
+        code ===
+        "auth/operation-not-allowed"
+    ){
 
-        "auth/network-request-failed":
-            "Internet connection check करें."
+        return `
+        Firebase Authentication में
+        Email/Password enable करें।
+        `;
 
-    };
+    }
+
+
+    if(
+        code ===
+        "auth/invalid-email"
+    ){
+
+        return `
+        Email format गलत है।
+        `;
+
+    }
+
+
+    if(
+        code ===
+        "auth/network-request-failed"
+    ){
+
+        return `
+        Internet connection check करें।
+        `;
+
+    }
 
 
     return (
-        messages[code]
-        ||
-        error?.message
-        ||
-        "Something went wrong."
+        error?.message ||
+        "Firebase login error."
     );
 
 }
 
 
-/* =====================================================
-   TOAST
-===================================================== */
-
 let toastTimer;
 
 
-function toast(message){
+function toast(
+    message
+){
 
-    const element =
-        document.getElementById(
+    const box =
+        document
+        .getElementById(
             "toast"
         );
 
 
-    element.textContent =
+    box.textContent =
         message;
 
 
-    element.classList.add(
+    box.classList.add(
         "show"
     );
 
@@ -6220,7 +6073,7 @@ function toast(message){
         setTimeout(
             () => {
 
-                element.classList.remove(
+                box.classList.remove(
                     "show"
                 );
 
@@ -6231,44 +6084,16 @@ function toast(message){
 }
 
 
-/* =====================================================
-   CLOSE MODAL ON BACKDROP
-===================================================== */
-
-document
-.addEventListener(
-    "click",
-    event => {
-
-        if(
-            event.target.classList
-            .contains("modal")
-        ){
-
-            event.target.classList.remove(
-                "show"
-            );
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   ENTER KEY LOGIN
-===================================================== */
-
 document
 .getElementById(
     "loginPassword"
 )
 .addEventListener(
     "keydown",
-    event => {
+    e => {
 
         if(
-            event.key === "Enter"
+            e.key === "Enter"
         ){
 
             adminLogin();
