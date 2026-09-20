@@ -78,6 +78,17 @@ button {
     max-width: 340px;
     text-align: center;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.splashLogo {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    border-radius: 14px;
+    margin-bottom: 10px;
 }
 
 .splashTitle {
@@ -141,10 +152,18 @@ button {
     border-radius: 20px;
     box-shadow: 0 15px 35px rgba(0,0,0,0.2);
     color: #1f2937;
+    text-align: center;
+}
+
+.authLogoImg {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 12px;
+    margin: 0 auto 10px;
 }
 
 .logoText {
-    text-align: center;
     font-size: 28px;
     font-weight: 800;
     color: #102a43;
@@ -156,7 +175,6 @@ button {
 }
 
 .logoSub {
-    text-align: center;
     color: #777;
     font-size: 12px;
     margin-bottom: 20px;
@@ -166,10 +184,12 @@ button {
     font-size: 22px;
     font-weight: 700;
     margin-bottom: 15px;
+    text-align: left;
 }
 
 .inputGroup {
     margin-bottom: 12px;
+    text-align: left;
 }
 
 .inputGroup label {
@@ -230,6 +250,7 @@ button {
     border-radius: 8px;
     font-size: 13px;
     display: none;
+    text-align: left;
 }
 
 .authMessage.error {
@@ -272,8 +293,8 @@ button {
 }
 
 .brand-logo {
-    width: 34px;
-    height: 34px;
+    width: 36px;
+    height: 36px;
     object-fit: contain;
     border-radius: 8px;
 }
@@ -992,7 +1013,7 @@ button {
 <!-- SPLASH SCREEN -->
 <div id="splashScreen">
     <div class="splashBox">
-        <img src="logo.png" alt="GyaaniFly Logo" class="splashLogo" onerror="this.style.display='none'">
+        <img src="logo.png" alt="Logo" class="splashLogo" onerror="this.style.display='none'">
         <div class="splashTitle">Gyaani<span>Fly</span></div>
         <div class="splashSub">Read • Recall • Master Pro</div>
         <div class="splashLoader"></div>
@@ -1002,9 +1023,7 @@ button {
 <!-- AUTH SCREEN -->
 <div id="authScreen">
     <div class="authBox">
-        <div class="authLogo">
-            <img src="logo.png" alt="Logo" onerror="this.style.display='none'">
-        </div>
+        <img src="logo.png" alt="Logo" class="authLogoImg" onerror="this.style.display='none'">
         <div class="logoText">Gyaani<span>Fly</span></div>
         <div class="logoSub">Read • Recall • Master Pro</div>
 
