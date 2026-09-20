@@ -1,6034 +1,1988 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>GyaaniFly – Read • Recall • Master</title>
-
-<!-- =====================================================
-     PWA
-===================================================== -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>GyaaniFly – Read • Recall • Master Pro</title>
 
 <link rel="manifest" href="manifest.json">
-
 <meta name="theme-color" content="#1683f2">
 
-<link rel="icon"
-      type="image/png"
-      href="logo.png">
-
-<link rel="apple-touch-icon"
-      href="logo.png">
-
-
 <style>
-
-/* =====================================================
-   RESET
-===================================================== */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+:root {
+    --bg-color: #f5f7fb;
+    --card-bg: #ffffff;
+    --text-main: #1f2937;
+    --text-muted: #777777;
+    --border-color: #e5e7eb;
+    --topbar-bg: #ffffff;
 }
 
-body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#f5f7fb;
-    color:#1f2937;
+[data-theme="dark"] {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-color: #334155;
+    --topbar-bg: #1e293b;
 }
 
-button,
-input{
-    font-family:inherit;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-button{
-    cursor:pointer;
+body {
+    background: var(--bg-color);
+    color: var(--text-main);
+    width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background 0.3s, color 0.3s;
 }
 
-.hidden{
-    display:none !important;
+button, input {
+    font-family: inherit;
 }
-
-
-/* =====================================================
-   SPLASH SCREEN
-===================================================== */
-
-#splashScreen{
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:9999;
 
-    background:#ffffff;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    transition:
-        opacity .5s ease,
-        visibility .5s ease;
+button {
+    cursor: pointer;
 }
 
-#splashScreen.hide{
-
-    opacity:0;
-
-    visibility:hidden;
-
-    pointer-events:none;
+.hidden {
+    display: none !important;
 }
-
-.splashBox{
 
-    width:100%;
-
-    max-width:340px;
-
-    text-align:center;
-
-    padding:20px;
+/* SPLASH SCREEN */
+#splashScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity .5s ease, visibility .5s ease;
 }
-
-.splashLogo{
-
-    width:190px;
-
-    height:190px;
-
-    object-fit:contain;
-
-    display:block;
 
-    margin:0 auto 8px;
+#splashScreen.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
-.splashTitle{
-
-    font-size:35px;
-
-    font-weight:800;
-
-    color:#102a43;
+.splashBox {
+    width: 100%;
+    max-width: 340px;
+    text-align: center;
+    padding: 20px;
 }
-
-.splashTitle span{
 
-    color:#1683f2;
+.splashTitle {
+    font-size: 32px;
+    font-weight: 800;
+    color: #102a43;
 }
-
-.splashSub{
-
-    color:#777;
-
-    font-size:14px;
-
-    margin-top:5px;
 
-    letter-spacing:.3px;
+.splashTitle span {
+    color: #1683f2;
 }
 
-.splashLoader{
-
-    width:90px;
-
-    height:4px;
-
-    background:#e5e7eb;
-
-    border-radius:20px;
-
-    overflow:hidden;
-
-    margin:22px auto 0;
-
-    position:relative;
+.splashSub {
+    color: #777;
+    font-size: 14px;
+    margin-top: 5px;
 }
-
-.splashLoader::after{
-
-    content:"";
-
-    position:absolute;
-
-    top:0;
-
-    left:-50%;
-
-    width:50%;
-
-    height:100%;
-
-    background:#1683f2;
-
-    border-radius:20px;
 
-    animation:splashLoading 1.1s infinite;
+.splashLoader {
+    width: 90px;
+    height: 4px;
+    background: #e5e7eb;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 22px auto 0;
+    position: relative;
 }
 
-@keyframes splashLoading{
-
-    0%{
-        left:-50%;
-    }
-
-    100%{
-        left:100%;
-    }
-
+.splashLoader::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 50%;
+    height: 100%;
+    background: #1683f2;
+    border-radius: 20px;
+    animation: splashLoading 1.1s infinite;
 }
-
-
-/* =====================================================
-   AUTH
-===================================================== */
-
-#authScreen{
-
-    min-height:100vh;
-
-    display:flex;
 
-    justify-content:center;
-
-    align-items:center;
-
-    padding:20px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #667eea,
-            #764ba2
-        );
+@keyframes splashLoading {
+    0% { left: -50%; }
+    100% { left: 100%; }
 }
-
-.authBox{
-
-    width:100%;
-
-    max-width:420px;
-
-    background:#fff;
-
-    padding:28px 25px;
-
-    border-radius:22px;
-
-    box-shadow:
-        0 20px 50px rgba(0,0,0,.20);
+
+/* AUTH SCREEN */
+#authScreen {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
 }
-
-
-/* =====================================================
-   AUTH LOGO
-===================================================== */
-
-.authLogo{
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
 
-    margin-bottom:5px;
+.authBox {
+    width: 100%;
+    max-width: 400px;
+    background: #fff;
+    padding: 25px 20px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    color: #1f2937;
 }
 
-.authLogo img{
-
-    width:120px;
-
-    height:120px;
-
-    object-fit:contain;
-
-    display:block;
+.logoText {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 800;
+    color: #102a43;
+    margin-bottom: 2px;
 }
-
-.logoText{
-
-    text-align:center;
-
-    font-size:32px;
-
-    font-weight:800;
 
-    color:#102a43;
-
-    margin-bottom:4px;
+.logoText span {
+    color: #1683f2;
 }
-
-.logoText span{
 
-    color:#1683f2;
+.logoSub {
+    text-align: center;
+    color: #777;
+    font-size: 12px;
+    margin-bottom: 20px;
 }
-
-.logoSub{
-
-    text-align:center;
 
-    color:#777;
-
-    font-size:13px;
-
-    margin-bottom:25px;
+.authTitle {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 15px;
 }
-
-.authTitle{
-
-    font-size:25px;
 
-    font-weight:700;
-
-    margin-bottom:20px;
+.inputGroup {
+    margin-bottom: 12px;
 }
-
-.inputGroup{
 
-    margin-bottom:15px;
+.inputGroup label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 5px;
 }
-
-.inputGroup label{
-
-    display:block;
 
-    font-size:14px;
-
-    font-weight:600;
-
-    margin-bottom:7px;
+.inputGroup input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    outline: none;
+    font-size: 14px;
+    background: #fff;
+    color: #1f2937;
 }
-
-.inputGroup input{
-
-    width:100%;
 
-    padding:13px 14px;
-
-    border:1px solid #ddd;
-
-    border-radius:12px;
-
-    outline:none;
-
-    font-size:15px;
-
-    background:#fff;
+.primaryBtn {
+    width: 100%;
+    border: none;
+    background: linear-gradient(135deg, #0d47a1, #1683f2);
+    color: #fff;
+    padding: 13px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
 }
-
-.inputGroup input:focus{
 
-    border-color:#1683f2;
+.secondaryBtn {
+    width: 100%;
+    border: none;
+    background: #eef5ff;
+    color: #0d47a1;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 700;
+    margin-top: 10px;
 }
-
-.primaryBtn{
-
-    width:100%;
 
-    border:none;
-
-    background:
-        linear-gradient(
-            135deg,
-            #0d47a1,
-            #1683f2
-        );
-
-    color:#fff;
-
-    padding:14px;
-
-    border-radius:12px;
-
-    font-size:16px;
-
-    font-weight:700;
+.forgot {
+    text-align: right;
+    margin: 6px 0 12px;
 }
-
-.secondaryBtn{
-
-    width:100%;
 
-    border:none;
-
-    background:#eef5ff;
-
-    color:#0d47a1;
-
-    padding:13px;
-
-    border-radius:12px;
-
-    font-weight:700;
-
-    margin-top:12px;
+.forgot button {
+    border: none;
+    background: none;
+    color: #1683f2;
+    font-size: 12px;
 }
-
-.forgot{
-
-    text-align:right;
 
-    margin:8px 0 15px;
+.authMessage {
+    margin-top: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    display: none;
 }
 
-.forgot button{
-
-    border:none;
-
-    background:none;
-
-    color:#1683f2;
-
-    font-size:13px;
+.authMessage.error {
+    display: block;
+    background: #fee2e2;
+    color: #b91c1c;
 }
-
-.authMessage{
-
-    margin-top:15px;
-
-    padding:11px;
-
-    border-radius:10px;
 
-    font-size:14px;
-
-    display:none;
+.authMessage.success {
+    display: block;
+    background: #dcfce7;
+    color: #15803d;
 }
-
-.authMessage.error{
-
-    display:block;
-
-    background:#fee2e2;
 
-    color:#b91c1c;
+/* APP LAYOUT */
+#appScreen {
+    min-height: 100vh;
+    padding-bottom: 80px;
 }
 
-.authMessage.success{
-
-    display:block;
-
-    background:#dcfce7;
-
-    color:#15803d;
+.topBar {
+    background: var(--topbar-bg);
+    padding: 12px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    border-bottom: 1px solid var(--border-color);
 }
-
 
-/* =====================================================
-   APP
-===================================================== */
-
-#appScreen{
-
-    min-height:100vh;
-
-    padding-bottom:82px;
+.topRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
-
-
-/* =====================================================
-   TOP BAR
-===================================================== */
-
-.topBar{
-
-    background:#fff;
-
-    padding:12px 18px;
 
-    position:sticky;
-
-    top:0;
-
-    z-index:20;
-
-    border-bottom:1px solid #eee;
+.brand h1 {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1.1;
 }
-
-.topRow{
 
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
+.brand h1 span {
+    color: #1683f2;
 }
-
-.brand{
-
-    display:flex;
 
-    align-items:center;
-
-    gap:9px;
+.brand small {
+    font-size: 8px;
+    color: var(--text-muted);
 }
-
-.brand-logo{
-
-    width:43px;
-
-    height:43px;
 
-    object-fit:contain;
-
-    border-radius:10px;
-
-    display:block;
+.themeToggleBtn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0d47a1, #1683f2);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    border: none;
+    box-shadow: 0 3px 8px rgba(79, 70, 229, 0.3);
 }
-
-.brand h1{
-
-    margin:0;
 
-    font-size:22px;
-
-    font-weight:800;
-
-    color:#102a43;
+.page {
+    padding: 16px;
+    max-width: 800px;
+    margin: auto;
 }
 
-.brand h1 span{
-
-    color:#1683f2;
+/* WELCOME BANNER */
+.welcome {
+    background: linear-gradient(135deg, #0d47a1, #1683f2);
+    color: #fff;
+    padding: 18px;
+    border-radius: 16px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-
-.brand small{
 
-    display:block;
-
-    margin-top:2px;
-
-    font-size:9px;
-
-    color:#777;
+.welcome h2 {
+    font-size: 18px;
+    margin-bottom: 4px;
 }
-
-.userCircle{
-
-    width:42px;
-
-    height:42px;
-
-    border-radius:50%;
-
-    background:
-        linear-gradient(
-            135deg,
-            #0d47a1,
-            #1683f2
-        );
-
-    color:#fff;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
 
-    font-weight:700;
+.welcome p {
+    font-size: 13px;
+    opacity: 0.9;
 }
 
-
-/* =====================================================
-   PAGE
-===================================================== */
-
-.page{
-
-    padding:20px;
-
-    max-width:1000px;
-
-    margin:auto;
+.xpBadge {
+    background: rgba(255,255,255,0.2);
+    padding: 6px 10px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 800;
+    font-size: 12px;
 }
-
-
-/* =====================================================
-   WELCOME
-===================================================== */
-
-.welcome{
 
-    background:
-        linear-gradient(
-            135deg,
-            #0d47a1,
-            #1683f2
-        );
-
-    color:#fff;
-
-    padding:22px;
-
-    border-radius:20px;
-
-    margin-bottom:18px;
+/* QUICK TOOLS */
+.quickTools {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 15px;
 }
 
-.welcome h2{
-
-    margin-bottom:7px;
+.toolCard {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 10px 6px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 12px;
+    color: #1683f2;
+    border: 1px solid var(--border-color);
 }
-
-.welcome p{
 
-    opacity:.9;
+.toolCard span {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 3px;
 }
-
-
-/* =====================================================
-   STREAK
-===================================================== */
 
-.streakCard{
-
-    background:#fff;
-
-    border-radius:20px;
-
-    padding:18px;
-
-    margin-bottom:18px;
-
-    box-shadow:
-        0 5px 18px rgba(0,0,0,.06);
+/* STREAK */
+.streakCard {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+    border: 1px solid var(--border-color);
 }
-
-.streakTop{
-
-    display:flex;
-
-    justify-content:space-between;
 
-    align-items:center;
+.streakTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
 
-    margin-bottom:15px;
+.streakTitle {
+    font-size: 15px;
+    font-weight: 800;
 }
 
-.streakTitle{
+.weekDays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    text-align: center;
+}
 
-    font-size:18px;
+.dayItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
 
-    font-weight:800;
+.dayName {
+    font-size: 10px;
+    color: var(--text-muted);
 }
 
-.streakNumber{
+.dayCircle {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: var(--text-main);
+}
 
-    color:#f97316;
+.dayCircle.active {
+    background: #dcfce7;
+    color: #16a34a;
+}
 
-    font-size:20px;
+.dayCircle.today {
+    border: 2px solid #1683f2;
+}
 
-    font-weight:800;
+/* CONTINUE LEARNING & COMPACT BOOK LIST CARD */
+.continueCard, .bookListCard {
+    background: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: 0.2s;
 }
+.bookListCard:active {
+    transform: scale(0.98);
+}
 
-.weekDays{
+.continueHeader {
+    padding: 14px 16px 4px;
+}
 
-    display:grid;
+.continueTitle {
+    font-size: 16px;
+    font-weight: 800;
+}
 
-    grid-template-columns:
-        repeat(7,1fr);
+.continueBody, .bookListBody {
+    display: flex;
+    gap: 12px;
+    padding: 12px 16px 16px;
+    align-items: center;
+}
 
-    gap:5px;
+.continueImage, .bookListImage {
+    width: 60px;
+    height: 80px;
+    object-fit: cover;
+    background: var(--border-color);
+    border-radius: 6px;
+    flex-shrink: 0;
+}
 
-    text-align:center;
+.continueInfo, .bookListInfo {
+    flex: 1;
 }
 
-.dayItem{
+.continueBook, .bookListTitle {
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 4px;
+}
 
-    display:flex;
+.continueChapter, .bookListSub {
+    color: var(--text-muted);
+    font-size: 12px;
+    margin-bottom: 6px;
+}
 
-    flex-direction:column;
+.bookCategoryBadge {
+    display: inline-block;
+    padding: 2px 8px;
+    background: rgba(22, 131, 242, 0.1);
+    color: #1683f2;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 700;
+}
 
-    align-items:center;
+.progressText {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
 
-    gap:6px;
+.progressBar {
+    height: 8px;
+    background: var(--border-color);
+    border-radius: 20px;
+    overflow: hidden;
 }
 
-.dayName{
+.progressFill {
+    height: 100%;
+    background: #1683f2;
+    width: 0%;
+    transition: .3s;
+}
 
-    font-size:11px;
+.continueBtn {
+    border: none;
+    background: #1683f2;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 12px;
+    margin-top: 10px;
+}
 
-    color:#777;
+/* STATS */
+.statsTitle {
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 10px;
 }
 
-.dayCircle{
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 15px;
+}
 
-    width:30px;
+.stat {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 12px 4px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+    border: 1px solid var(--border-color);
+}
 
-    height:30px;
+.statNumber {
+    font-size: 18px;
+    font-weight: 800;
+    color: #1683f2;
+}
 
-    border-radius:50%;
+.statLabel {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 3px;
+}
 
-    background:#f1f1f1;
+.overallCard {
+    background: var(--card-bg);
+    padding: 15px;
+    border-radius: 16px;
+    margin-bottom: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+    border: 1px solid var(--border-color);
+}
 
-    display:flex;
+.overallTop {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
 
-    align-items:center;
+.overallTitle {
+    font-weight: 800;
+}
 
-    justify-content:center;
+.overallPercent {
+    color: #1683f2;
+    font-weight: 800;
+}
 
-    font-size:14px;
+.overallBar {
+    width: 100%;
+    height: 10px;
+    background: var(--border-color);
+    border-radius: 20px;
+    overflow: hidden;
 }
 
-.dayCircle.active{
+.overallFill {
+    height: 100%;
+    width: 0%;
+    background: #1683f2;
+}
 
-    background:#dcfce7;
+/* ACHIEVEMENTS */
+.achievementTitle {
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
 
-    color:#16a34a;
+.achievementGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
-.dayCircle.today{
+.achievement {
+    background: var(--card-bg);
+    padding: 12px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+    border: 1px solid var(--border-color);
+}
 
-    border:2px solid #1683f2;
+.achievementIcon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
 }
 
+.achievementName {
+    font-weight: 700;
+    font-size: 13px;
+}
 
-/* =====================================================
-   CONTINUE LEARNING
-===================================================== */
+.achievementStatus {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
 
-.continueCard{
+.achievement.unlocked {
+    border: 2px solid #1683f2;
+}
 
-    background:#fff;
+.achievement.unlocked .achievementStatus {
+    color: #16a34a;
+}
 
-    border-radius:20px;
+/* FLASHCARD */
+.flashcardScene {
+    width: 100%;
+    height: 240px;
+    perspective: 1000px;
+    margin: 15px 0;
+    cursor: pointer;
+}
 
-    overflow:hidden;
+.flashcard {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
 
-    margin-bottom:22px;
+.flashcard.is-flipped {
+    transform: rotateY(180deg);
+}
 
-    box-shadow:
-        0 5px 18px rgba(0,0,0,.06);
+.cardFace {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 16px;
+    text-align: center;
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
 }
 
-.continueHeader{
+.cardBack {
+    background: var(--card-bg);
+    transform: rotateY(180deg);
+    color: #1683f2;
+}
 
-    padding:17px 18px 5px;
+/* BOOKS & SECTIONS */
+.sectionTitle {
+    font-size: 16px;
+    font-weight: 800;
+    margin: 15px 0 10px;
 }
 
-.continueTitle{
+.searchBox {
+    margin-bottom: 12px;
+}
 
-    font-size:20px;
+.searchBox input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    outline: none;
+    font-size: 14px;
+    background: var(--card-bg);
+    color: var(--text-main);
+}
 
-    font-weight:800;
+/* CHAPTERS & QUIZ */
+.backBtn {
+    border: none;
+    background: rgba(22, 131, 242, 0.1);
+    color: #1683f2;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 12px;
+    margin-bottom: 14px;
 }
 
-.continueBody{
+.chapterCard {
+    background: var(--card-bg);
+    padding: 14px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    border: 1px solid var(--border-color);
+}
 
-    display:flex;
+.chapterNumber {
+    min-width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: #1683f2;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 14px;
+}
 
-    gap:15px;
+.chapterInfo h3 {
+    font-size: 14px;
+    margin-bottom: 2px;
+}
 
-    padding:15px 18px 18px;
+.chapterInfo p {
+    color: var(--text-muted);
+    font-size: 11px;
 }
 
-.continueImage{
+.quizHeader {
+    background: var(--card-bg);
+    padding: 14px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    font-size: 13px;
+}
 
-    width:90px;
+.questionCard {
+    background: var(--card-bg);
+    padding: 16px;
+    border-radius: 14px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+    border: 1px solid var(--border-color);
+}
 
-    height:125px;
+.questionNumber {
+    color: #1683f2;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
 
-    object-fit:contain;
+.questionText {
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
 
-    background:#eee;
+.option {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-main);
+    border-radius: 10px;
+    margin-bottom: 8px;
+    text-align: left;
+    font-size: 14px;
+}
 
-    border-radius:8px;
+.option.correct {
+    background: #dcfce7;
+    color: #16a34a;
+    border-color: #22c55e;
+}
 
-    flex-shrink:0;
+.option.wrong {
+    background: #fee2e2;
+    color: #b91c1c;
+    border-color: #ef4444;
 }
 
-.continueInfo{
+.nextBtn {
+    width: 100%;
+    margin-top: 8px;
+    border: none;
+    background: #1683f2;
+    color: #fff;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 14px;
+}
 
-    flex:1;
+.explanationBox, .memoryBox {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.4;
 }
+.explanationBox { background: var(--border-color); }
+.memoryBox { background: rgba(22, 131, 242, 0.1); }
 
-.continueBook{
+/* RESULT & PROFILE */
+.resultCard {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 25px 15px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
 
-    font-size:17px;
+.scoreCircle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(22, 131, 242, 0.1);
+    color: #1683f2;
+    margin: 15px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-    font-weight:800;
+.scoreCircle strong {
+    font-size: 24px;
+}
 
-    margin-bottom:6px;
+.xpEarnedBadge {
+    display: inline-block;
+    background: #dcfce7;
+    color: #16a34a;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 800;
+    font-size: 13px;
+    margin: 10px 0;
 }
 
-.continueChapter{
+.profileCard {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    margin-bottom: 15px;
+}
 
-    color:#777;
+.profileAvatar {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: #1683f2;
+    color: #fff;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 800;
+}
 
-    font-size:14px;
+.logoutBtn {
+    width: 100%;
+    border: none;
+    background: #fee2e2;
+    color: #dc2626;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 700;
+}
 
-    margin-bottom:12px;
+/* BOTTOM NAV */
+.bottomNav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: var(--topbar-bg);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 50;
 }
 
-.progressText{
+.navBtn {
+    border: none;
+    background: none;
+    color: var(--text-muted);
+    font-size: 11px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
 
-    font-size:12px;
+.navBtn span {
+    font-size: 18px;
+}
 
-    color:#777;
+.navBtn.active {
+    color: #1683f2;
+    font-weight: 700;
+}
 
-    margin-bottom:5px;
+.loading, .empty {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-muted);
+    font-size: 13px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
 }
 
-.progressBar{
-
-    height:9px;
-
-    background:#eee;
-
-    border-radius:20px;
-
-    overflow:hidden;
-}
-
-.progressFill{
-
-    height:100%;
-
-    background:#1683f2;
-
-    width:0%;
-
-    transition:.3s;
-}
-
-.continueBtn{
-
-    border:none;
-
-    background:#1683f2;
-
-    color:#fff;
-
-    padding:10px 16px;
-
-    border-radius:10px;
-
-    font-weight:700;
-
-    margin-top:12px;
-}
-
-
-/* =====================================================
-   STATS
-===================================================== */
-
-.statsTitle{
-
-    font-size:20px;
-
-    font-weight:800;
-
-    margin-bottom:12px;
-}
-
-.stats{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
-    gap:10px;
-
-    margin-bottom:22px;
-}
-
-.stat{
-
-    background:#fff;
-
-    border-radius:16px;
-
-    padding:15px 7px;
-
-    text-align:center;
-
-    box-shadow:
-        0 4px 15px rgba(0,0,0,.05);
-}
-
-.statNumber{
-
-    font-size:22px;
-
-    font-weight:800;
-
-    color:#1683f2;
-}
-
-.statLabel{
-
-    font-size:11px;
-
-    color:#777;
-
-    margin-top:5px;
-}
-
-
-/* =====================================================
-   OVERALL PROGRESS
-===================================================== */
-
-.overallCard{
-
-    background:#fff;
-
-    padding:18px;
-
-    border-radius:18px;
-
-    margin-bottom:22px;
-
-    box-shadow:
-        0 4px 15px rgba(0,0,0,.05);
-}
-
-.overallTop{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    margin-bottom:10px;
-}
-
-.overallTitle{
-
-    font-weight:800;
-}
-
-.overallPercent{
-
-    color:#1683f2;
-
-    font-weight:800;
-}
-
-.overallBar{
-
-    width:100%;
-
-    height:12px;
-
-    background:#eee;
-
-    border-radius:20px;
-
-    overflow:hidden;
-}
-
-.overallFill{
-
-    height:100%;
-
-    width:0%;
-
-    background:#1683f2;
-
-    transition:.4s;
-}
-
-
-/* =====================================================
-   ACHIEVEMENTS
-===================================================== */
-
-.achievementTitle{
-
-    font-size:20px;
-
-    font-weight:800;
-
-    margin-bottom:12px;
-}
-
-.achievementGrid{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap:12px;
-
-    margin-bottom:25px;
-}
-
-.achievement{
-
-    background:#fff;
-
-    padding:16px;
-
-    border-radius:16px;
-
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-
-    box-shadow:
-        0 4px 15px rgba(0,0,0,.05);
-}
-
-.achievementIcon{
-
-    width:48px;
-
-    height:48px;
-
-    border-radius:14px;
-
-    background:#eef5ff;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:25px;
-}
-
-.achievementName{
-
-    font-weight:700;
-
-    font-size:14px;
-}
-
-.achievementStatus{
-
-    font-size:11px;
-
-    color:#aaa;
-
-    margin-top:4px;
-}
-
-.achievement.unlocked{
-
-    border:2px solid #1683f2;
-}
-
-.achievement.unlocked
-.achievementStatus{
-
-    color:#16a34a;
-}
-
-
-/* =====================================================
-   SECTION
-===================================================== */
-
-.sectionTitle{
-
-    font-size:20px;
-
-    font-weight:800;
-
-    margin:20px 0 14px;
-}
-
-
-/* =====================================================
-   SEARCH
-===================================================== */
-
-.searchBox{
-
-    margin-bottom:15px;
-}
-
-.searchBox input{
-
-    width:100%;
-
-    padding:14px;
-
-    border:1px solid #ddd;
-
-    border-radius:12px;
-
-    outline:none;
-
-    font-size:15px;
-
-    background:#fff;
-}
-
-
-/* =====================================================
-   BOOK GRID
-===================================================== */
-
-.bookGrid{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap:18px;
-}
-
-
-/* =====================================================
-   BOOK CARD
-===================================================== */
-
-.bookCard{
-
-    background:#fff;
-
-    border-radius:20px;
-
-    overflow:hidden;
-
-    box-shadow:
-        0 5px 18px rgba(0,0,0,.07);
-
-    cursor:pointer;
-
-    transition:.2s;
-}
-
-.bookCard:active{
-
-    transform:scale(.98);
-}
-
-
-/* =====================================================
-   BOOK IMAGE
-===================================================== */
-
-.bookImageFrame{
-
-    width:100%;
-
-    aspect-ratio:2 / 3;
-
-    background:#f1f1f1;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    overflow:hidden;
-}
-
-.bookImage{
-
-    width:100%;
-
-    height:100%;
-
-    display:block;
-
-    object-fit:contain;
-
-    object-position:center;
-}
-
-.imageFallback{
-
-    width:100%;
-
-    height:100%;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    background:#eeeeee;
-
-    font-size:55px;
-
-    color:#888;
-}
-
-
-/* =====================================================
-   BOOK CONTENT
-===================================================== */
-
-.bookContent{
-
-    padding:15px;
-}
-
-.bookContent h3{
-
-    font-size:17px;
-
-    margin-bottom:6px;
-}
-
-.bookAuthor{
-
-    color:#777;
-
-    font-size:13px;
-}
-
-.bookCategory{
-
-    display:inline-block;
-
-    margin-top:9px;
-
-    padding:5px 10px;
-
-    background:#eef5ff;
-
-    color:#0d47a1;
-
-    border-radius:20px;
-
-    font-size:11px;
-}
-
-
-/* =====================================================
-   CHAPTERS
-===================================================== */
-
-.backBtn{
-
-    border:none;
-
-    background:#eef5ff;
-
-    color:#0d47a1;
-
-    padding:10px 15px;
-
-    border-radius:10px;
-
-    font-weight:700;
-
-    margin-bottom:18px;
-}
-
-.chapterCard{
-
-    background:#fff;
-
-    padding:17px;
-
-    border-radius:16px;
-
-    margin-bottom:12px;
-
-    box-shadow:
-        0 4px 14px rgba(0,0,0,.05);
-
-    display:flex;
-
-    align-items:center;
-
-    gap:14px;
-
-    cursor:pointer;
-}
-
-.chapterNumber{
-
-    min-width:45px;
-
-    height:45px;
-
-    border-radius:12px;
-
-    background:#1683f2;
-
-    color:#fff;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-weight:800;
-}
-
-.chapterInfo{
-
-    flex:1;
-}
-
-.chapterInfo h3{
-
-    font-size:16px;
-
-    margin-bottom:4px;
-}
-
-.chapterInfo p{
-
-    color:#777;
-
-    font-size:13px;
-}
-
-
-/* =====================================================
-   QUIZ
-===================================================== */
-
-.quizHeader{
-
-    background:#fff;
-
-    padding:17px;
-
-    border-radius:16px;
-
-    margin-bottom:15px;
-
-    font-weight:700;
-}
-
-.questionCard{
-
-    background:#fff;
-
-    padding:20px;
-
-    border-radius:18px;
-
-    box-shadow:
-        0 4px 15px rgba(0,0,0,.06);
-}
-
-.questionNumber{
-
-    color:#1683f2;
-
-    font-size:13px;
-
-    font-weight:700;
-
-    margin-bottom:10px;
-}
-
-.questionText{
-
-    font-size:19px;
-
-    line-height:1.5;
-
-    font-weight:700;
-
-    margin-bottom:20px;
-}
-
-.option{
-
-    width:100%;
-
-    padding:15px;
-
-    border:1px solid #ddd;
-
-    background:#fff;
-
-    border-radius:12px;
-
-    margin-bottom:10px;
-
-    text-align:left;
-
-    font-size:15px;
-}
-
-.option:disabled{
-
-    cursor:default;
-}
-
-.option.correct{
-
-    background:#dcfce7;
-
-    border-color:#22c55e;
-}
-
-.option.wrong{
-
-    background:#fee2e2;
-
-    border-color:#ef4444;
-}
-
-.nextBtn{
-
-    width:100%;
-
-    margin-top:10px;
-
-    border:none;
-
-    background:#1683f2;
-
-    color:#fff;
-
-    padding:14px;
-
-    border-radius:12px;
-
-    font-weight:700;
-}
-
-.explanationBox{
-
-    margin-top:15px;
-
-    padding:12px;
-
-    background:#f3f4f6;
-
-    border-radius:10px;
-
-    line-height:1.5;
-}
-
-.memoryBox{
-
-    margin-top:10px;
-
-    padding:12px;
-
-    background:#eef5ff;
-
-    border-radius:10px;
-
-    line-height:1.5;
-}
-
-
-/* =====================================================
-   RESULT
-===================================================== */
-
-.resultCard{
-
-    background:#fff;
-
-    border-radius:20px;
-
-    padding:30px 20px;
-
-    text-align:center;
-
-    box-shadow:
-        0 5px 20px rgba(0,0,0,.08);
-}
-
-.scoreCircle{
-
-    width:120px;
-
-    height:120px;
-
-    border-radius:50%;
-
-    background:#eef5ff;
-
-    color:#1683f2;
-
-    margin:20px auto;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-}
-
-.scoreCircle strong{
-
-    font-size:30px;
-}
-
-
-/* =====================================================
-   PROFILE
-===================================================== */
-
-.profileCard{
-
-    background:#fff;
-
-    border-radius:20px;
-
-    padding:25px;
-
-    text-align:center;
-
-    box-shadow:
-        0 4px 15px rgba(0,0,0,.05);
-}
-
-.profileAvatar{
-
-    width:75px;
-
-    height:75px;
-
-    border-radius:50%;
-
-    background:#1683f2;
-
-    color:#fff;
-
-    margin:0 auto 15px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:28px;
-
-    font-weight:800;
-}
-
-.profileCard h2{
-
-    margin-bottom:5px;
-}
-
-.profileEmail{
-
-    color:#777;
-
-    margin-bottom:20px;
-}
-
-.logoutBtn{
-
-    width:100%;
-
-    border:none;
-
-    background:#fee2e2;
-
-    color:#dc2626;
-
-    padding:14px;
-
-    border-radius:12px;
-
-    font-weight:700;
-}
-
-
-/* =====================================================
-   BOTTOM NAV
-===================================================== */
-
-.bottomNav{
-
-    position:fixed;
-
-    bottom:0;
-
-    left:0;
-
-    right:0;
-
-    height:68px;
-
-    background:#fff;
-
-    border-top:1px solid #eee;
-
-    display:flex;
-
-    justify-content:space-around;
-
-    align-items:center;
-
-    z-index:50;
-}
-
-.navBtn{
-
-    border:none;
-
-    background:none;
-
-    color:#888;
-
-    font-size:12px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    gap:4px;
-}
-
-.navBtn span{
-
-    font-size:22px;
-}
-
-.navBtn.active{
-
-    color:#1683f2;
-
-    font-weight:700;
-}
-
-
-/* =====================================================
-   LOADING
-===================================================== */
-
-.loading{
-
-    text-align:center;
-
-    padding:30px;
-
-    color:#777;
-}
-
-.empty{
-
-    background:#fff;
-
-    padding:25px;
-
-    border-radius:16px;
-
-    text-align:center;
-
-    color:#777;
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media(max-width:600px){
-
-    .bookGrid{
-
-        grid-template-columns:1fr;
-    }
-
-    .stats{
-
-        grid-template-columns:
-            repeat(2,1fr);
-    }
-
-    .achievementGrid{
-
-        grid-template-columns:1fr;
-    }
-
-    .page{
-
-        padding:16px;
-    }
-
-    .continueBody{
-
-        padding:14px;
-    }
-
-    .splashLogo{
-
-        width:170px;
-
-        height:170px;
-    }
-
-    .splashTitle{
-
-        font-size:31px;
-    }
-
+/* CONFETTI CANVAS */
+#confettiCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 999;
 }
-
 </style>
-
 </head>
-
 
 <body>
 
+<canvas id="confettiCanvas"></canvas>
 
-<!-- =====================================================
-     SPLASH SCREEN
-===================================================== -->
-
+<!-- SPLASH SCREEN -->
 <div id="splashScreen">
-
     <div class="splashBox">
-
-        <img
-            src="logo.png"
-            alt="GyaaniFly Logo"
-            class="splashLogo"
-        >
-
-        <div class="splashTitle">
-
-            Gyaani<span>Fly</span>
-
-        </div>
-
-        <div class="splashSub">
-
-            Read • Recall • Master
-
-        </div>
-
+        <div class="splashTitle">Gyaani<span>Fly</span></div>
+        <div class="splashSub">Read • Recall • Master Pro</div>
         <div class="splashLoader"></div>
-
     </div>
-
 </div>
 
-
-
-<!-- =====================================================
-     AUTH SCREEN
-===================================================== -->
-
+<!-- AUTH SCREEN -->
 <div id="authScreen">
-
     <div class="authBox">
-
-
-        <!-- AUTH LOGO -->
-
-        <div class="authLogo">
-
-            <img
-                src="logo.png"
-                alt="GyaaniFly Logo"
-            >
-
-        </div>
-
-
-        <div class="logoText">
-
-            Gyaani<span>Fly</span>
-
-        </div>
-
-
-        <div class="logoSub">
-
-            Read • Recall • Master
-
-        </div>
-
-
+        <div class="logoText">Gyaani<span>Fly</span></div>
+        <div class="logoSub">Read • Recall • Master Pro</div>
 
         <!-- LOGIN -->
-
         <div id="loginBox">
-
-            <div class="authTitle">
-
-                Welcome Back 👋
-
-            </div>
-
-
+            <div class="authTitle">Welcome Back 👋</div>
             <div class="inputGroup">
-
-                <label>
-                    Email
-                </label>
-
-                <input
-                    type="email"
-                    id="loginEmail"
-                    placeholder="Enter your email"
-                    autocomplete="email">
-
+                <label>Email</label>
+                <input type="email" id="loginEmail" placeholder="Enter your email" autocomplete="email">
             </div>
-
-
             <div class="inputGroup">
-
-                <label>
-                    Password
-                </label>
-
-                <input
-                    type="password"
-                    id="loginPassword"
-                    placeholder="Enter your password"
-                    autocomplete="current-password">
-
+                <label>Password</label>
+                <input type="password" id="loginPassword" placeholder="Enter your password" autocomplete="current-password">
             </div>
-
-
-            <div class="forgot">
-
-                <button
-                    onclick="forgotPassword()">
-
-                    Forgot Password?
-
-                </button>
-
-            </div>
-
-
-            <button
-                class="primaryBtn"
-                onclick="loginUser()">
-
-                Login
-
-            </button>
-
-
-            <button
-                class="secondaryBtn"
-                onclick="showSignup()">
-
-                Create New Account
-
-            </button>
-
+            <div class="forgot"><button onclick="forgotPassword()">Forgot Password?</button></div>
+            <button class="primaryBtn" onclick="loginUser()">Login</button>
+            <button class="secondaryBtn" onclick="showSignup()">Create New Account</button>
         </div>
-
-
 
         <!-- SIGNUP -->
-
-        <div
-            id="signupBox"
-            class="hidden">
-
-            <div class="authTitle">
-
-                Create Account 🚀
-
-            </div>
-
-
+        <div id="signupBox" class="hidden">
+            <div class="authTitle">Create Account 🚀</div>
             <div class="inputGroup">
-
-                <label>
-                    Name
-                </label>
-
-                <input
-                    type="text"
-                    id="signupName"
-                    placeholder="Your name"
-                    autocomplete="name">
-
+                <label>Name</label>
+                <input type="text" id="signupName" placeholder="Your name" autocomplete="name">
             </div>
-
-
             <div class="inputGroup">
-
-                <label>
-                    Email
-                </label>
-
-                <input
-                    type="email"
-                    id="signupEmail"
-                    placeholder="Your email"
-                    autocomplete="email">
-
+                <label>Email</label>
+                <input type="email" id="signupEmail" placeholder="Your email" autocomplete="email">
             </div>
-
-
             <div class="inputGroup">
-
-                <label>
-                    Password
-                </label>
-
-                <input
-                    type="password"
-                    id="signupPassword"
-                    placeholder="Minimum 6 characters"
-                    autocomplete="new-password">
-
+                <label>Password</label>
+                <input type="password" id="signupPassword" placeholder="Minimum 6 characters" autocomplete="new-password">
             </div>
-
-
-            <button
-                class="primaryBtn"
-                onclick="signupUser()">
-
-                Sign Up
-
-            </button>
-
-
-            <button
-                class="secondaryBtn"
-                onclick="showLogin()">
-
-                Already have an account? Login
-
-            </button>
-
+            <button class="primaryBtn" onclick="signupUser()">Sign Up</button>
+            <button class="secondaryBtn" onclick="showLogin()">Already have an account? Login</button>
         </div>
 
-
-        <div
-            id="authMessage"
-            class="authMessage">
-        </div>
-
+        <div id="authMessage" class="authMessage"></div>
     </div>
-
 </div>
 
+<!-- APP SCREEN -->
+<div id="appScreen" class="hidden">
 
-
-<!-- =====================================================
-     APP SCREEN
-===================================================== -->
-
-<div
-    id="appScreen"
-    class="hidden">
-
-
-
-    <!-- =================================================
-         TOP BAR
-    ================================================= -->
-
+    <!-- TOP BAR -->
     <div class="topBar">
-
         <div class="topRow">
-
-
             <div class="brand">
-
-                <img
-                    src="logo.png"
-                    alt="GyaaniFly"
-                    class="brand-logo"
-                >
-
                 <div>
-
-                    <h1>
-
-                        Gyaani<span>Fly</span>
-
-                    </h1>
-
-                    <small>
-
-                        Read • Recall • Master
-
-                    </small>
-
+                    <h1>Gyaani<span>Fly</span></h1>
+                    <small>Read • Recall • Master</small>
                 </div>
-
             </div>
-
-
-            <div
-                class="userCircle"
-                id="topUserCircle">
-
-                U
-
-            </div>
-
+            <button class="themeToggleBtn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Day/Night Mode">🌙</button>
         </div>
-
     </div>
 
-
-
-    <!-- =================================================
-         HOME PAGE
-    ================================================= -->
-
-    <div
-        id="homePage"
-        class="page">
-
-
-        <!-- WELCOME -->
-
+    <!-- HOME PAGE -->
+    <div id="homePage" class="page">
         <div class="welcome">
-
-            <h2>
-
-                Hello,
-
-                <span id="welcomeName">
-                    Student
-                </span>
-
-                👋
-
-            </h2>
-
-            <p>
-
-                Keep learning and keep growing.
-
-            </p>
-
+            <div>
+                <h2>Hello, <span id="welcomeName">Student</span> 👋</h2>
+                <p>Keep learning and mastering concepts.</p>
+            </div>
+            <div class="xpBadge" id="xpBadgeContainer">⭐ 0 XP<br><small id="levelDisplay">Level 1</small></div>
         </div>
 
-
-
-        <!-- STREAK -->
+        <div class="quickTools">
+            <div class="toolCard" onclick="openFlashcardsMode()"><span>🃏</span>Flashcards</div>
+            <div class="toolCard" onclick="startRandomQuizMode()"><span>🎲</span>Random 10</div>
+            <div class="toolCard" onclick="startWeakQuizMode()"><span>⚠️</span>Weak Questions</div>
+        </div>
 
         <div class="streakCard">
-
             <div class="streakTop">
-
-                <div class="streakTitle">
-
-                    🔥
-
-                    <span id="streakNumber">
-                        0
-                    </span>
-
-                    Day Streak
-
-                </div>
-
-                <div class="streakNumber">
-
-                    🔥
-
-                </div>
-
+                <div class="streakTitle">🔥 <span id="streakNumber">0</span> Day Streak</div>
             </div>
-
-
-            <div
-                id="weekDays"
-                class="weekDays">
-            </div>
-
+            <div id="weekDays" class="weekDays"></div>
         </div>
 
-
-
-        <!-- CONTINUE LEARNING -->
-
-        <div
-            id="continueCard"
-            class="continueCard hidden">
-
-            <div class="continueHeader">
-
-                <div class="continueTitle">
-
-                    Continue Learning
-
-                </div>
-
-            </div>
-
-
+        <div id="continueCard" class="continueCard hidden">
+            <div class="continueHeader"><div class="continueTitle">Continue Learning</div></div>
             <div class="continueBody">
-
-
-                <img
-                    id="continueImage"
-                    class="continueImage"
-                    src=""
-                    alt="Book">
-
-
+                <img id="continueImage" class="continueImage" src="" alt="Book">
                 <div class="continueInfo">
-
-
-                    <div
-                        id="continueBook"
-                        class="continueBook">
-                    </div>
-
-
-                    <div
-                        id="continueChapter"
-                        class="continueChapter">
-                    </div>
-
-
-                    <div class="progressText">
-
-                        <span
-                            id="continueProgressText">
-
-                            0%
-
-                        </span>
-
-                        Complete
-
-                    </div>
-
-
-                    <div class="progressBar">
-
-                        <div
-                            id="continueProgress"
-                            class="progressFill">
-                        </div>
-
-                    </div>
-
-
-                    <button
-                        class="continueBtn"
-                        onclick="continueLearning()">
-
-                        ▶ Continue
-
-                    </button>
-
+                    <div id="continueBook" class="continueBook"></div>
+                    <div id="continueChapter" class="continueChapter"></div>
+                    <div class="progressText"><span id="continueProgressText">0%</span> Complete</div>
+                    <div class="progressBar"><div id="continueProgress" class="progressFill"></div></div>
+                    <button class="continueBtn" onclick="continueLearning()">▶ Continue</button>
                 </div>
-
             </div>
-
         </div>
 
-
-
-        <!-- PROGRESS -->
-
-        <div class="statsTitle">
-
-            📊 Your Progress
-
-        </div>
-
-
+        <div class="statsTitle">📊 Your Progress</div>
         <div class="stats">
-
-
-            <div class="stat">
-
-                <div
-                    id="booksStarted"
-                    class="statNumber">
-
-                    0
-
-                </div>
-
-                <div class="statLabel">
-
-                    Books Started
-
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div
-                    id="chaptersCompleted"
-                    class="statNumber">
-
-                    0
-
-                </div>
-
-                <div class="statLabel">
-
-                    Chapters Completed
-
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div
-                    id="mcqsSolved"
-                    class="statNumber">
-
-                    0
-
-                </div>
-
-                <div class="statLabel">
-
-                    MCQs Solved
-
-                </div>
-
-            </div>
-
-
-            <div class="stat">
-
-                <div
-                    id="correctAnswers"
-                    class="statNumber">
-
-                    0
-
-                </div>
-
-                <div class="statLabel">
-
-                    Correct Answers
-
-                </div>
-
-            </div>
-
+            <div class="stat"><div id="booksStarted" class="statNumber">0</div><div class="statLabel">Started</div></div>
+            <div class="stat"><div id="chaptersCompleted" class="statNumber">0</div><div class="statLabel">Chapters</div></div>
+            <div class="stat"><div id="mcqsSolved" class="statNumber">0</div><div class="statLabel">Solved</div></div>
+            <div class="stat"><div id="correctAnswers" class="statNumber">0</div><div class="statLabel">Correct</div></div>
         </div>
-
-
-
-        <!-- OVERALL PROGRESS -->
 
         <div class="overallCard">
-
-
             <div class="overallTop">
-
-                <div class="overallTitle">
-
-                    Overall Progress
-
-                </div>
-
-
-                <div
-                    id="overallPercent"
-                    class="overallPercent">
-
-                    0%
-
-                </div>
-
+                <div class="overallTitle">Overall Progress</div>
+                <div id="overallPercent" class="overallPercent">0%</div>
             </div>
-
-
-            <div class="overallBar">
-
-                <div
-                    id="overallFill"
-                    class="overallFill">
-                </div>
-
-            </div>
-
+            <div class="overallBar"><div id="overallFill" class="overallFill"></div></div>
         </div>
 
+        <div class="achievementTitle">🏆 Achievements</div>
+        <div id="achievementGrid" class="achievementGrid"></div>
 
-
-        <!-- ACHIEVEMENTS -->
-
-        <div class="achievementTitle">
-
-            🏆 Achievements
-
-        </div>
-
-
-        <div
-            id="achievementGrid"
-            class="achievementGrid">
-        </div>
-
-
-
-        <!-- BOOKS -->
-
-        <div class="sectionTitle">
-
-            📚 Recommended Books
-
-        </div>
-
-
-        <div
-            id="homeBooks"
-            class="bookGrid">
-
-            <div class="loading">
-
-                Loading books...
-
-            </div>
-
-        </div>
-
+        <div class="sectionTitle">📚 Recommended Books</div>
+        <div id="homeBooks"><div class="loading">Loading books...</div></div>
     </div>
 
-
-
-    <!-- =================================================
-         BOOKS PAGE
-    ================================================= -->
-
-    <div
-        id="booksPage"
-        class="page hidden">
-
-
-        <div class="sectionTitle">
-
-            📚 All Books
-
-        </div>
-
-
+    <!-- BOOKS PAGE -->
+    <div id="booksPage" class="page hidden">
+        <div class="sectionTitle">📚 All Books</div>
         <div class="searchBox">
-
-            <input
-                type="text"
-                id="bookSearch"
-                placeholder="🔍 Search books..."
-                oninput="searchBooks()">
-
+            <input type="text" id="bookSearch" placeholder="🔍 Search books..." oninput="searchBooks()">
         </div>
-
-
-        <div
-            id="booksContainer"
-            class="bookGrid">
-
-            <div class="loading">
-
-                Loading...
-
-            </div>
-
-        </div>
-
+        <div id="booksContainer"><div class="loading">Loading...</div></div>
     </div>
 
-
-
-    <!-- =================================================
-         CHAPTERS PAGE
-    ================================================= -->
-
-    <div
-        id="chaptersPage"
-        class="page hidden">
-
-
-        <button
-            class="backBtn"
-            onclick="showPage('booksPage')">
-
-            ← Back to Books
-
-        </button>
-
-
-        <div
-            class="sectionTitle"
-            id="chapterBookTitle">
-
-            Chapters
-
-        </div>
-
-
-        <div id="chaptersContainer">
-        </div>
-
+    <!-- CHAPTERS PAGE -->
+    <div id="chaptersPage" class="page hidden">
+        <button class="backBtn" onclick="showPage('booksPage')">← Back to Books</button>
+        <div class="sectionTitle" id="chapterBookTitle">Chapters</div>
+        <div id="chaptersContainer"></div>
     </div>
 
-
-
-    <!-- =================================================
-         QUIZ PAGE
-    ================================================= -->
-
-    <div
-        id="quizPage"
-        class="page hidden">
-
-
-        <button
-            class="backBtn"
-            onclick="showPage('chaptersPage')">
-
-            ← Back to Chapters
-
-        </button>
-
-
+    <!-- QUIZ PAGE -->
+    <div id="quizPage" class="page hidden">
+        <button class="backBtn" onclick="showPage('chaptersPage')">← Back to Chapters</button>
         <div class="quizHeader">
-
-
-            <div id="quizTitle">
-
-                Quiz
-
-            </div>
-
-
-            <br>
-
-
-            <div class="progressBar">
-
-                <div
-                    id="quizProgressFill"
-                    class="progressFill">
-                </div>
-
-            </div>
-
+            <div id="quizTitle">Quiz</div>
+            <div style="font-size:11px; color:#1683f2;" id="accuracyIndicator">Accuracy: 100%</div>
+            <div class="progressBar" style="width:80px;"><div id="quizProgressFill" class="progressFill"></div></div>
         </div>
-
-
-        <div id="quizContainer">
-        </div>
-
+        <div id="quizContainer"></div>
     </div>
 
+    <!-- FLASHCARD PAGE -->
+    <div id="flashcardPage" class="page hidden">
+        <button class="backBtn" onclick="showPage('homePage')">← Back to Home</button>
+        <div class="sectionTitle">🃏 Interactive Flashcards</div>
+        <div id="flashcardContainer"></div>
+    </div>
 
-
-    <!-- =================================================
-         RESULT PAGE
-    ================================================= -->
-
-    <div
-        id="resultPage"
-        class="page hidden">
-
-
+    <!-- RESULT PAGE -->
+    <div id="resultPage" class="page hidden">
         <div class="resultCard">
-
-
-            <h2>
-
-                🎉 Quiz Complete!
-
-            </h2>
-
-
+            <h2>🎉 Quiz Complete!</h2>
+            <div class="xpEarnedBadge" id="resultXpBadge">⭐ +0 XP Earned!</div>
             <div class="scoreCircle">
-
-                <strong
-                    id="finalScore">
-
-                    0/0
-
-                </strong>
-
-                <span>
-
-                    Score
-
-                </span>
-
+                <strong id="finalScore">0/0</strong>
+                <span>Score</span>
             </div>
-
-
-            <p id="resultText">
-
-                Great job!
-
-            </p>
-
-
-            <br>
-
-
-            <button
-                class="primaryBtn"
-                onclick="showPage('homePage')">
-
-                🏠 Back to Home
-
-            </button>
-
+            <p id="resultText" style="font-size:14px; margin-top:10px;">Great job! Keep learning 🚀</p><br>
+            <button class="primaryBtn" onclick="showPage('homePage')" style="margin-bottom:8px;">🏠 Back to Home</button>
+            <button class="secondaryBtn" onclick="restartQuiz()">🔄 Play Again</button>
         </div>
-
     </div>
 
-
-
-    <!-- =================================================
-         PROFILE PAGE
-    ================================================= -->
-
-    <div
-        id="profilePage"
-        class="page hidden">
-
-
-        <div class="sectionTitle">
-
-            👤 My Profile
-
-        </div>
-
-
+    <!-- PROFILE PAGE -->
+    <div id="profilePage" class="page hidden">
+        <div class="sectionTitle">👤 My Profile</div>
         <div class="profileCard">
-
-
-            <div
-                class="profileAvatar"
-                id="profileAvatar">
-
-                U
-
-            </div>
-
-
-            <h2
-                id="profileName">
-
-                Student
-
-            </h2>
-
-
-            <div
-                id="profileEmail"
-                class="profileEmail">
-
-                -
-
-            </div>
-
-
-            <button
-                class="logoutBtn"
-                onclick="logoutUser()">
-
-                🚪 Logout
-
-            </button>
-
+            <div class="profileAvatar" id="profileAvatar">U</div>
+            <h2 id="profileName" style="font-size:18px; margin-bottom:4px;">Student</h2>
+            <div id="profileEmail" class="profileEmail" style="font-size:13px; margin-bottom:15px;">-</div>
+            <p style="margin-bottom:15px; font-weight:700; color:#1683f2;" id="profileLevelXpText">Level 1 • 0 XP</p>
+            <button class="logoutBtn" onclick="logoutUser()">🚪 Logout</button>
         </div>
 
+        <div class="statsTitle">📈 Account Summary</div>
+        <div class="stats" style="margin-bottom:15px;">
+            <div class="stat"><div id="profileBooksStarted" class="statNumber">0</div><div class="statLabel">Started</div></div>
+            <div class="stat"><div id="profileChapters" class="statNumber">0</div><div class="statLabel">Chapters</div></div>
+            <div class="stat"><div id="profileMcqs" class="statNumber">0</div><div class="statLabel">MCQs</div></div>
+            <div class="stat"><div id="profileStreak" class="statNumber">0</div><div class="statLabel">Streak</div></div>
+        </div>
+
+        <div class="achievementTitle">🏆 Unlocked Badges</div>
+        <div id="profileAchievementGrid" class="achievementGrid"></div>
     </div>
 
-
-
-    <!-- =================================================
-         BOTTOM NAV
-    ================================================= -->
-
+    <!-- BOTTOM NAV -->
     <div class="bottomNav">
-
-
-        <button
-            class="navBtn active"
-            id="navHome"
-            onclick="showPage('homePage')">
-
-            <span>
-                🏠
-            </span>
-
-            Home
-
-        </button>
-
-
-        <button
-            class="navBtn"
-            id="navBooks"
-            onclick="showPage('booksPage')">
-
-            <span>
-                📚
-            </span>
-
-            Books
-
-        </button>
-
-
-        <button
-            class="navBtn"
-            id="navProfile"
-            onclick="showPage('profilePage')">
-
-            <span>
-                👤
-            </span>
-
-            Profile
-
-        </button>
-
+        <button class="navBtn active" id="navHome" onclick="showPage('homePage')"><span>🏠</span>Home</button>
+        <button class="navBtn" id="navBooks" onclick="showPage('booksPage')"><span>📚</span>Books</button>
+        <button class="navBtn" id="navProfile" onclick="showPage('profilePage')"><span>👤</span>Profile</button>
     </div>
 
 </div>
 
-
-
-<!-- =====================================================
-     SPLASH SCRIPT
-===================================================== -->
-
+<!-- SCRIPTS -->
 <script>
+window.addEventListener("load", function(){
+    setTimeout(function(){
+        const splash = document.getElementById("splashScreen");
+        if(splash){ splash.classList.add("hide"); }
+    }, 1200);
+});
 
-window.addEventListener(
-    "load",
-    function(){
-
-        setTimeout(
-            function(){
-
-                const splash =
-                    document.getElementById(
-                        "splashScreen"
-                    );
-
-                if(splash){
-
-                    splash.classList.add(
-                        "hide"
-                    );
-
-                }
-
-            },
-            1800
-        );
-
+function toggleTheme(){
+    const htmlEl = document.documentElement;
+    const btn = document.getElementById("themeToggleBtn");
+    if(htmlEl.getAttribute("data-theme") === "dark"){
+        htmlEl.removeAttribute("data-theme");
+        btn.textContent = "🌙";
+        localStorage.setItem("gyaanifly_theme", "light");
+    } else {
+        htmlEl.setAttribute("data-theme", "dark");
+        btn.textContent = "☀️";
+        localStorage.setItem("gyaanifly_theme", "dark");
     }
-);
+}
 
+window.addEventListener("DOMContentLoaded", () => {
+    const savedTheme = localStorage.getItem("gyaanifly_theme");
+    const btn = document.getElementById("themeToggleBtn");
+    if(savedTheme === "dark"){
+        document.documentElement.setAttribute("data-theme", "dark");
+        if(btn) btn.textContent = "☀️";
+    }
+});
+
+// WEB AUDIO API SOUND EFFECTS
+function playSound(type) {
+    try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        osc.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+
+        if(type === 'correct') {
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); 
+            osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.1); 
+            gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.4);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.4);
+        } else if(type === 'wrong') {
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(150, audioCtx.currentTime);
+            osc.frequency.setValueAtTime(100, audioCtx.currentTime + 0.15);
+            gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.3);
+        } else if(type === 'complete') {
+            const now = audioCtx.currentTime;
+            [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
+                const o = audioCtx.createOscillator();
+                const g = audioCtx.createGain();
+                o.connect(g);
+                g.connect(audioCtx.destination);
+                o.frequency.setValueAtTime(freq, now + i * 0.1);
+                g.gain.setValueAtTime(0.1, now + i * 0.1);
+                g.gain.exponentialRampToValueAtTime(0.001, now + i * 0.1 + 0.3);
+                o.start(now + i * 0.1);
+                o.stop(now + i * 0.1 + 0.3);
+            });
+        }
+    } catch(e) {
+        console.log("Audio not supported");
+    }
+}
+
+// CONFETTI ANIMATION
+function triggerConfetti() {
+    const canvas = document.getElementById("confettiCanvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particles = [];
+    const colors = ['#1683f2', '#22c55e', '#f97316', '#a855f7', '#eab308'];
+
+    for(let i=0; i<100; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height - canvas.height,
+            r: Math.random() * 6 + 4,
+            d: Math.random() * 50 + 10,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            tilt: Math.random() * 10 - 10,
+            tiltAngleIncremental: Math.random() * 0.07 + 0.05,
+            tiltAngle: 0
+        });
+    }
+
+    let animationId;
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach((p, index) => {
+            p.tiltAngle += p.tiltAngleIncremental;
+            p.y += (Math.cos(p.d) + 3 + p.r / 2) / 2;
+            p.x += Math.sin(p.tilt);
+
+            ctx.beginPath();
+            ctx.lineWidth = p.r;
+            ctx.strokeStyle = p.color;
+            ctx.moveTo(p.x + p.tilt + p.r / 4, p.y);
+            ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 4);
+            ctx.stroke();
+        });
+
+        particles = particles.filter(p => p.y < canvas.height);
+        if(particles.length > 0) {
+            animationId = requestAnimationFrame(draw);
+        } else {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+    }
+    draw();
+}
 </script>
 
-
-
-<!-- =====================================================
-     FIREBASE
-===================================================== -->
-
 <script type="module">
-
-
-/* =====================================================
-   IMPORTS
-===================================================== */
-
-import {
-    initializeApp
-} from
-"https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-
-
-import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    sendPasswordResetEmail,
-    signOut,
-    onAuthStateChanged
-} from
-"https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-
-
-import {
-    getFirestore,
-    doc,
-    getDoc,
-    setDoc,
-    collection,
-    getDocs,
-    query,
-    where
-} from
-"https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
-
-
-
-/* =====================================================
-   FIREBASE CONFIG
-===================================================== */
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 const firebaseConfig = {
-
-    apiKey:
-        "AIzaSyAmQ0I3e5f3Egq1KTilHH8XdxMJxCD8BKQ",
-
-    authDomain:
-        "m-techwala.firebaseapp.com",
-
-    projectId:
-        "m-techwala",
-
-    storageBucket:
-        "m-techwala.firebasestorage.app",
-
-    messagingSenderId:
-        "976106704812",
-
-    appId:
-        "1:976106704812:web:1d603580d5bf695abef409"
-
+    apiKey: "AIzaSyAmQ0I3e5f3Egq1KTilHH8XdxMJxCD8BKQ",
+    authDomain: "m-techwala.firebaseapp.com",
+    projectId: "m-techwala",
+    storageBucket: "m-techwala.firebasestorage.app",
+    messagingSenderId: "976106704812",
+    appId: "1:976106704812:web:1d603580d5bf695abef409"
 };
 
-
-
-/* =====================================================
-   INITIALIZE FIREBASE
-===================================================== */
-
-const app =
-    initializeApp(firebaseConfig);
-
-const auth =
-    getAuth(app);
-
-const db =
-    getFirestore(app);
-
-
-console.log(
-    "GyaaniFly Firebase Connected ✅"
-);
-
-
-
-/* =====================================================
-   VARIABLES
-===================================================== */
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
 let currentUser = null;
-
 let allBooks = [];
-
 let currentBook = null;
-
 let currentChapters = [];
-
 let currentQuiz = [];
-
 let currentQuestion = 0;
-
 let score = 0;
-
 let answered = false;
-
 let currentChapter = null;
 
-
 let userStats = {
-
     booksStarted:0,
-
     chaptersCompleted:0,
-
     mcqsSolved:0,
-
     correctAnswers:0,
-
+    wrongQuestionsList: [],
     streak:0,
-
+    xp:0,
+    level:1,
     activeDates:[],
-
     booksStartedIds:[],
-
     chaptersCompletedIds:[],
-
     lastBookId:"",
-
     lastBookName:"",
-
     lastChapterId:"",
-
     lastChapterName:"",
-
     lastQuestionIndex:0,
-
     lastChapterProgress:0,
-
     totalChapters:0
-
 };
 
-
-
-/* =====================================================
-   AUTH MESSAGE
-===================================================== */
-
-function showAuthMessage(
-    message,
-    type="error"
-){
-
-    const box =
-        document.getElementById(
-            "authMessage"
-        );
-
-
-    box.textContent =
-        message;
-
-
-    box.className =
-        "authMessage " + type;
-
+function showAuthMessage(message, type="error"){
+    const box = document.getElementById("authMessage");
+    box.textContent = message;
+    box.className = "authMessage " + type;
 }
 
-
-
-/* =====================================================
-   SHOW LOGIN
-===================================================== */
-
-window.showLogin =
-function(){
-
-    document
-        .getElementById("loginBox")
-        .classList
-        .remove("hidden");
-
-
-    document
-        .getElementById("signupBox")
-        .classList
-        .add("hidden");
-
-
-    document
-        .getElementById("authMessage")
-        .className =
-        "authMessage";
-
+window.showLogin = function(){
+    document.getElementById("loginBox").classList.remove("hidden");
+    document.getElementById("signupBox").classList.add("hidden");
+    document.getElementById("authMessage").className = "authMessage";
 };
 
-
-
-/* =====================================================
-   SHOW SIGNUP
-===================================================== */
-
-window.showSignup =
-function(){
-
-    document
-        .getElementById("loginBox")
-        .classList
-        .add("hidden");
-
-
-    document
-        .getElementById("signupBox")
-        .classList
-        .remove("hidden");
-
-
-    document
-        .getElementById("authMessage")
-        .className =
-        "authMessage";
-
+window.showSignup = function(){
+    document.getElementById("loginBox").classList.add("hidden");
+    document.getElementById("signupBox").classList.remove("hidden");
+    document.getElementById("authMessage").className = "authMessage";
 };
 
+window.signupUser = async function(){
+    const name = document.getElementById("signupName").value.trim();
+    const email = document.getElementById("signupEmail").value.trim();
+    const password = document.getElementById("signupPassword").value;
 
-
-/* =====================================================
-   SIGNUP
-===================================================== */
-
-window.signupUser =
-async function(){
-
-    const name =
-        document
-        .getElementById("signupName")
-        .value
-        .trim();
-
-
-    const email =
-        document
-        .getElementById("signupEmail")
-        .value
-        .trim();
-
-
-    const password =
-        document
-        .getElementById("signupPassword")
-        .value;
-
-
-    if(!name){
-
-        showAuthMessage(
-            "Please enter your name."
-        );
-
-        return;
-
-    }
-
-
-    if(!email){
-
-        showAuthMessage(
-            "Please enter your email."
-        );
-
-        return;
-
-    }
-
-
-    if(password.length < 6){
-
-        showAuthMessage(
-            "Password must be at least 6 characters."
-        );
-
-        return;
-
-    }
-
+    if(!name){ showAuthMessage("Please enter your name."); return; }
+    if(!email){ showAuthMessage("Please enter your email."); return; }
+    if(password.length < 6){ showAuthMessage("Password must be at least 6 characters."); return; }
 
     try{
-
-        showAuthMessage(
-            "Creating account...",
-            "success"
-        );
-
-
-        const credential =
-            await createUserWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
-
-
-        const user =
-            credential.user;
-
-
-        await setDoc(
-
-            doc(
-                db,
-                "users",
-                user.uid
-            ),
-
-            {
-
-                uid:user.uid,
-
-                name:name,
-
-                email:user.email,
-
-                role:"student",
-
-                status:"active",
-
-                createdAt:new Date(),
-
-                updatedAt:new Date()
-
-            }
-
-        );
-
-
-        showAuthMessage(
-            "Account created successfully 🎉",
-            "success"
-        );
-
-
-    }catch(error){
-
-        console.error(
-            error
-        );
-
-
-        handleAuthError(
-            error
-        );
-
-    }
-
+        showAuthMessage("Creating account...", "success");
+        const credential = await createUserWithEmailAndPassword(auth, email, password);
+        await setDoc(doc(db, "users", credential.user.uid), {
+            uid: credential.user.uid, name, email, role:"student", status:"active", createdAt:new Date()
+        });
+        showAuthMessage("Account created successfully 🎉", "success");
+    }catch(error){ handleAuthError(error); }
 };
 
-
-
-/* =====================================================
-   LOGIN
-===================================================== */
-
-window.loginUser =
-async function(){
-
-    const email =
-        document
-        .getElementById("loginEmail")
-        .value
-        .trim();
-
-
-    const password =
-        document
-        .getElementById("loginPassword")
-        .value;
-
-
-    if(!email){
-
-        showAuthMessage(
-            "Please enter your email."
-        );
-
-        return;
-
-    }
-
-
-    if(!password){
-
-        showAuthMessage(
-            "Please enter your password."
-        );
-
-        return;
-
-    }
-
+window.loginUser = async function(){
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value;
+    if(!email){ showAuthMessage("Please enter your email."); return; }
+    if(!password){ showAuthMessage("Please enter your password."); return; }
 
     try{
-
-        showAuthMessage(
-            "Logging in...",
-            "success"
-        );
-
-
-        await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
-
-
-    }catch(error){
-
-        console.error(
-            error
-        );
-
-
-        handleAuthError(
-            error
-        );
-
-    }
-
+        showAuthMessage("Logging in...", "success");
+        await signInWithEmailAndPassword(auth, email, password);
+    }catch(error){ handleAuthError(error); }
 };
 
-
-
-/* =====================================================
-   FORGOT PASSWORD
-===================================================== */
-
-window.forgotPassword =
-async function(){
-
-    const email =
-        document
-        .getElementById("loginEmail")
-        .value
-        .trim();
-
-
-    if(!email){
-
-        showAuthMessage(
-            "Enter your email first."
-        );
-
-        return;
-
-    }
-
-
+window.forgotPassword = async function(){
+    const email = document.getElementById("loginEmail").value.trim();
+    if(!email){ showAuthMessage("Enter your email first."); return; }
     try{
-
-        await sendPasswordResetEmail(
-            auth,
-            email
-        );
-
-
-        showAuthMessage(
-            "Password reset email sent 📧",
-            "success"
-        );
-
-
-    }catch(error){
-
-        handleAuthError(
-            error
-        );
-
-    }
-
+        await sendPasswordResetEmail(auth, email);
+        showAuthMessage("Password reset email sent 📧", "success");
+    }catch(error){ handleAuthError(error); }
 };
-
-
-
-/* =====================================================
-   AUTH ERROR
-===================================================== */
 
 function handleAuthError(error){
-
-    let message =
-        "Something went wrong.";
-
-
-    switch(error.code){
-
-        case "auth/invalid-email":
-
-            message =
-                "Invalid email address.";
-
-            break;
-
-
-        case "auth/user-not-found":
-
-            message =
-                "No account found.";
-
-            break;
-
-
-        case "auth/wrong-password":
-
-            message =
-                "Incorrect password.";
-
-            break;
-
-
-        case "auth/invalid-credential":
-
-            message =
-                "Email or password is incorrect.";
-
-            break;
-
-
-        case "auth/email-already-in-use":
-
-            message =
-                "This email is already registered.";
-
-            break;
-
-
-        case "auth/weak-password":
-
-            message =
-                "Password must contain at least 6 characters.";
-
-            break;
-
-
-        case "auth/operation-not-allowed":
-
-            message =
-                "Email/Password is disabled in Firebase.";
-
-            break;
-
-
-        case "auth/too-many-requests":
-
-            message =
-                "Too many attempts. Try again later.";
-
-            break;
-
-
-        case "auth/network-request-failed":
-
-            message =
-                "Internet connection problem.";
-
-            break;
-
-    }
-
-
-    showAuthMessage(
-        message
-    );
-
+    let message = "Something went wrong.";
+    if(error.code === "auth/invalid-email") message = "Invalid email address.";
+    if(error.code === "auth/user-not-found") message = "No account found.";
+    if(error.code === "auth/wrong-password") message = "Incorrect password.";
+    if(error.code === "auth/invalid-credential") message = "Email or password is incorrect.";
+    if(error.code === "auth/email-already-in-use") message = "This email is already registered.";
+    if(error.code === "auth/weak-password") message = "Password must contain at least 6 characters.";
+    showAuthMessage(message);
 }
 
-
-
-/* =====================================================
-   AUTH STATE
-===================================================== */
-
-onAuthStateChanged(
-
-    auth,
-
-    async(user)=>{
-
-        if(user){
-
-            currentUser =
-                user;
-
-
-            document
-                .getElementById("authScreen")
-                .classList
-                .add("hidden");
-
-
-            document
-                .getElementById("appScreen")
-                .classList
-                .remove("hidden");
-
-
-            await loadUserProfile();
-
-            await loadUserStats();
-
-            await updateActivity();
-
-            await loadBooks();
-
-            await updateGlobalChapterCount();
-
-            updateProgressUI();
-
-            showPage("homePage");
-
-
-        }else{
-
-            currentUser =
-                null;
-
-
-            document
-                .getElementById("authScreen")
-                .classList
-                .remove("hidden");
-
-
-            document
-                .getElementById("appScreen")
-                .classList
-                .add("hidden");
-
-        }
-
+onAuthStateChanged(auth, async(user)=>{
+    if(user){
+        currentUser = user;
+        document.getElementById("authScreen").classList.add("hidden");
+        document.getElementById("appScreen").classList.remove("hidden");
+        await loadUserProfile();
+        await loadUserStats();
+        await updateActivity();
+        await loadBooks();
+        await updateGlobalChapterCount();
+        updateProgressUI();
+        showPage("homePage");
+    }else{
+        currentUser = null;
+        document.getElementById("authScreen").classList.remove("hidden");
+        document.getElementById("appScreen").classList.add("hidden");
     }
-
-);
-
-
-
-/* =====================================================
-   USER PROFILE
-===================================================== */
+});
 
 async function loadUserProfile(){
-
-    if(!currentUser)
-        return;
-
-
+    if(!currentUser) return;
     try{
+        const snap = await getDoc(doc(db, "users", currentUser.uid));
+        let name = currentUser.email ? currentUser.email.split("@")[0] : "Student";
+        if(snap.exists() && snap.data().name) name = snap.data().name;
 
-        const snap =
-            await getDoc(
-
-                doc(
-                    db,
-                    "users",
-                    currentUser.uid
-                )
-
-            );
-
-
-        let name =
-            currentUser.email
-            ?
-            currentUser.email.split("@")[0]
-            :
-            "Student";
-
-
-        if(snap.exists()){
-
-            const data =
-                snap.data();
-
-
-            if(data.name){
-
-                name =
-                    data.name;
-
-            }
-
-        }
-
-
-        document
-            .getElementById(
-                "welcomeName"
-            )
-            .textContent =
-            name;
-
-
-        document
-            .getElementById(
-                "profileName"
-            )
-            .textContent =
-            name;
-
-
-        document
-            .getElementById(
-                "profileEmail"
-            )
-            .textContent =
-            currentUser.email || "-";
-
-
-        const first =
-            name.charAt(0)
-            .toUpperCase();
-
-
-        document
-            .getElementById(
-                "profileAvatar"
-            )
-            .textContent =
-            first;
-
-
-        document
-            .getElementById(
-                "topUserCircle"
-            )
-            .textContent =
-            first;
-
-
-    }catch(error){
-
-        console.error(
-            "Profile:",
-            error
-        );
-
-    }
-
+        document.getElementById("welcomeName").textContent = name;
+        document.getElementById("profileName").textContent = name;
+        document.getElementById("profileEmail").textContent = currentUser.email || "-";
+        const first = name.charAt(0).toUpperCase();
+        document.getElementById("profileAvatar").textContent = first;
+    }catch(error){ console.error("Profile:", error); }
 }
-
-
-
-/* =====================================================
-   LOAD USER STATS
-===================================================== */
 
 async function loadUserStats(){
-
-    if(!currentUser)
-        return;
-
-
+    if(!currentUser) return;
     try{
-
-        const ref =
-            doc(
-                db,
-                "userStats",
-                currentUser.uid
-            );
-
-
-        const snap =
-            await getDoc(
-                ref
-            );
-
-
+        const ref = doc(db, "userStats", currentUser.uid);
+        const snap = await getDoc(ref);
         if(snap.exists()){
-
-            userStats = {
-
-                ...userStats,
-
-                ...snap.data()
-
-            };
-
+            userStats = { ...userStats, ...snap.data() };
         }else{
-
-            await setDoc(
-                ref,
-                userStats
-            );
-
+            await setDoc(ref, userStats);
         }
-
-
-    }catch(error){
-
-        console.error(
-            "Stats load:",
-            error
-        );
-
-    }
-
+    }catch(error){ console.error("Stats load:", error); }
 }
-
-
-
-/* =====================================================
-   SAVE USER STATS
-===================================================== */
 
 async function saveUserStats(){
-
-    if(!currentUser)
-        return;
-
-
+    if(!currentUser) return;
     try{
-
-        await setDoc(
-
-            doc(
-                db,
-                "userStats",
-                currentUser.uid
-            ),
-
-            {
-
-                ...userStats,
-
-                updatedAt:new Date()
-
-            }
-
-        );
-
-
-    }catch(error){
-
-        console.error(
-            "Stats save:",
-            error
-        );
-
-    }
-
+        userStats.level = Math.floor((userStats.xp || 0) / 100) + 1;
+        await setDoc(doc(db, "userStats", currentUser.uid), { ...userStats, updatedAt:new Date() });
+    }catch(error){ console.error("Stats save:", error); }
 }
-
-
-
-/* =====================================================
-   DAILY ACTIVITY
-===================================================== */
 
 async function updateActivity(){
-
-    if(!currentUser)
-        return;
-
-
-    const today =
-        getDateKey(
-            new Date()
-        );
-
-
-    let dates =
-        Array.isArray(
-            userStats.activeDates
-        )
-        ?
-        [...userStats.activeDates]
-        :
-        [];
-
-
-    if(!dates.includes(today)){
-
-        dates.push(
-            today
-        );
-
-    }
-
-
-    dates =
-        dates
-        .sort()
-        .slice(-30);
-
-
-    userStats.activeDates =
-        dates;
-
-
-    userStats.streak =
-        calculateStreak(
-            dates
-        );
-
-
+    if(!currentUser) return;
+    const today = getDateKey(new Date());
+    let dates = Array.isArray(userStats.activeDates) ? [...userStats.activeDates] : [];
+    if(!dates.includes(today)) dates.push(today);
+    dates = dates.sort().slice(-30);
+    userStats.activeDates = dates;
+    userStats.streak = calculateStreak(dates);
     await saveUserStats();
-
-
     renderWeekDays();
-
 }
-
-
-
-/* =====================================================
-   DATE KEY
-===================================================== */
 
 function getDateKey(date){
-
-    const y =
-        date.getFullYear();
-
-
-    const m =
-        String(
-            date.getMonth()+1
-        )
-        .padStart(
-            2,
-            "0"
-        );
-
-
-    const d =
-        String(
-            date.getDate()
-        )
-        .padStart(
-            2,
-            "0"
-        );
-
-
+    const y = date.getFullYear();
+    const m = String(date.getMonth()+1).padStart(2, "0");
+    const d = String(date.getDate()).padStart(2, "0");
     return `${y}-${m}-${d}`;
-
 }
 
-
-
-/* =====================================================
-   CALCULATE STREAK
-===================================================== */
-
-function calculateStreak(
-    dates
-){
-
-    const set =
-        new Set(
-            dates
-        );
-
-
+function calculateStreak(dates){
+    const set = new Set(dates);
     let streak = 0;
-
-
-    const today =
-        new Date();
-
-
-    for(
-        let i=0;
-        i<365;
-        i++
-    ){
-
-        const date =
-            new Date(
-                today
-            );
-
-
-        date.setDate(
-            today.getDate()-i
-        );
-
-
-        const key =
-            getDateKey(
-                date
-            );
-
-
-        if(
-            set.has(key)
-        ){
-
-            streak++;
-
-        }else{
-
-            break;
-
-        }
-
+    const today = new Date();
+    for(let i=0; i<365; i++){
+        const date = new Date(today);
+        date.setDate(today.getDate()-i);
+        const key = getDateKey(date);
+        if(set.has(key)) streak++;
+        else break;
     }
-
-
     return streak;
-
 }
-
-
-
-/* =====================================================
-   WEEK DAYS
-===================================================== */
 
 function renderWeekDays(){
-
-    const container =
-        document.getElementById(
-            "weekDays"
-        );
-
-
-    const today =
-        new Date();
-
-
-    const day =
-        today.getDay();
-
-
-    const mondayOffset =
-        day === 0
-        ?
-        -6
-        :
-        1-day;
-
-
-    const monday =
-        new Date(
-            today
-        );
-
-
-    monday.setDate(
-        today.getDate() +
-        mondayOffset
-    );
-
-
-    const names = [
-
-        "Mon",
-        "Tue",
-        "Wed",
-        "Thu",
-        "Fri",
-        "Sat",
-        "Sun"
-
-    ];
-
-
-    const active =
-        new Set(
-            userStats.activeDates || []
-        );
-
-
+    const container = document.getElementById("weekDays");
+    const today = new Date();
+    const day = today.getDay();
+    const mondayOffset = day === 0 ? -6 : 1-day;
+    const monday = new Date(today);
+    monday.setDate(today.getDate() + mondayOffset);
+    const names = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+    const active = new Set(userStats.activeDates || []);
     let html = "";
-
-
-    for(
-        let i=0;
-        i<7;
-        i++
-    ){
-
-        const date =
-            new Date(
-                monday
-            );
-
-
-        date.setDate(
-            monday.getDate()+i
-        );
-
-
-        const key =
-            getDateKey(
-                date
-            );
-
-
-        const isActive =
-            active.has(
-                key
-            );
-
-
-        const isToday =
-            key ===
-            getDateKey(
-                today
-            );
-
-
-        html += `
-
-            <div class="dayItem">
-
-                <div class="dayName">
-
-                    ${names[i]}
-
-                </div>
-
-                <div class="
-                    dayCircle
-                    ${isActive ? "active" : ""}
-                    ${isToday ? "today" : ""}
-                ">
-
-                    ${isActive ? "✓" : "○"}
-
-                </div>
-
-            </div>
-
-        `;
-
+    for(let i=0; i<7; i++){
+        const date = new Date(monday);
+        date.setDate(monday.getDate()+i);
+        const key = getDateKey(date);
+        const isActive = active.has(key);
+        const isToday = key === getDateKey(today);
+        html += `<div class="dayItem">
+            <div class="dayName">${names[i]}</div>
+            <div class="dayCircle ${isActive ? "active" : ""} ${isToday ? "today" : ""}">${isActive ? "✓" : "○"}</div>
+        </div>`;
     }
-
-
-    container.innerHTML =
-        html;
-
-
-    document
-        .getElementById(
-            "streakNumber"
-        )
-        .textContent =
-        userStats.streak || 0;
-
+    container.innerHTML = html;
+    document.getElementById("streakNumber").textContent = userStats.streak || 0;
 }
-
-
-
-/* =====================================================
-   GLOBAL CHAPTER COUNT
-===================================================== */
 
 async function updateGlobalChapterCount(){
-
     try{
-
-        const snap =
-            await getDocs(
-
-                collection(
-                    db,
-                    "chapters"
-                )
-
-            );
-
-
-        userStats.totalChapters =
-            snap.size;
-
-
+        const snap = await getDocs(collection(db, "chapters"));
+        userStats.totalChapters = snap.size;
         updateProgressUI();
-
-
-    }catch(error){
-
-        console.error(
-            error
-        );
-
-    }
-
+    }catch(error){ console.error(error); }
 }
-
-
-
-/* =====================================================
-   UPDATE PROGRESS UI
-===================================================== */
 
 function updateProgressUI(){
+    document.getElementById("booksStarted").textContent = userStats.booksStarted || 0;
+    document.getElementById("chaptersCompleted").textContent = userStats.chaptersCompleted || 0;
+    document.getElementById("mcqsSolved").textContent = userStats.mcqsSolved || 0;
+    document.getElementById("correctAnswers").textContent = userStats.correctAnswers || 0;
+    
+    document.getElementById("profileBooksStarted").textContent = userStats.booksStarted || 0;
+    document.getElementById("profileChapters").textContent = userStats.chaptersCompleted || 0;
+    document.getElementById("profileMcqs").textContent = userStats.mcqsSolved || 0;
+    document.getElementById("profileStreak").textContent = userStats.streak || 0;
+    
+    document.getElementById("xpBadgeContainer").innerHTML = `⭐ ${userStats.xp || 0} XP<br><small>Level ${userStats.level || 1}</small>`;
+    const profileXpText = document.getElementById("profileLevelXpText");
+    if(profileXpText) profileXpText.textContent = `Level ${userStats.level || 1} • ${userStats.xp || 0} XP`;
 
-    document
-        .getElementById(
-            "booksStarted"
-        )
-        .textContent =
-        userStats.booksStarted || 0;
+    const total = Number(userStats.totalChapters || 0);
+    const completed = Number(userStats.chaptersCompleted || 0);
+    let percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+    if(percent > 100) percent = 100;
 
-
-    document
-        .getElementById(
-            "chaptersCompleted"
-        )
-        .textContent =
-        userStats.chaptersCompleted || 0;
-
-
-    document
-        .getElementById(
-            "mcqsSolved"
-        )
-        .textContent =
-        userStats.mcqsSolved || 0;
-
-
-    document
-        .getElementById(
-            "correctAnswers"
-        )
-        .textContent =
-        userStats.correctAnswers || 0;
-
-
-    const total =
-        Number(
-            userStats.totalChapters || 0
-        );
-
-
-    const completed =
-        Number(
-            userStats.chaptersCompleted || 0
-        );
-
-
-    let percent = 0;
-
-
-    if(total > 0){
-
-        percent =
-            Math.round(
-                (
-                    completed /
-                    total
-                ) * 100
-            );
-
-    }
-
-
-    if(percent > 100){
-
-        percent = 100;
-
-    }
-
-
-    document
-        .getElementById(
-            "overallPercent"
-        )
-        .textContent =
-        percent + "%";
-
-
-    document
-        .getElementById(
-            "overallFill"
-        )
-        .style.width =
-        percent + "%";
-
+    document.getElementById("overallPercent").textContent = percent + "%";
+    document.getElementById("overallFill").style.width = percent + "%";
 
     renderAchievements();
-
     renderContinueLearning();
-
 }
-
-
-
-/* =====================================================
-   ACHIEVEMENTS
-===================================================== */
 
 function renderAchievements(){
-
-    const grid =
-        document.getElementById(
-            "achievementGrid"
-        );
-
-
-    const solved =
-        Number(
-            userStats.mcqsSolved || 0
-        );
-
-
-    const correct =
-        Number(
-            userStats.correctAnswers || 0
-        );
-
-
-    const accuracy =
-        solved > 0
-        ?
-        correct / solved
-        :
-        0;
-
+    const grid = document.getElementById("achievementGrid");
+    const profileGrid = document.getElementById("profileAchievementGrid");
+    const solved = Number(userStats.mcqsSolved || 0);
+    const correct = Number(userStats.correctAnswers || 0);
+    const accuracy = solved > 0 ? correct / solved : 0;
 
     const achievements = [
-
-        {
-            icon:"🥇",
-            name:"First Quiz",
-            unlocked:
-                solved >= 1
-        },
-
-        {
-            icon:"🔥",
-            name:"7 Day Streak",
-            unlocked:
-                Number(
-                    userStats.streak || 0
-                ) >= 7
-        },
-
-        {
-            icon:"🧠",
-            name:"100 MCQs",
-            unlocked:
-                solved >= 100
-        },
-
-        {
-            icon:"📚",
-            name:"First Book",
-            unlocked:
-                Number(
-                    userStats.booksStarted || 0
-                ) >= 1
-        },
-
-        {
-            icon:"🎯",
-            name:"90% Accuracy",
-            unlocked:
-                solved >= 10 &&
-                accuracy >= .90
-        },
-
-        {
-            icon:"🏆",
-            name:"First Chapter",
-            unlocked:
-                Number(
-                    userStats.chaptersCompleted || 0
-                ) >= 1
-        }
-
+        { icon:"🥇", name:"First Quiz", unlocked: solved >= 1 },
+        { icon:"🔥", name:"7 Day Streak", unlocked: Number(userStats.streak || 0) >= 7 },
+        { icon:"🧠", name:"100 MCQs", unlocked: solved >= 100 },
+        { icon:"📚", name:"First Book", unlocked: Number(userStats.booksStarted || 0) >= 1 },
+        { icon:"🎯", name:"90% Accuracy", unlocked: solved >= 10 && accuracy >= .90 },
+        { icon:"🏆", name:"Master Learner", unlocked: Number(userStats.level || 1) >= 5 }
     ];
 
-
-    grid.innerHTML =
-
-        achievements
-        .map(
-
-            item => `
-
-            <div class="
-                achievement
-                ${item.unlocked ? "unlocked" : ""}
-            ">
-
-                <div class="achievementIcon">
-
-                    ${item.icon}
-
-                </div>
-
-                <div>
-
-                    <div class="achievementName">
-
-                        ${item.name}
-
-                    </div>
-
-                    <div class="achievementStatus">
-
-                        ${
-                            item.unlocked
-                            ?
-                            "✓ Unlocked"
-                            :
-                            "Locked"
-                        }
-
-                    </div>
-
-                </div>
-
+    const achHTML = achievements.map(item => `
+        <div class="achievement ${item.unlocked ? "unlocked" : ""}">
+            <div class="achievementIcon">${item.icon}</div>
+            <div>
+                <div class="achievementName">${item.name}</div>
+                <div class="achievementStatus">${item.unlocked ? "✓ Unlocked" : "Locked"}</div>
             </div>
+        </div>
+    `).join("");
 
-        `
-
-        )
-        .join("");
-
+    if(grid) grid.innerHTML = achHTML;
+    if(profileGrid) profileGrid.innerHTML = achHTML;
 }
-
-
-
-/* =====================================================
-   CONTINUE LEARNING
-===================================================== */
 
 function renderContinueLearning(){
+    const card = document.getElementById("continueCard");
+    if(!userStats.lastBookId){ card.classList.add("hidden"); return; }
+    card.classList.remove("hidden");
+    document.getElementById("continueBook").textContent = userStats.lastBookName || "Book";
+    document.getElementById("continueChapter").textContent = userStats.lastChapterName || "Chapter";
+    const percent = Number(userStats.lastChapterProgress || 0);
+    document.getElementById("continueProgressText").textContent = percent + "%";
+    document.getElementById("continueProgress").style.width = percent + "%";
 
-    const card =
-        document.getElementById(
-            "continueCard"
-        );
-
-
-    if(!userStats.lastBookId){
-
-        card.classList.add(
-            "hidden"
-        );
-
-        return;
-
-    }
-
-
-    card.classList.remove(
-        "hidden"
-    );
-
-
-    document
-        .getElementById(
-            "continueBook"
-        )
-        .textContent =
-        userStats.lastBookName ||
-        "Book";
-
-
-    document
-        .getElementById(
-            "continueChapter"
-        )
-        .textContent =
-        userStats.lastChapterName ||
-        "Chapter";
-
-
-    const percent =
-        Number(
-            userStats.lastChapterProgress || 0
-        );
-
-
-    document
-        .getElementById(
-            "continueProgressText"
-        )
-        .textContent =
-        percent + "%";
-
-
-    document
-        .getElementById(
-            "continueProgress"
-        )
-        .style.width =
-        percent + "%";
-
-
-    const book =
-        allBooks.find(
-            b =>
-                b.id ===
-                userStats.lastBookId
-        );
-
-
-    const image =
-        book
-        ?
-        (
-            book.imageUrl ||
-            book.image ||
-            book.coverImage ||
-            ""
-        )
-        :
-        "";
-
-
-    const continueImage =
-        document.getElementById(
-            "continueImage"
-        );
-
-
-    if(image){
-
-        continueImage.src =
-            image;
-
-        continueImage.style.display =
-            "block";
-
-    }else{
-
-        continueImage.removeAttribute(
-            "src"
-        );
-
-    }
-
+    const book = allBooks.find(b => b.id === userStats.lastBookId);
+    const image = book ? (book.imageUrl || book.image || book.coverImage || "") : "";
+    const continueImage = document.getElementById("continueImage");
+    if(image){ continueImage.src = image; continueImage.style.display = "block"; }
+    else { continueImage.removeAttribute("src"); }
 }
 
-
-
-/* =====================================================
-   CONTINUE BUTTON
-===================================================== */
-
-window.continueLearning =
-async function(){
-
-    if(
-        !userStats.lastBookId ||
-        !userStats.lastChapterId
-    ){
-
-        showPage(
-            "booksPage"
-        );
-
-        return;
-
-    }
-
-
-    currentBook =
-        allBooks.find(
-
-            b =>
-                b.id ===
-                userStats.lastBookId
-
-        );
-
-
-    if(!currentBook){
-
-        showPage(
-            "booksPage"
-        );
-
-        return;
-
-    }
-
-
-    document
-        .getElementById(
-            "chapterBookTitle"
-        )
-        .textContent =
-        "📖 " +
-        (
-            currentBook.name ||
-            "Chapters"
-        );
-
-
-    showPage(
-        "chaptersPage"
-    );
-
-
-    await loadChapters(
-        currentBook.id
-    );
-
-
-    const chapter =
-        currentChapters.find(
-
-            c =>
-                c.id ===
-                userStats.lastChapterId
-
-        );
-
-
-    if(chapter){
-
-        await openChapter(
-            chapter.id
-        );
-
-    }
-
+window.continueLearning = async function(){
+    if(!userStats.lastBookId || !userStats.lastChapterId){ showPage("booksPage"); return; }
+    currentBook = allBooks.find(b => b.id === userStats.lastBookId);
+    if(!currentBook){ showPage("booksPage"); return; }
+    document.getElementById("chapterBookTitle").textContent = "📖 " + (currentBook.name || "Chapters");
+    showPage("chaptersPage");
+    await loadChapters(currentBook.id);
+    const chapter = currentChapters.find(c => c.id === userStats.lastChapterId);
+    if(chapter){ await openChapter(chapter.id); }
 };
 
-
-
-/* =====================================================
-   LOGOUT
-===================================================== */
-
-window.logoutUser =
-async function(){
-
-    try{
-
-        await signOut(
-            auth
-        );
-
-    }catch(error){
-
-        console.error(
-            "Logout:",
-            error
-        );
-
-    }
-
+window.logoutUser = async function(){
+    try{ await signOut(auth); }catch(error){ console.error("Logout:", error); }
 };
 
+window.showPage = function(pageId){
+    const pages = ["homePage", "booksPage", "chaptersPage", "quizPage", "flashcardPage", "resultPage", "profilePage"];
+    pages.forEach(id => { document.getElementById(id).classList.add("hidden"); });
+    const page = document.getElementById(pageId);
+    if(page){ page.classList.remove("hidden"); }
 
+    document.getElementById("navHome").classList.remove("active");
+    document.getElementById("navBooks").classList.remove("active");
+    document.getElementById("navProfile").classList.remove("active");
 
-/* =====================================================
-   PAGE NAVIGATION
-===================================================== */
-
-window.showPage =
-function(pageId){
-
-    const pages = [
-
-        "homePage",
-        "booksPage",
-        "chaptersPage",
-        "quizPage",
-        "resultPage",
-        "profilePage"
-
-    ];
-
-
-    pages.forEach(
-
-        id => {
-
-            document
-                .getElementById(id)
-                .classList
-                .add("hidden");
-
-        }
-
-    );
-
-
-    const page =
-        document.getElementById(
-            pageId
-        );
-
-
-    if(page){
-
-        page.classList.remove(
-            "hidden"
-        );
-
-    }
-
-
-    document
-        .getElementById(
-            "navHome"
-        )
-        .classList
-        .remove("active");
-
-
-    document
-        .getElementById(
-            "navBooks"
-        )
-        .classList
-        .remove("active");
-
-
-    document
-        .getElementById(
-            "navProfile"
-        )
-        .classList
-        .remove("active");
-
-
-    if(pageId === "homePage"){
-
-        document
-            .getElementById(
-                "navHome"
-            )
-            .classList
-            .add("active");
-
-    }
-
-
-    if(pageId === "booksPage"){
-
-        document
-            .getElementById(
-                "navBooks"
-            )
-            .classList
-            .add("active");
-
-    }
-
-
-    if(pageId === "profilePage"){
-
-        document
-            .getElementById(
-                "navProfile"
-            )
-            .classList
-            .add("active");
-
-    }
-
-
-    window.scrollTo({
-
-        top:0,
-
-        behavior:"smooth"
-
-    });
-
+    if(pageId === "homePage") document.getElementById("navHome").classList.add("active");
+    if(pageId === "booksPage") document.getElementById("navBooks").classList.add("active");
+    if(pageId === "profilePage") document.getElementById("navProfile").classList.add("active");
+    window.scrollTo({ top:0, behavior:"smooth" });
 };
-
-
-
-/* =====================================================
-   LOAD BOOKS
-===================================================== */
 
 async function loadBooks(){
-
     try{
-
-        const snapshot =
-            await getDocs(
-
-                collection(
-                    db,
-                    "books"
-                )
-
-            );
-
-
+        const snapshot = await getDocs(collection(db, "books"));
         allBooks = [];
-
-
-        snapshot.forEach(
-
-            docSnap => {
-
-                allBooks.push({
-
-                    id:docSnap.id,
-
-                    ...docSnap.data()
-
-                });
-
-            }
-
-        );
-
-
-        renderBooks(
-            allBooks
-        );
-
-
-        renderHomeBooks(
-            allBooks
-        );
-
-
+        snapshot.forEach(docSnap => { allBooks.push({ id:docSnap.id, ...docSnap.data() }); });
+        renderBooks(allBooks);
+        renderHomeBooks(allBooks);
         renderContinueLearning();
-
-
     }catch(error){
-
-        console.error(
-            "Books:",
-            error
-        );
-
-
-        document
-            .getElementById(
-                "booksContainer"
-            )
-            .innerHTML = `
-
-                <div class="empty">
-
-                    ❌ Unable to load books.
-
-                </div>
-
-            `;
-
+        console.error("Books:", error);
+        document.getElementById("booksContainer").innerHTML = `<div class="empty">❌ Unable to load books.</div>`;
     }
-
 }
-
-
-
-/* =====================================================
-   BOOK HTML
-===================================================== */
 
 function bookHTML(book){
-
-    const imageUrl =
-
-        book.imageUrl ||
-
-        book.image ||
-
-        book.coverImage ||
-
-        "";
-
-
-    const bookName =
-
-        book.name ||
-
-        "Untitled Book";
-
-
-    const author =
-
-        book.author ||
-
-        "Unknown Author";
-
-
-    const category =
-
-        book.category ||
-
-        "";
-
-
-    let imageHTML;
-
-
-    if(imageUrl){
-
-        imageHTML = `
-
-            <div class="bookImageFrame">
-
-                <img
-
-                    class="bookImage"
-
-                    src="${escapeHTML(imageUrl)}"
-
-                    alt="${escapeHTML(bookName)}"
-
-                    loading="lazy"
-
-                    referrerpolicy="no-referrer"
-
-                    onerror="imageError(this)"
-
-                >
-
-                <div
-                    class="imageFallback"
-                    style="display:none;">
-
-                    📚
-
-                </div>
-
-            </div>
-
-        `;
-
-    }else{
-
-        imageHTML = `
-
-            <div class="bookImageFrame">
-
-                <div class="imageFallback">
-
-                    📚
-
-                </div>
-
-            </div>
-
-        `;
-
-    }
-
+    const imageUrl = book.imageUrl || book.image || book.coverImage || "";
+    const bookName = book.name || "Untitled Book";
+    const author = book.author || "Unknown Author";
+    const category = book.category || "";
+    
+    let imageHTML = imageUrl ? `
+        <img class="bookListImage" src="${escapeHTML(imageUrl)}" alt="${escapeHTML(bookName)}" loading="lazy" referrerpolicy="no-referrer" onerror="imageError(this)">
+    ` : `<div class="bookListImage" style="display:flex; align-items:center; justify-content:center; font-size:24px;">📚</div>`;
 
     return `
-
-        <div
-
-            class="bookCard"
-
-            onclick="openBook('${escapeHTML(book.id)}')"
-
-        >
-
-            ${imageHTML}
-
-
-            <div class="bookContent">
-
-                <h3>
-
-                    ${escapeHTML(bookName)}
-
-                </h3>
-
-
-                <div class="bookAuthor">
-
-                    ${escapeHTML(author)}
-
+        <div class="bookListCard" onclick="openBook('${escapeHTML(book.id)}')">
+            <div class="bookListBody">
+                ${imageHTML}
+                <div class="bookListInfo">
+                    <div class="bookListTitle">${escapeHTML(bookName)}</div>
+                    <div class="bookListSub">By ${escapeHTML(author)}</div>
+                    ${category ? `<span class="bookCategoryBadge">${escapeHTML(category)}</span>` : ""}
                 </div>
-
-
-                ${
-                    category
-                    ?
-                    `
-
-                    <span class="bookCategory">
-
-                        ${escapeHTML(category)}
-
-                    </span>
-
-                    `
-                    :
-                    ""
-                }
-
             </div>
-
         </div>
-
     `;
-
 }
 
-
-
-/* =====================================================
-   IMAGE ERROR
-===================================================== */
-
-window.imageError =
-function(img){
-
-    img.style.display =
-        "none";
-
-
-    const fallback =
-        img.nextElementSibling;
-
-
-    if(fallback){
-
-        fallback.style.display =
-            "flex";
-
+window.openBook = async function(bookId){
+    currentBook = allBooks.find(book => book.id === bookId);
+    if(!currentBook) return;
+    if(!Array.isArray(userStats.booksStartedIds)) userStats.booksStartedIds = [];
+    if(!userStats.booksStartedIds.includes(bookId)){
+        userStats.booksStartedIds.push(bookId);
+        userStats.booksStarted = userStats.booksStartedIds.length;
     }
-
-};
-
-
-
-/* =====================================================
-   RENDER BOOKS
-===================================================== */
-
-function renderBooks(
-    books
-){
-
-    const container =
-        document.getElementById(
-            "booksContainer"
-        );
-
-
-    if(!books.length){
-
-        container.innerHTML = `
-
-            <div class="empty">
-
-                📚 No books available yet.
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    container.innerHTML =
-
-        books
-
-        .map(
-            book =>
-                bookHTML(book)
-        )
-
-        .join("");
-
-}
-
-
-
-/* =====================================================
-   HOME BOOKS
-===================================================== */
-
-function renderHomeBooks(
-    books
-){
-
-    const container =
-        document.getElementById(
-            "homeBooks"
-        );
-
-
-    if(!books.length){
-
-        container.innerHTML = `
-
-            <div class="empty">
-
-                No books available.
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    container.innerHTML =
-
-        books
-
-        .slice(0,6)
-
-        .map(
-            book =>
-                bookHTML(book)
-        )
-
-        .join("");
-
-}
-
-
-
-/* =====================================================
-   SEARCH BOOKS
-===================================================== */
-
-window.searchBooks =
-function(){
-
-    const value =
-
-        document
-        .getElementById(
-            "bookSearch"
-        )
-        .value
-        .toLowerCase()
-        .trim();
-
-
-    const filtered =
-
-        allBooks.filter(
-
-            book => {
-
-                const name =
-
-                    (
-                        book.name ||
-                        ""
-                    )
-                    .toLowerCase();
-
-
-                const author =
-
-                    (
-                        book.author ||
-                        ""
-                    )
-                    .toLowerCase();
-
-
-                const category =
-
-                    (
-                        book.category ||
-                        ""
-                    )
-                    .toLowerCase();
-
-
-                return (
-
-                    name.includes(
-                        value
-                    )
-
-                    ||
-
-                    author.includes(
-                        value
-                    )
-
-                    ||
-
-                    category.includes(
-                        value
-                    )
-
-                );
-
-            }
-
-        );
-
-
-    renderBooks(
-        filtered
-    );
-
-};
-
-
-
-/* =====================================================
-   OPEN BOOK
-===================================================== */
-
-window.openBook =
-async function(bookId){
-
-    currentBook =
-        allBooks.find(
-
-            book =>
-                book.id ===
-                bookId
-
-        );
-
-
-    if(!currentBook)
-        return;
-
-
-    if(
-        !Array.isArray(
-            userStats.booksStartedIds
-        )
-    ){
-
-        userStats.booksStartedIds = [];
-
-    }
-
-
-    if(
-        !userStats.booksStartedIds.includes(
-            bookId
-        )
-    ){
-
-        userStats.booksStartedIds.push(
-            bookId
-        );
-
-
-        userStats.booksStarted =
-            userStats.booksStartedIds.length;
-
-    }
-
-
-    userStats.lastBookId =
-        bookId;
-
-
-    userStats.lastBookName =
-        currentBook.name ||
-        "Book";
-
-
+    userStats.lastBookId = bookId;
+    userStats.lastBookName = currentBook.name || "Book";
     await updateActivity();
-
-
     await saveUserStats();
-
-
     updateProgressUI();
-
-
-    document
-        .getElementById(
-            "chapterBookTitle"
-        )
-        .textContent =
-
-        "📖 " +
-        (
-            currentBook.name ||
-            "Chapters"
-        );
-
-
-    showPage(
-        "chaptersPage"
-    );
-
-
-    await loadChapters(
-        bookId
-    );
-
+    document.getElementById("chapterBookTitle").textContent = "📖 " + (currentBook.name || "Chapters");
+    showPage("chaptersPage");
+    await loadChapters(bookId);
 };
 
+window.imageError = function(img){
+    img.style.display = "none";
+};
 
-
-/* =====================================================
-   LOAD CHAPTERS
-===================================================== */
-
-async function loadChapters(
-    bookId
-){
-
-    const container =
-        document.getElementById(
-            "chaptersContainer"
-        );
-
-
-    container.innerHTML = `
-
-        <div class="loading">
-
-            Loading chapters...
-
-        </div>
-
-    `;
-
-
-    try{
-
-        const q =
-
-            query(
-
-                collection(
-                    db,
-                    "chapters"
-                ),
-
-                where(
-                    "bookId",
-                    "==",
-                    bookId
-                )
-
-            );
-
-
-        const snapshot =
-            await getDocs(
-                q
-            );
-
-
-        currentChapters = [];
-
-
-        snapshot.forEach(
-
-            docSnap => {
-
-                currentChapters.push({
-
-                    id:docSnap.id,
-
-                    ...docSnap.data()
-
-                });
-
-            }
-
-        );
-
-
-        currentChapters.sort(
-
-            (a,b) =>
-
-                Number(
-                    a.chapterNumber || 0
-                )
-
-                -
-
-                Number(
-                    b.chapterNumber || 0
-                )
-
-        );
-
-
-        renderChapters();
-
-
-    }catch(error){
-
-        console.error(
-            "Chapters:",
-            error
-        );
-
-
-        container.innerHTML = `
-
-            <div class="empty">
-
-                ❌ Unable to load chapters.
-
-            </div>
-
-        `;
-
-    }
-
+function renderBooks(books){
+    const container = document.getElementById("booksContainer");
+    if(!books.length){ container.innerHTML = `<div class="empty">📚 No books available yet.</div>`; return; }
+    container.innerHTML = books.map(book => bookHTML(book)).join("");
 }
 
+function renderHomeBooks(books){
+    const container = document.getElementById("homeBooks");
+    if(!books.length){ container.innerHTML = `<div class="empty">No books available.</div>`; return; }
+    container.innerHTML = books.slice(0,6).map(book => bookHTML(book)).join("");
+}
 
+window.searchBooks = function(){
+    const value = document.getElementById("bookSearch").value.toLowerCase().trim();
+    const filtered = allBooks.filter(book => {
+        const name = (book.name || "").toLowerCase();
+        const author = (book.author || "").toLowerCase();
+        const category = (book.category || "").toLowerCase();
+        return name.includes(value) || author.includes(value) || category.includes(value);
+    });
+    renderBooks(filtered);
+};
 
-/* =====================================================
-   RENDER CHAPTERS
-===================================================== */
+async function loadChapters(bookId){
+    const container = document.getElementById("chaptersContainer");
+    container.innerHTML = `<div class="loading">Loading chapters...</div>`;
+    try{
+        const q = query(collection(db, "chapters"), where("bookId", "==", bookId));
+        const snapshot = await getDocs(q);
+        currentChapters = [];
+        snapshot.forEach(docSnap => { currentChapters.push({ id:docSnap.id, ...docSnap.data() }); });
+        currentChapters.sort((a,b) => Number(a.chapterNumber || 0) - Number(b.chapterNumber || 0));
+        renderChapters();
+    }catch(error){
+        console.error("Chapters:", error);
+        container.innerHTML = `<div class="empty">❌ Unable to load chapters.</div>`;
+    }
+}
 
 function renderChapters(){
-
-    const container =
-        document.getElementById(
-            "chaptersContainer"
-        );
-
-
-    if(!currentChapters.length){
-
-        container.innerHTML = `
-
-            <div class="empty">
-
-                📚 No chapters available.
-
+    const container = document.getElementById("chaptersContainer");
+    if(!currentChapters.length){ container.innerHTML = `<div class="empty">📚 No chapters available.</div>`; return; }
+    container.innerHTML = currentChapters.map(chapter => `
+        <div class="chapterCard" onclick="openChapter('${escapeHTML(chapter.id)}')">
+            <div class="chapterNumber">${escapeHTML(String(chapter.chapterNumber || "?"))}</div>
+            <div class="chapterInfo">
+                <h3>${escapeHTML(chapter.name || "Untitled Chapter")}</h3>
+                <p>${escapeHTML(chapter.description || "Tap to start quiz")}</p>
             </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    container.innerHTML =
-
-        currentChapters
-
-        .map(
-
-            chapter => `
-
-            <div
-
-                class="chapterCard"
-
-                onclick="openChapter('${escapeHTML(chapter.id)}')"
-
-            >
-
-                <div
-                    class="chapterNumber">
-
-                    ${escapeHTML(
-                        String(
-                            chapter.chapterNumber ||
-                            "?"
-                        )
-                    )}
-
-                </div>
-
-
-                <div class="chapterInfo">
-
-                    <h3>
-
-                        ${escapeHTML(
-                            chapter.name ||
-                            "Untitled Chapter"
-                        )}
-
-                    </h3>
-
-
-                    <p>
-
-                        ${escapeHTML(
-                            chapter.description ||
-                            "Tap to start quiz"
-                        )}
-
-                    </p>
-
-                </div>
-
-            </div>
-
-            `
-
-        )
-
-        .join("");
-
+        </div>
+    `).join("");
 }
 
-
-
-/* =====================================================
-   OPEN CHAPTER
-===================================================== */
-
-window.openChapter =
-async function(chapterId){
-
-    const chapter =
-        currentChapters.find(
-
-            c =>
-                c.id ===
-                chapterId
-
-        );
-
-
-    if(!chapter)
-        return;
-
-
-    if(!currentBook)
-        return;
-
-
-    currentChapter =
-        chapter;
-
-
-    userStats.lastBookId =
-        currentBook.id;
-
-
-    userStats.lastBookName =
-        currentBook.name ||
-        "Book";
-
-
-    userStats.lastChapterId =
-        chapter.id;
-
-
-    userStats.lastChapterName =
-        chapter.name ||
-        "Chapter";
-
-
+window.openChapter = async function(chapterId){
+    const chapter = currentChapters.find(c => c.id === chapterId);
+    if(!chapter || !currentBook) return;
+    currentChapter = chapter;
+    userStats.lastBookId = currentBook.id;
+    userStats.lastBookName = currentBook.name || "Book";
+    userStats.lastChapterId = chapter.id;
+    userStats.lastChapterName = chapter.name || "Chapter";
     await updateActivity();
-
-
     await saveUserStats();
-
-
-    document
-        .getElementById(
-            "quizTitle"
-        )
-        .textContent =
-
-        "🧠 " +
-        (
-            chapter.name ||
-            "Quiz"
-        );
-
-
-    showPage(
-        "quizPage"
-    );
-
-
-    await loadQuiz(
-
-        currentBook.id,
-
-        chapterId
-
-    );
-
+    document.getElementById("quizTitle").textContent = "🧠 " + (chapter.name || "Quiz");
+    showPage("quizPage");
+    await loadQuiz(currentBook.id, chapterId);
 };
 
-
-
-/* =====================================================
-   LOAD QUIZ
-===================================================== */
-
-async function loadQuiz(
-
-    bookId,
-
-    chapterId
-
-){
-
-    const container =
-        document.getElementById(
-            "quizContainer"
-        );
-
-
-    container.innerHTML = `
-
-        <div class="loading">
-
-            Loading MCQs...
-
-        </div>
-
-    `;
-
-
+async function loadQuiz(bookId, chapterId){
+    const container = document.getElementById("quizContainer");
+    container.innerHTML = `<div class="loading">Loading MCQs...</div>`;
     try{
-
-        const q =
-
-            query(
-
-                collection(
-                    db,
-                    "mcqs"
-                ),
-
-                where(
-                    "bookId",
-                    "==",
-                    bookId
-                ),
-
-                where(
-                    "chapterId",
-                    "==",
-                    chapterId
-                )
-
-            );
-
-
-        const snapshot =
-            await getDocs(
-                q
-            );
-
-
+        const q = query(collection(db, "mcqs"), where("bookId", "==", bookId), where("chapterId", "==", chapterId));
+        const snapshot = await getDocs(q);
         currentQuiz = [];
-
-
-        snapshot.forEach(
-
-            docSnap => {
-
-                currentQuiz.push({
-
-                    id:docSnap.id,
-
-                    ...docSnap.data()
-
-                });
-
-            }
-
-        );
-
-
+        snapshot.forEach(docSnap => { currentQuiz.push({ id:docSnap.id, ...docSnap.data() }); });
         if(!currentQuiz.length){
-
-            container.innerHTML = `
-
-                <div class="empty">
-
-                    🧠 No MCQs available
-                    for this chapter yet.
-
-                </div>
-
-            `;
-
+            container.innerHTML = `<div class="empty">🧠 No MCQs available for this chapter yet.</div>`;
             return;
-
         }
-
-
-        let savedIndex = 0;
-
-
-        if(
-            userStats.lastChapterId ===
-            chapterId
-        ){
-
-            savedIndex =
-
-                Number(
-                    userStats.lastQuestionIndex ||
-                    0
-                );
-
-        }
-
-
-        if(
-            savedIndex >=
-            currentQuiz.length
-        ){
-
-            savedIndex = 0;
-
-        }
-
-
-        currentQuestion =
-            savedIndex;
-
-
+        currentQuestion = 0;
         score = 0;
-
         answered = false;
-
-
         showQuestion();
-
-
     }catch(error){
-
-        console.error(
-            "Quiz:",
-            error
-        );
-
-
-        container.innerHTML = `
-
-            <div class="empty">
-
-                ❌ Unable to load MCQs.
-
-            </div>
-
-        `;
-
+        console.error("Quiz:", error);
+        container.innerHTML = `<div class="empty">❌ Unable to load MCQs.</div>`;
     }
-
 }
-
-
-
-/* =====================================================
-   SHOW QUESTION
-===================================================== */
 
 function showQuestion(){
-
-    const container =
-        document.getElementById(
-            "quizContainer"
-        );
-
-
-    const q =
-        currentQuiz[
-            currentQuestion
-        ];
-
-
-    if(!q){
-
-        finishQuiz();
-
-        return;
-
-    }
-
-
+    const container = document.getElementById("quizContainer");
+    const q = currentQuiz[currentQuestion];
+    if(!q){ finishQuiz(); return; }
     answered = false;
+    const total = currentQuiz.length;
+    const progress = Math.round((currentQuestion / total) * 100);
+    document.getElementById("quizProgressFill").style.width = progress + "%";
+    
+    let acc = userStats.mcqsSolved > 0 ? Math.round((userStats.correctAnswers / userStats.mcqsSolved) * 100) : 100;
+    document.getElementById("accuracyIndicator").textContent = `Accuracy: ${acc}%`;
 
-
-    const total =
-        currentQuiz.length;
-
-
-    const progress =
-        Math.round(
-
-            (
-                currentQuestion /
-                total
-            ) * 100
-
-        );
-
-
-    document
-        .getElementById(
-            "quizProgressFill"
-        )
-        .style.width =
-        progress + "%";
-
-
-    const options =
-        q.options || {};
-
-
+    const options = q.options || {};
     container.innerHTML = `
-
         <div class="questionCard">
-
-
-            <div class="questionNumber">
-
-                Question
-                ${currentQuestion + 1}
-                / ${total}
-
-            </div>
-
-
-            <div class="questionText">
-
-                ${escapeHTML(
-                    q.question || ""
-                )}
-
-            </div>
-
-
-            <button
-                class="option"
-                onclick="selectAnswer('A',this)">
-
-                <b>A.</b>
-
-                ${escapeHTML(
-                    options.A || ""
-                )}
-
+            <div class="questionNumber">Question ${currentQuestion + 1} / ${total}</div>
+            <div class="questionText">${escapeHTML(q.question || "")}</div>
+            <button class="option" onclick="selectAnswer('A',this)"><b>A.</b> ${escapeHTML(options.A || "")}</button>
+            <button class="option" onclick="selectAnswer('B',this)"><b>B.</b> ${escapeHTML(options.B || "")}</button>
+            <button class="option" onclick="selectAnswer('C',this)"><b>C.</b> ${escapeHTML(options.C || "")}</button>
+            <button class="option" onclick="selectAnswer('D',this)"><b>D.</b> ${escapeHTML(options.D || "")}</button>
+            <button id="nextQuestionBtn" class="nextBtn hidden" onclick="nextQuestion()">
+                ${currentQuestion === total - 1 ? "Finish Quiz" : "Next Question →"}
             </button>
-
-
-            <button
-                class="option"
-                onclick="selectAnswer('B',this)">
-
-                <b>B.</b>
-
-                ${escapeHTML(
-                    options.B || ""
-                )}
-
-            </button>
-
-
-            <button
-                class="option"
-                onclick="selectAnswer('C',this)">
-
-                <b>C.</b>
-
-                ${escapeHTML(
-                    options.C || ""
-                )}
-
-            </button>
-
-
-            <button
-                class="option"
-                onclick="selectAnswer('D',this)">
-
-                <b>D.</b>
-
-                ${escapeHTML(
-                    options.D || ""
-                )}
-
-            </button>
-
-
-            <button
-                id="nextQuestionBtn"
-                class="nextBtn hidden"
-                onclick="nextQuestion()">
-
-                ${
-                    currentQuestion ===
-                    total - 1
-                    ?
-                    "Finish Quiz"
-                    :
-                    "Next Question →"
-                }
-
-            </button>
-
-
         </div>
-
     `;
-
 }
 
-
-
-/* =====================================================
-   SELECT ANSWER
-===================================================== */
-
-window.selectAnswer =
-async function(
-
-    answer,
-
-    button
-
-){
-
-    if(answered)
-        return;
-
-
+window.selectAnswer = async function(answer, button){
+    if(answered) return;
     answered = true;
+    const q = currentQuiz[currentQuestion];
+    const correct = String(q.correctAnswer || "").trim().toUpperCase();
+    const buttons = document.querySelectorAll(".option");
+    buttons.forEach(btn => { btn.disabled = true; });
 
-
-    const q =
-        currentQuiz[
-            currentQuestion
-        ];
-
-
-    const correct =
-
-        String(
-            q.correctAnswer || ""
-        )
-        .trim()
-        .toUpperCase();
-
-
-    const buttons =
-        document.querySelectorAll(
-            ".option"
-        );
-
-
-    buttons.forEach(
-
-        btn => {
-
-            btn.disabled = true;
-
-        }
-
-    );
-
-
-    userStats.mcqsSolved =
-
-        Number(
-            userStats.mcqsSolved || 0
-        ) + 1;
-
+    userStats.mcqsSolved = Number(userStats.mcqsSolved || 0) + 1;
+    userStats.xp = Number(userStats.xp || 0) + 5;
 
     if(answer === correct){
-
-        button.classList.add(
-            "correct"
-        );
-
-
+        button.classList.add("correct");
         score++;
-
-
-        userStats.correctAnswers =
-
-            Number(
-                userStats.correctAnswers || 0
-            ) + 1;
-
-
+        userStats.correctAnswers = Number(userStats.correctAnswers || 0) + 1;
+        userStats.xp += 5; // Extra 5 XP for correct answer
+        playSound('correct');
     }else{
-
-        button.classList.add(
-            "wrong"
-        );
-
-
-        buttons.forEach(
-
-            btn => {
-
-                const text =
-
-                    btn.textContent
-                    .trim();
-
-
-                if(
-                    text.startsWith(
-                        correct + "."
-                    )
-                ){
-
-                    btn.classList.add(
-                        "correct"
-                    );
-
-                }
-
-            }
-
-        );
-
+        button.classList.add("wrong");
+        playSound('wrong');
+        if(!userStats.wrongQuestionsList) userStats.wrongQuestionsList = [];
+        if(!userStats.wrongQuestionsList.some(item => item.question === q.question)){
+            userStats.wrongQuestionsList.push(q);
+        }
+        buttons.forEach(btn => {
+            const text = btn.textContent.trim();
+            if(text.startsWith(correct + ".")){ btn.classList.add("correct"); }
+        });
     }
 
-
-    const total =
-        currentQuiz.length;
-
-
-    const answeredCount =
-        currentQuestion + 1;
-
-
-    const percent =
-        Math.round(
-
-            (
-                answeredCount /
-                total
-            ) * 100
-
-        );
-
-
-    userStats.lastQuestionIndex =
-        currentQuestion + 1;
-
-
-    userStats.lastChapterProgress =
-        percent;
-
-
-    userStats.lastBookId =
-        currentBook.id;
-
-
-    userStats.lastBookName =
-        currentBook.name;
-
-
-    userStats.lastChapterId =
-        currentChapter.id;
-
-
-    userStats.lastChapterName =
-        currentChapter.name;
-
-
     await updateActivity();
-
-
     await saveUserStats();
-
-
     updateProgressUI();
-
-
-
-    /* EXPLANATION */
 
     if(q.explanation){
-
-        const box =
-            document.createElement(
-                "div"
-            );
-
-
-        box.className =
-            "explanationBox";
-
-
-        box.innerHTML =
-
-            "<b>💡 Explanation</b><br>" +
-
-            escapeHTML(
-                q.explanation
-            );
-
-
-        button
-            .parentElement
-            .appendChild(
-                box
-            );
-
+        const box = document.createElement("div");
+        box.className = "explanationBox";
+        box.innerHTML = "<b>💡 Explanation</b><br>" + escapeHTML(q.explanation);
+        button.parentElement.appendChild(box);
     }
-
-
-
-    /* MEMORY TIP */
-
     if(q.memoryTip){
-
-        const box =
-            document.createElement(
-                "div"
-            );
-
-
-        box.className =
-            "memoryBox";
-
-
-        box.innerHTML =
-
-            "<b>🧠 याद रखने की जानकारी</b><br>" +
-
-            escapeHTML(
-                q.memoryTip
-            );
-
-
-        button
-            .parentElement
-            .appendChild(
-                box
-            );
-
+        const box = document.createElement("div");
+        box.className = "memoryBox";
+        box.innerHTML = "<b>🧠 Memory Tip</b><br>" + escapeHTML(q.memoryTip);
+        button.parentElement.appendChild(box);
     }
 
-
-    const nextBtn =
-        document.getElementById(
-            "nextQuestionBtn"
-        );
-
-
-    if(nextBtn){
-
-        nextBtn.classList.remove(
-            "hidden"
-        );
-
-    }
-
+    const nextBtn = document.getElementById("nextQuestionBtn");
+    if(nextBtn){ nextBtn.classList.remove("hidden"); }
 };
 
-
-
-/* =====================================================
-   NEXT QUESTION
-===================================================== */
-
-window.nextQuestion =
-function(){
-
+window.nextQuestion = function(){
     currentQuestion++;
-
     showQuestion();
-
 };
-
-
-
-/* =====================================================
-   FINISH QUIZ
-===================================================== */
 
 async function finishQuiz(){
-
-    const total =
-        currentQuiz.length;
-
-
-    if(
-        !Array.isArray(
-            userStats.chaptersCompletedIds
-        )
-    ){
-
-        userStats.chaptersCompletedIds =
-            [];
-
+    const total = currentQuiz.length;
+    if(!Array.isArray(userStats.chaptersCompletedIds)) userStats.chaptersCompletedIds = [];
+    
+    let chapterXpEarned = 0;
+    if(currentChapter && !userStats.chaptersCompletedIds.includes(currentChapter.id)){
+        userStats.chaptersCompletedIds.push(currentChapter.id);
+        chapterXpEarned = 50;
+        userStats.xp += chapterXpEarned;
     }
-
-
-    if(
-        currentChapter &&
-
-        !userStats
-        .chaptersCompletedIds
-        .includes(
-            currentChapter.id
-        )
-    ){
-
-        userStats
-        .chaptersCompletedIds
-        .push(
-            currentChapter.id
-        );
-
-    }
-
-
-    userStats.chaptersCompleted =
-
-        userStats
-        .chaptersCompletedIds
-        .length;
-
-
-    userStats.lastChapterProgress =
-        100;
-
-
-    userStats.lastQuestionIndex =
-        0;
-
+    userStats.chaptersCompleted = userStats.chaptersCompletedIds.length;
+    
+    // Calculate total XP gained in this quiz session (correct answers * 10 + chapter completion bonus)
+    const sessionXp = (score * 10) + chapterXpEarned;
 
     await updateActivity();
-
-
     await saveUserStats();
-
-
     updateProgressUI();
 
+    playSound('complete');
+    triggerConfetti();
 
-    const percentage =
+    const percentage = total ? Math.round((score / total) * 100) : 0;
+    document.getElementById("finalScore").textContent = score + "/" + total;
+    document.getElementById("resultXpBadge").textContent = `⭐ +${sessionXp} XP Earned!`;
+    document.getElementById("resultText").textContent = `You scored ${percentage}%. Keep learning! 🚀`;
+    showPage("resultPage");
+};
 
-        total
+window.restartQuiz = function(){
+    if(currentChapter){
+        openChapter(currentChapter.id);
+    } else {
+        showPage("homePage");
+    }
+};
 
-        ?
+window.openFlashcardsMode = function(){
+    if(!allBooks.length){ alert("No books available for flashcards."); return; }
+    showPage("flashcardPage");
+    const container = document.getElementById("flashcardContainer");
+    container.innerHTML = `
+        <div class="flashcardScene" onclick="this.querySelector('.flashcard').classList.toggle('is-flipped')">
+            <div class="flashcard">
+                <div class="cardFace">
+                    <h3>🧠 Active Recall Flashcard</h3>
+                    <p style="margin-top:15px; color:var(--text-muted);">Tap to flip and reveal the core concept/answer!</p>
+                </div>
+                <div class="cardFace cardBack">
+                    <h3>💡 Pro Tip</h3>
+                    <p>Consistent revision using active recall strengthens long-term memory retention significantly!</p>
+                </div>
+            </div>
+        </div>
+        <button class="primaryBtn" onclick="showPage('homePage')">Back to Home</button>
+    `;
+};
 
-        Math.round(
+window.startRandomQuizMode = async function(){
+    try{
+        const snap = await getDocs(collection(db, "mcqs"));
+        let allMcqs = [];
+        snap.forEach(d => allMcqs.push({ id:d.id, ...d.data() }));
+        if(!allMcqs.length){ alert("No MCQs found in database!"); return; }
+        currentQuiz = allMcqs.sort(() => 0.5 - Math.random()).slice(0, 10);
+        currentQuestion = 0;
+        score = 0;
+        answered = false;
+        document.getElementById("quizTitle").textContent = "🎲 Random 10 Challenge";
+        showPage("quizPage");
+        showQuestion();
+    }catch(e){ console.error(e); }
+};
 
-            (
-                score /
-                total
-            ) * 100
+window.startWeakQuizMode = function(){
+    if(!userStats.wrongQuestionsList || userStats.wrongQuestionsList.length === 0){
+        alert("Awesome! You don't have any weak questions recorded yet.");
+        return;
+    }
+    currentQuiz = [...userStats.wrongQuestionsList];
+    currentQuestion = 0;
+    score = 0;
+    answered = false;
+    document.getElementById("quizTitle").textContent = "⚠️ Weak Questions Revision";
+    showPage("quizPage");
+    showQuestion();
+};
 
-        )
-
-        :
-
-        0;
-
-
-    document
-        .getElementById(
-            "finalScore"
-        )
-        .textContent =
-
-        score +
-        "/" +
-        total;
-
-
-    document
-        .getElementById(
-            "resultText"
-        )
-        .textContent =
-
-        `You scored ${percentage}%. Keep learning! 🚀`;
-
-
-    showPage(
-        "resultPage"
-    );
-
+function escapeHTML(value){
+    return String(value ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
 }
-
-
-
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
-
-function escapeHTML(
-    value
-){
-
-    return String(
-        value ?? ""
-    )
-
-    .replace(
-        /&/g,
-        "&amp;"
-    )
-
-    .replace(
-        /</g,
-        "&lt;"
-    )
-
-    .replace(
-        />/g,
-        "&gt;"
-    )
-
-    .replace(
-        /"/g,
-        "&quot;"
-    )
-
-    .replace(
-        /'/g,
-        "&#039;"
-    );
-
-}
-
-
-
-/* =====================================================
-   SERVICE WORKER
-===================================================== */
-
-/*
-   Service worker registration अभी optional है.
-   Manifest से PWA metadata काम करेगा.
-*/
-
-if(
-    "serviceWorker" in navigator
-){
-
-    window.addEventListener(
-        "load",
-        function(){
-
-            navigator.serviceWorker
-            .register(
-                "./sw.js"
-            )
-            .then(
-                function(){
-
-                    console.log(
-                        "GyaaniFly Service Worker Registered ✅"
-                    );
-
-                }
-            )
-            .catch(
-                function(error){
-
-                    console.log(
-                        "Service Worker not available:",
-                        error
-                    );
-
-                }
-            );
-
-        }
-    );
-
-}
-
 </script>
 
 </body>
-
 </html>
